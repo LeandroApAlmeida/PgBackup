@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group name="PGSQL_BACKUP">
+            <file>file:/D:/2.%20DESENVOLVIMENTO%20DE%20SOFTWARE/PGSQL_BACKUP/src/PostgreBackup/src/postgre/backup/classes/GerencBackup.java</file>
+            <file>file:/D:/2.%20DESENVOLVIMENTO%20DE%20SOFTWARE/PGSQL_BACKUP/src/PostgreBackup/src/postgre/backup/run/Main.java</file>
+            <file>file:/D:/2.%20DESENVOLVIMENTO%20DE%20SOFTWARE/PGSQL_BACKUP/src/PostgreBackup/src/postgre/backup/run/TrayIconMouseListener.java</file>
+            <file>file:/D:/2.%20DESENVOLVIMENTO%20DE%20SOFTWARE/PGSQL_BACKUP/src/PostgreBackup/src/postgre/backup/classes/ParamsBackup.java</file>
+            <file>file:/D:/2.%20DESENVOLVIMENTO%20DE%20SOFTWARE/PGSQL_BACKUP/src/PostgreBackup/src/postgre/backup/forms/TelaPrincipal.java</file>
+            <file>file:/D:/2.%20DESENVOLVIMENTO%20DE%20SOFTWARE/PGSQL_BACKUP/src/PostgreBackup/src/postgre/backup/run/TrayIconPopupMenu.java</file>
+            <file>file:/D:/2.%20DESENVOLVIMENTO%20DE%20SOFTWARE/PGSQL_BACKUP/src/PostgreBackup/src/postgre/backup/classes/BackupAutomatico.java</file>
+        </group>
+        <group name="Teste">
+            <file>file:/D:/2.%20DESENVOLVIMENTO%20DE%20SOFTWARE/PGSQL_BACKUP/src/PostgreBackup/src/postgre/backup/run/Application.java</file>
+        </group>
+        <group name="PG BACKUP">
+            <file>file:/D:/2.%20DESENVOLVIMENTO/2.%20PROJETOS/BACKUP/src/PostgreBackup/src/postgre/backup/classes/BackupException.java</file>
+            <file>file:/D:/2.%20DESENVOLVIMENTO/2.%20PROJETOS/BACKUP/src/PostgreBackup/src/postgre/backup/classes/BackupManager.java</file>
+            <file>file:/D:/2.%20DESENVOLVIMENTO/2.%20PROJETOS/BACKUP/src/PostgreBackup/src/postgre/backup/run/Application.java</file>
+            <file>file:/D:/2.%20DESENVOLVIMENTO/2.%20PROJETOS/BACKUP/src/PostgreBackup/src/postgre/backup/classes/BackupMonitor.java</file>
+            <file>file:/D:/2.%20DESENVOLVIMENTO/2.%20PROJETOS/BACKUP/src/PostgreBackup/src/postgre/backup/classes/DriveTypeEnum.java</file>
+            <file>file:/D:/2.%20DESENVOLVIMENTO/2.%20PROJETOS/BACKUP/src/PostgreBackup/src/postgre/backup/classes/DrivesManager.java</file>
+            <file>file:/D:/2.%20DESENVOLVIMENTO/2.%20PROJETOS/BACKUP/src/PostgreBackup/src/postgre/backup/classes/TimerTaskBackup.java</file>
+            <file>file:/D:/2.%20DESENVOLVIMENTO/2.%20PROJETOS/BACKUP/src/PostgreBackup/src/postgre/backup/classes/Drive.java</file>
+            <file>file:/D:/2.%20DESENVOLVIMENTO/2.%20PROJETOS/BACKUP/src/PostgreBackup/src/postgre/backup/run/TrayIconPopupMenu.java</file>
+        </group>
+        <group name="BACKUP_PG">
+            <file>file:/D:/2.%20SOFTWARE/2.%20PROJETOS/BACKUP_PG/src/PostgreBackup/src/postgre/backup/classes/Drive.java</file>
+            <file>file:/D:/2.%20SOFTWARE/2.%20PROJETOS/BACKUP_PG/src/PostgreBackup/src/postgre/backup/forms/WindowsManager.java</file>
+            <file>file:/D:/2.%20SOFTWARE/2.%20PROJETOS/BACKUP_PG/src/PostgreBackup/src/postgre/backup/classes/DrivesManager.java</file>
+        </group>
+        <group>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/src/PostgreBackup/src/postgre/backup/forms/WindowsManager.java</file>
+        </group>
+    </open-files>
+</project-private>
