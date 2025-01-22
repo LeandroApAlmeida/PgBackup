@@ -4,12 +4,18 @@ import postgre.backup.run.Application;
 
 public class AboutDialog extends javax.swing.JDialog {
 
+    
     public AboutDialog() {
+        
         super(null, ModalityType.TOOLKIT_MODAL);
+        
         initComponents();        
+        
         setIconImage(Application.getDefaultIcon());
+    
     }
 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

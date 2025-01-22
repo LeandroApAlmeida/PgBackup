@@ -10,42 +10,60 @@ import java.nio.file.spi.FileSystemProvider;
 
 public final class Drive {
 
+    
     private static final FileSystemProvider fsProvider = FileSystems.getDefault().provider();
+    
     private final String fileSystem;
+    
     private final DriveTypeEnum driveType;
+    
     private final String letter;
+    
     private String name;
 
+    
     public Drive(String letter, String fileSystem, DriveTypeEnum driveType) {
+    
         this.letter = letter;
         this.fileSystem = fileSystem;
         this.driveType = driveType;
+        
         try {
+        
             FileStore fileStore = fsProvider.getFileStore(new File(letter).toPath());
+            
             this.name = fileStore.name();
+            
             if (this.name == null || this.name.equals("")) {
                 this.name = "Drive";
             }
+        
         } catch (Exception ex) {
             this.name = "Drive";
         }
+        
     }
 
+    
     public String getFileSystem() {
         return fileSystem;
     }
 
+    
     public DriveTypeEnum getDriveType() {
         return driveType;
     }
 
+    
     public String getLetter() {
         return letter;
     }
 
+    
     public String getName() {
         return name;
     }
+    
     
     public void eject() throws Exception {
         /*if (OSDetector.isWindows()) {
@@ -61,6 +79,7 @@ public final class Drive {
         }*/
     }
 
+    
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Drive) {
@@ -71,9 +90,11 @@ public final class Drive {
         }
     }
 
+    
     @Override
     public String toString() {
         return name + " (" + letter + ")";
     }
 
+    
 }

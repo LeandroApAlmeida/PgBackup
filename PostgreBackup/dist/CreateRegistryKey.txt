@@ -1,0 +1,1 @@
+"java.exe" -jar "D:\2. SOFTWARE\1. PROJETOS PESSOAIS\BACKUP_PG\pgbackup\PostgreBackup\dist\PostgreBackup.jar"

@@ -5,24 +5,40 @@ import postgre.backup.run.Application;
 
 public class BackupErrorDialog extends javax.swing.JDialog {
 
+    
     public BackupErrorDialog() {
+    
         super(null, ModalityType.TOOLKIT_MODAL);
+        
         initComponents();
+        
         setIconImage(Application.getDefaultIcon());
+    
     }
+    
     
     private void showManualBackupDialog() {
         WindowsManager.showManualBackupDialog();
     }
     
+    
     private void abortBackup() {
-        int opt = JOptionPaneEx.showConfirmDialog(this, "Cancelar o backup do Banco de Dados?",
-        "Atenção!", JOptionPaneEx.INFORMATION_MESSAGE, JOptionPaneEx.OK_CANCEL_OPTION);
+    
+        int opt = JOptionPaneEx.showConfirmDialog(
+            this,
+            "Cancelar o backup do Banco de Dados?",
+            "Atenção!",
+            JOptionPaneEx.INFORMATION_MESSAGE,
+            JOptionPaneEx.OK_CANCEL_OPTION
+        );
+        
         if (opt == JOptionPaneEx.OK_OPTION) {
             setVisible(false);
         }
+        
     }
 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

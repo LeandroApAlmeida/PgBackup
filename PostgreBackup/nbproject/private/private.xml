@@ -31,7 +31,11 @@
             <file>file:/D:/2.%20SOFTWARE/2.%20PROJETOS/BACKUP_PG/src/PostgreBackup/src/postgre/backup/classes/DrivesManager.java</file>
         </group>
         <group>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/src/PostgreBackup/src/postgre/backup/forms/WindowsManager.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/classes/BackupSchedule.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/classes/BackupMonitor.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/classes/BackupManager.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/run/TrayIconPopupMenu.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/classes/BackupException.java</file>
         </group>
     </open-files>
 </project-private>

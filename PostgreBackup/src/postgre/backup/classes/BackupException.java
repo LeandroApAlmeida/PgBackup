@@ -5,6 +5,7 @@ package postgre.backup.classes;
  * @author Leandro Aparecido de Almeida
  */
 public class BackupException extends Exception {
+    
     /**
      * Constructor que recebe a mensagem do erro como parâmetro.
      * @param message mensagem do erro.
@@ -12,4 +13,5 @@ public class BackupException extends Exception {
     public BackupException(String message) {
         super(message);
     }
+   
 }

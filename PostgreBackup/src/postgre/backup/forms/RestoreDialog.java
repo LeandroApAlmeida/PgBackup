@@ -9,64 +9,98 @@ import postgre.backup.run.Application;
 
 public class RestoreDialog extends javax.swing.JDialog implements Runnable {
 
+    
     public RestoreDialog() {
+        
         super(null, ModalityType.TOOLKIT_MODAL);
+        
         initComponents();
+        
         setIconImage(Application.getDefaultIcon());
+        
         jlProgress.setVisible(false);
+    
     }
   
+    
     private void doRestore() {
         new Thread(this).start();
     }
     
+    
     private void openOutputBackupFile() {
+    
         setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
             "Arquivo de Backup do PostgreSQL (.pgback)",
             "pgback"
         );
+        
         FileChooserDialog fchooser = new FileChooserDialog(
             "Abrir Arquivo de Backup",
             filter
         );
+        
         int opc = fchooser.showOpenDialog(this);
+        
         if (opc == FileChooserDialog.APPROVE_OPTION) {
             jtfOutputBackupFile.setText(fchooser.getSelectedFile().getAbsolutePath());
         }
+        
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    
     }
+    
     
     @Override
     public void run() {
+        
         setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        
         jbRestore.setEnabled(false);
         jbClose.setEnabled(false);
         jlProgress.setVisible(true);        
+        
         try {
+        
             if (!jtfOutputBackupFile.getText().equals("")) {
+            
                 jtaLog.setText("Processando o Restore...");
+                
                 BackupManager.doRestore(jtfOutputBackupFile.getText());
+                
                 StringBuilder sb = new StringBuilder();
+                
                 sb.append("Restore realizado com sucesso!");
                 jtaLog.setText(sb.toString());
+            
             } else {
+                
                 throw new RestoreException(
                     "Arquivo de backup não definido."
                 );
+            
             }
+        
         } catch (Exception ex) {
+        
             jtaLog.setText(
                 "Erro ao Restaurar o Banco de Dados:\n\n" +
                 ex.getMessage()
             );
+            
         }
+        
         jlProgress.setVisible(false);
         jbRestore.setEnabled(true);
         jbClose.setEnabled(true);
+        
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        
     }
 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

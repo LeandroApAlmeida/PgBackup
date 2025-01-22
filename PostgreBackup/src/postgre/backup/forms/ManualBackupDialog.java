@@ -13,6 +13,7 @@ import postgre.backup.run.Application;
 
 public class ManualBackupDialog extends javax.swing.JDialog implements Runnable {
     
+    
     private class TimerTaskDevice extends TimerTask {
         @Override
         public void run() {
@@ -20,73 +21,113 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
         }        
     }
 
+    
     private final DrivesManager drivesManager;
+    
     private List<Drive> drives;
+    
     private Timer timer;
     
+    
     public ManualBackupDialog() {
+    
         super(null, ModalityType.TOOLKIT_MODAL);
+        
         drivesManager = new DrivesManager();
         timer = new Timer();
+        
         initComponents();
+        
         setIconImage(Application.getDefaultIcon());        
+        
         listDrives();
         configControls();
         startTimer();
+    
     }
     
+    
     private void listDrives() {
+        
         boolean updated = false;
+        
         List<Drive> newList = drivesManager.getDrives(DriveTypeEnum.RemovableDisk);
+        
         if (drives != null) {
+        
             if (newList.size() != drives.size()) {
+            
                 updated = true;
+            
             } else {
+            
                 for (Drive drive1 : newList) {
+                    
                     boolean equals = false;
+                    
                     for (Drive drive2 : drives) {
                         if (drive1.equals(drive2)) {
                             equals = true;
                             break;
                         }
                     }
+                    
                     if (!equals) {
                         updated = true;
                         break;
                     }
+                    
                 }
+                
                 if (!updated) {
+                    
                     for (Drive drive1 : drives) {
+                        
                         boolean equals = false;
+                        
                         for (Drive drive2 : newList) {
                             if (drive1.equals(drive2)) {
                                 equals = true;
                                 break;
                             }
                         }
+                        
                         if (!equals) {
                             updated = true;
                             break;
                         }
+                    
                     }
+                    
                 }
             }
         } else {
+        
             updated = true;
+        
         }
+        
         if (updated) {
+        
             Drive selectedDrive = null;
+            
             if (jcbDrives.getSelectedIndex() >= 0 && drives != null) {
                 selectedDrive = drives.get(jcbDrives.getSelectedIndex());
             }
+            
             drives = newList;
+            
             String[] listItems = new String[drives.size()];
             for (int i = 0; i < drives.size(); i++) {
                 listItems[i] = drives.get(i).toString();
             }
+            
             jcbDrives.setModel(new javax.swing.DefaultComboBoxModel<>(listItems));
-            if (drives.size() > 0) {
+            
+            if (!drives.isEmpty()) {
+                
                 int index = 0;
+                
                 if (selectedDrive != null) {
                     for (int i = 0; i < drives.size(); i++) {
                         if (drives.get(i).equals(selectedDrive)) {
@@ -95,10 +136,15 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
                         }
                     }
                 }
+                
                 jcbDrives.setSelectedIndex(index);
+                
             }
+            
         }
+        
     }
+    
     
     private void configControls() {
         if (jcbDrives.getSelectedIndex() >= 0) {
@@ -108,43 +154,73 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
         }
     }
     
+    
     @Override
     public void run() {
+
         stopTimer();
+
         setCursor(new Cursor(Cursor.WAIT_CURSOR));
+
         jbBackup.setEnabled(false);
         jbCancel.setEnabled(false);
+
         Drive selectedDrive = drives.get(jcbDrives.getSelectedIndex());
         String drive = selectedDrive.getLetter();
+
         try {
+
             jtaLog.setText("Processando o Backup...");
+
             BackupManager.doBackup(drive);
+
             jtaLog.setText("Backup realizado com sucesso!");
-            int opt = JOptionPaneEx.showConfirmDialog(this, "Deseja ejetar o dispositivo USB?",
-            "Atenção!", JOptionPaneEx.YES_NO_OPTION, JOptionPaneEx.INFORMATION_MESSAGE);
+
+            int opt = JOptionPaneEx.showConfirmDialog(
+                this,
+                "Deseja ejetar o dispositivo USB?",
+                "Atenção!",
+                JOptionPaneEx.YES_NO_OPTION,
+                JOptionPaneEx.INFORMATION_MESSAGE
+            );
+
             if (opt == JOptionPaneEx.YES_OPTION) {
+                
                 jtaLog.setText("Ejetando o dispositivo USB... Não remova antes de concluído.");
+                
                 selectedDrive.eject();
+                
                 jtaLog.setText("");
+                
                 JOptionPaneEx.showMessageDialog(
                     this,
                     "Agora você pode remover o dispositivo USB de backup.",
                     "Concluído com Sucesso!",
                     JOptionPaneEx.INFORMATION_MESSAGE
                 );
-            }            
+                
+            }   
+            
             setVisible(false);
+            
         } catch (Exception ex) {
+
             jbBackup.setEnabled(true);
             jbCancel.setEnabled(true);
+
             jtaLog.setText(
                 "Erro ao fazer o Backup do Banco de Dados:\n\n" +
                 ex.getMessage()
             );
+
             startTimer();
+
         }
+        
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        
     }
+    
     
     private void doBackup() {
         if (jcbDrives.getSelectedIndex() >= 0) {
@@ -159,19 +235,23 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
         }
     }
     
+    
     private void abortBackup() {
         setVisible(false);
         stopTimer();
     }
     
+    
     private void startTimer() {
         timer.schedule(new TimerTaskDevice(), 1000, 2000);
     }
+    
     
     private void stopTimer() {
         timer.cancel();
     }
 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -196,7 +276,9 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
 
         jtaLog.setEditable(false);
         jtaLog.setColumns(20);
+        jtaLog.setLineWrap(true);
         jtaLog.setRows(5);
+        jtaLog.setWrapStyleWord(true);
         jtaLog.setFocusable(false);
         jScrollPane1.setViewportView(jtaLog);
 

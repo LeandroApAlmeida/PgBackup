@@ -22,6 +22,7 @@ import postgre.backup.run.Application;
 
 public class ConfigDialog extends javax.swing.JDialog {
     
+    
     private class Comparator1 implements Comparator<Time> {
         @Override
         public int compare(Time o1, Time o2) {
@@ -29,70 +30,102 @@ public class ConfigDialog extends javax.swing.JDialog {
         }        
     }
     
+    
     private final ServerSettings serverSettings = ServerSettings.getInstance();
+    
     private final BackupSchedule backupSchedule = BackupSchedule.getInstance();
+    
     private final List<Time> schedulesList;
+    
     private final Comparator1 comparator;
     
+    
     protected ConfigDialog() {
+        
         super(null, Dialog.ModalityType.TOOLKIT_MODAL);
+        
         schedulesList = new ArrayList<>();
         comparator = new Comparator1();
+        
         initComponents();
+        
         setIconImage(Application.getDefaultIcon());         
+        
         loadServerConfig();
+    
     }
     
+    
     private void openBackupApplication() {
+        
         setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
             "Programa do Microsoft Windows (.exe)",
             "exe"
         );
+        
         FileChooserDialog fchooser = new FileChooserDialog(
             "Abrir o Programa de Backup",
             filter
         );
+        
         int opc = fchooser.showOpenDialog(this);
+        
         if (opc == FileChooserDialog.APPROVE_OPTION) {
             jtfBackupApplication.setText(fchooser.getSelectedFile().getAbsolutePath());
         }
+        
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    
     }
     
+    
     private void openRestoreApplication() {
+        
         setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
             "Programa do Microsoft Windows (.exe)",
             "exe"
         );        
+        
         FileChooserDialog fchooser = new FileChooserDialog(
             "Abrir o Programa de Restore",
             filter
         );
+        
         int opc = fchooser.showOpenDialog(this);
+        
         if (opc == FileChooserDialog.APPROVE_OPTION) {
             jtfRestoreApplication.setText(fchooser.getSelectedFile().getAbsolutePath());
         }
+        
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    
     }
 
+    
     private void loadServerConfig() {
+        
         jtfHost.setText(serverSettings.getHost());
         jspPort.setValue(serverSettings.getPort());
         jtfUserName.setText(serverSettings.getUserName());
         jpfPassword.setText(serverSettings.getPassword());
         jtfDatabase.setText(serverSettings.getDatabase());
+        
         if (serverSettings.getBackupMode() == ServerSettings.EXTRACT_DATA_ONLY) {
             jrbBackupMode1.setSelected(true);
         } else {
             jrbBackupMode2.setSelected(true);
         }
+        
         if (serverSettings.extractBlobs()) {
             jrbExtractBlobs.setSelected(true);
         } else {
             jrbNonExtractBlobs.setSelected(true);
         }
+        
         if (serverSettings.getDriveType() == ServerSettings.NETWORK_DRIVE) {
             jrbNetworkDrive.setSelected(true);
             jtfNetworkDrive.setEnabled(true);
@@ -100,9 +133,13 @@ public class ConfigDialog extends javax.swing.JDialog {
             jrbRemovableDrive.setSelected(true);
             jtfNetworkDrive.setEnabled(false);
         }
+        
         jtfNetworkDrive.setText(serverSettings.getNetworkDrive());
+        
         jtfBackupApplication.setText(serverSettings.getBackupExecutable());
+        
         jtfRestoreApplication.setText(serverSettings.getRestoreExecutable());
+        
         jcbSun.setSelected(backupSchedule.isSunday());
         jcbMon.setSelected(backupSchedule.isMonday());
         jcbTue.setSelected(backupSchedule.isTuesday());
@@ -110,13 +147,20 @@ public class ConfigDialog extends javax.swing.JDialog {
         jcbThu.setSelected(backupSchedule.isThursday());
         jcbFri.setSelected(backupSchedule.isFriday());
         jcbSat.setSelected(backupSchedule.isSaturday());
+        
         jcbActivated.setSelected(backupSchedule.isActivated());
+        
         schedulesList.addAll(backupSchedule.getBackupTimesList());
+        
         loadSchedules();
+        
         configAutomaticBackupControls();
+        
     }
 
+    
     private void loadSchedules() {
+    
         ListModel model = new AbstractListModel() {
             @Override
             public int getSize() {
@@ -127,45 +171,70 @@ public class ConfigDialog extends javax.swing.JDialog {
                 return schedulesList.get(index).toLocalTime().format(DateTimeFormatter.ISO_TIME);
             }
         };
+        
         jlTimes.setModel(model);
-        if (schedulesList.size() > 0) {
+        
+        if (!schedulesList.isEmpty()) {
             jlTimes.setSelectedIndex(0);
             jbRemoveTime.setEnabled(true);
         } else {
             jbRemoveTime.setEnabled(false);
         }
+        
     }
+  
     
     private void configAutomaticBackupControls() {
+        
         boolean enabled = jcbActivated.isSelected();
+        
         for (Component c : jpWeekDays.getComponents()) {
             c.setEnabled(enabled);
         }
+        
         jftTime.setEnabled(enabled);
         jbAddTime.setEnabled(enabled);
         jbRemoveTime.setEnabled(enabled);
         jlTimes.setEnabled(enabled);
+    
     }
+    
     
     private void insertTime() {
+        
         Time time = Time.valueOf(jftTime.getText());
+        
         if (!schedulesList.contains(time)) {
+        
             schedulesList.add(time);
             schedulesList.sort(comparator);
+            
             loadSchedules();
+            
             jftTime.setText("");
+        
         }
+        
     }
+    
     
     private void removeTime() {
+    
         schedulesList.remove(jlTimes.getSelectedIndex());
+        
         loadSchedules();
+    
     }
     
+    
     private void save() {
+    
         setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        
         BackupMonitor.getInstance().stop(true);        
+        
         try {
+        
             if ((jrbNetworkDrive.isSelected() && jtfNetworkDrive.getText().equals("")) ||
             jtfHost.getText().equals("") || jtfUserName.getText().equals("") || 
             jtfDatabase.getText().equals("")) {
@@ -173,7 +242,9 @@ public class ConfigDialog extends javax.swing.JDialog {
                     "Preencha todos os campos para prosseguir."
                 );
             }
+            
             if (jcbActivated.isSelected()) {
+            
                 if (!jcbSun.isSelected() && !jcbMon.isSelected() && !jcbTue
                 .isSelected() && !jcbWed.isSelected() && !jcbThu.isSelected()
                 && !jcbFri.isSelected() && !jcbSat.isSelected()) {
@@ -181,27 +252,37 @@ public class ConfigDialog extends javax.swing.JDialog {
                         "Defina os dias da semana para o backup automático."
                     );
                 }
+                
                 if (schedulesList.isEmpty()) {
                     throw new Exception(
                         "Defina os horários para o backup automático."
                     );
-                }                
+                }
+                
             }
+            
             serverSettings.setHost(jtfHost.getText());
             serverSettings.setPort((int) jspPort.getValue());
             serverSettings.setUserName(jtfUserName.getText());
             serverSettings.setPassword(new String(jpfPassword.getPassword()));
             serverSettings.setDatabase(jtfDatabase.getText());
+            
             serverSettings.setBackupMode(jrbBackupMode1.isSelected() ? ServerSettings
             .EXTRACT_DATA_ONLY : ServerSettings.EXTRACT_STRUCTURE_AND_DATA);
+            
             serverSettings.setExtractBlobs(jrbExtractBlobs.isSelected());
+            
             serverSettings.setNetworkDrive(jrbNetworkDrive.isSelected() ? 
             jtfNetworkDrive.getText() : "");
+            
             serverSettings.setBackupExecutable(jtfBackupApplication.getText());
             serverSettings.setRestoreExecutable(jtfRestoreApplication.getText());
+            
             serverSettings.setDriveType(jrbNetworkDrive.isSelected() ? 
             ServerSettings.NETWORK_DRIVE : ServerSettings.REMOVABLE_DRIVE);
+            
             serverSettings.saveXmlFile();
+            
             backupSchedule.setSunday(jcbSun.isSelected());
             backupSchedule.setMonday(jcbMon.isSelected());
             backupSchedule.setTuesday(jcbTue.isSelected());
@@ -210,20 +291,30 @@ public class ConfigDialog extends javax.swing.JDialog {
             backupSchedule.setFriday(jcbFri.isSelected());
             backupSchedule.setSaturday(jcbSat.isSelected());
             backupSchedule.setActivated(jcbActivated.isSelected());
+            
             backupSchedule.getBackupTimesList().clear();
             backupSchedule.getBackupTimesList().addAll(schedulesList);
-            backupSchedule.saveXmlFile();            
+            backupSchedule.saveXmlFile();
+            
             if (backupSchedule.isActivated()) {
                 BackupMonitor.getInstance().start(true);
             }
+            
             Application.updateTryIcon();
+            
             setVisible(false);
+            
         } catch (Exception ex) {
+            
             ErrorDialog.showException((Frame) this.getParent(), "Erro!", ex);
-        }        
+            
+        }
+        
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        
     }
 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -463,7 +554,7 @@ public class ConfigDialog extends javax.swing.JDialog {
                         .addGroup(jpWeekDaysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jcbFri)
                             .addComponent(jcbTue))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jpWeekDaysLayout.setVerticalGroup(
             jpWeekDaysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -484,7 +575,7 @@ public class ConfigDialog extends javax.swing.JDialog {
                     .addComponent(jcbFri))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcbSat)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         jScrollPane4.setViewportView(jlTimes);
@@ -543,11 +634,11 @@ public class ConfigDialog extends javax.swing.JDialog {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jcbActivated)
-                .addGap(18, 18, 18)
-                .addComponent(jpWeekDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jpWeekDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -559,7 +650,7 @@ public class ConfigDialog extends javax.swing.JDialog {
                     .addComponent(jbAddTime, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbRemoveTime, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -637,7 +728,7 @@ public class ConfigDialog extends javax.swing.JDialog {
 
         jspPort.setModel(new javax.swing.SpinnerNumberModel(0, 0, 65535, 1));
 
-        jLabel5.setText("Database:");
+        jLabel5.setText("B. Dados:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -650,13 +741,15 @@ public class ConfigDialog extends javax.swing.JDialog {
                     .addComponent(jLabel16)
                     .addComponent(jLabel17)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jpfPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                    .addComponent(jtfUserName, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfHost, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfDatabase))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpfPassword)
+                    .addComponent(jtfUserName)
+                    .addComponent(jtfHost)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jtfDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jspPort, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)

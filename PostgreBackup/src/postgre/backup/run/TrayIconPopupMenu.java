@@ -13,6 +13,7 @@ import postgre.backup.forms.WindowsManager;
  */
 public class TrayIconPopupMenu extends java.awt.PopupMenu {
 
+    
     /**
      * Criar uma instância de <b>TrayIconPopupMenu</b>. Cria os itens do
      * popup menu da aplicação.
@@ -20,6 +21,7 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
     public TrayIconPopupMenu() {
         createPopupMenu();
     }
+    
     
     /**
      * Cria os itens do popup menu.
@@ -36,41 +38,62 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
         addExitMenuItem();
     }
     
+    
     /**
      * Adicionar o item de menu 1. Ao clicar neste item de menu, será exibida
      * a tela principal do monitor de processos do Curumim Server.
      */
     private void addConfigMenuItem() {
+        
         MenuItem menuItem = new MenuItem("Configurar...");
+        
         menuItem.addActionListener((ActionEvent e) -> {
             WindowsManager.showConfigDialog();
         });
+        
         this.add(menuItem);
+    
     }
     
+    
     private void addDoBackupMenuItem() {
+        
         MenuItem menuItem = new MenuItem("Fazer o Backup");
+        
         menuItem.addActionListener((ActionEvent e) -> {
             Application.showContextBackupUI();
         });
+        
         this.add(menuItem);
+    
     }
     
+    
     private void addDoRestoreMenuItem() {
+    
         MenuItem menuItem = new MenuItem("Restaurar o Backup");
+        
         menuItem.addActionListener((ActionEvent e) -> {
             WindowsManager.showRestoreDialog();
         });
+        
         this.add(menuItem);
+    
     }
     
+    
     private void addAboutMenuItem() {
+        
         MenuItem menuItem = new MenuItem("Sobre a Versão");
+        
         menuItem.addActionListener((ActionEvent e) -> {
             WindowsManager.showAboutDialog();
         });
+        
         this.add(menuItem);
+    
     }
+    
     
     /**
      * Adicionar o item de menu 2. Ao clicar neste item de menu, será exibido o
@@ -78,8 +101,11 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
      * a execução do programa.
      */
     private void addExitMenuItem() {
+        
         MenuItem menuItem = new MenuItem("Sair");
+        
         menuItem.addActionListener((ActionEvent e) -> {
+        
             int opt = JOptionPane.showConfirmDialog(
                 null,
                 "Sair do gerenciador de backup de \"" + 
@@ -88,11 +114,16 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE
             );
+            
             if (opt == JOptionPane.YES_OPTION) {
                 System.exit(0);
             }
+            
         });
-        this.add(menuItem);
-    }
         
+        this.add(menuItem);
+    
+    }
+   
+    
 }

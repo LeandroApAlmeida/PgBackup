@@ -2,11 +2,14 @@ package postgre.backup.forms;
 
 public class WindowsManager {
     
+    
     private static boolean windowVisible;
 
+    
     private WindowsManager() {
     }
 
+    
     public static void showConfigDialog() {
         if (!windowVisible) {
             windowVisible = true;
@@ -14,6 +17,7 @@ public class WindowsManager {
             windowVisible = false;
         }
     }
+    
     
     public static void showRestoreDialog() {
         if (!windowVisible) {
@@ -23,6 +27,7 @@ public class WindowsManager {
         }
     }
     
+    
     public static void showNetworkBackupDialog() {
         if (!windowVisible) {
             windowVisible = true;
@@ -30,6 +35,7 @@ public class WindowsManager {
             windowVisible = false;
         }
     }
+    
     
     public static void showAboutDialog() { 
         if (!windowVisible) {
@@ -39,6 +45,7 @@ public class WindowsManager {
         }
     }
     
+    
     public static void showBackupErrorDialog() {
         if (!windowVisible) {
             windowVisible = true;
@@ -46,6 +53,7 @@ public class WindowsManager {
             windowVisible = false;
         }
     }
+    
     
     public static void showManualBackupDialog() {
         if (!windowVisible) {
@@ -55,4 +63,5 @@ public class WindowsManager {
         }
     }
 
+    
 }

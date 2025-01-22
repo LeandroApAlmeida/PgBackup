@@ -1,11 +1,7 @@
 package postgre.backup.run;
 
-import java.awt.Frame;
-import java.awt.PopupMenu;
-import java.awt.Window;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JOptionPane;
 
 /**
  * Classe que implementa o tratador de eventos associado ao clique no 
@@ -15,22 +11,14 @@ import javax.swing.JOptionPane;
  */
 public class TrayIconMouseListener implements MouseListener {
     
-    private final PopupMenu popupMenu;
-
-    public TrayIconMouseListener(PopupMenu popupMenu) {
-        this.popupMenu = popupMenu;
-    }
     
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
-            Frame frame = new Frame("");
-            frame.setVisible(true);
-            frame.add(popupMenu);
-            frame.setType(Window.Type.UTILITY);
-            popupMenu.show(frame, e.getXOnScreen(), e.getYOnScreen());
+            Application.showManualBackupUI();
         }
     }
+    
     
     @Override 
     public void mousePressed(MouseEvent e) {}
@@ -39,5 +27,7 @@ public class TrayIconMouseListener implements MouseListener {
     @Override 
     public void mouseEntered(MouseEvent e) {}
     @Override 
-    public void mouseExited(MouseEvent e) {}    
+    public void mouseExited(MouseEvent e) {}
+    
+    
 }

@@ -7,52 +7,79 @@ import postgre.backup.run.Application;
 
 public class NetworkBackupDialog extends javax.swing.JDialog implements Runnable {
 
+    
     private final ServerSettings serverSettings = ServerSettings.getInstance();
     
+    
     public NetworkBackupDialog() {
+        
         super(null, ModalityType.TOOLKIT_MODAL);
+        
         initComponents();
+        
         setIconImage(Application.getDefaultIcon());
+        
         jlProgress.setVisible(false);
+    
     }
+    
     
     private void doBackup() {        
         new Thread(this).start();
     }
 
+    
     @Override
     public void run() {
+        
         setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        
         jbBackup.setEnabled(false);
         jbClose.setEnabled(false);
         jlProgress.setVisible(true);        
+        
         try {
+            
             jtaLog.setText("Processando o Backup...");
+            
             BackupManager.doBackup(serverSettings.getNetworkDrive());
+            
             StringBuilder sb = new StringBuilder();
+            
             sb.append("Backup realizado com sucesso!");
             sb.append("\n");
+            
             sb.append("Arquivo de Backup: ");
             sb.append(serverSettings.getNetworkDrive());
             sb.append("\n");
+            
             sb.append("Modo de Backup: ");
             sb.append(serverSettings.getBackupMode() == ServerSettings
             .EXTRACT_DATA_ONLY ? "Dados Apenas" : "Estrutura e Dados");
             sb.append("\n");
+            
             sb.append("Extrair Blobs: ");
             sb.append(String.valueOf(serverSettings.extractBlobs()));
+            
             jtaLog.setText(sb.toString());
+            
         } catch (Exception ex) {
+            
             jtaLog.setText(
                 "Erro ao fazer o Backup do Banco de Dados:\n\n" +
                 ex.getMessage()
             );
+        
         }
+        
         jlProgress.setVisible(false);
         jbBackup.setEnabled(true);
         jbClose.setEnabled(true);
+        
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        
     }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

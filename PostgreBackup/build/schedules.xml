@@ -11,7 +11,6 @@
     <sat>true</sat>
   </week_days>
   <backup_times>
-    <time>54000000</time>
-    <time>75600000</time>
+    <time>65400000</time>
   </backup_times>
 </schedule>
