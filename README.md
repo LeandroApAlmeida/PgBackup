@@ -18,6 +18,10 @@ Clicando com o botão direito do mouse, tem-se acesso ao menu do programa. Para 
 
 ![Captura de tela 2025-01-23 122041](https://github.com/user-attachments/assets/5595d2ef-b714-4e14-abe9-587d4c152b62)
 
+<b>
+
+Na seção <b>Postgre Server</b>, informe os dados sobre a conexão com o banco de dados. Na guia <b>Parâmetros Gerais<b>, configure o modo de backup do banco de dados. Em <b>Destino do Backup</b>, selecione a opção <b>Drive de rede</b> ou <b>Drive removível</b>. No caso de <b>Drive de rede</b>, selecione o drive de destino do backup na lista.
+
 ![Captura de tela 2025-01-23 122145](https://github.com/user-attachments/assets/766ad957-5d42-402d-a554-935eafb3c453)
 
 ![Captura de tela 2025-01-23 122208](https://github.com/user-attachments/assets/b9377eb3-f7f9-431b-9fa8-01b7591ac0f9)
