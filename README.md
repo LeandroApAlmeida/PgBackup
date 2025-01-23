@@ -34,7 +34,7 @@ Na guia <b>Ferramentas</b>, no campo <b>Programa para o Backup (pg_dump)</b>, de
 
 ![Captura de tela 2025-01-23 122244](https://github.com/user-attachments/assets/d2942588-cd21-4ac7-88ff-78a1744ce0b3)
 
-Para fazer o backup a qualquer momento, sem ser nos horários agendados, deve-se selecionar a opção <b>Fazer o Backup</b> no menu do programa.
+Para fazer o backup a qualquer momento, sem ser nos horários agendados, deve-se clicar com o botão esquerdo do mouse no ícone do programa ou selecionar a opção <b>Fazer o Backup</b> no menu do programa.
 
 <br>
 
