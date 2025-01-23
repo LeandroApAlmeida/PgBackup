@@ -1,7 +1,3 @@
-Quando executar o programa, será criado um ícone no barra de tarefas do Windows. Clicando com o botão direito do mouse, tem-se acesso ao menu do programa.
-
-<br><br>
-
 ![Captura de tela 2025-01-23 121501](https://github.com/user-attachments/assets/ef9e740d-2f68-40f1-9ad7-d1082703b65d)
 
 O ícone do programa é criado na barra de tarefas do Windows.
@@ -34,9 +30,17 @@ Na guia <b>Ferramentas</b>, no campo <b>Programa para o Backup (pg_dump)</b>, de
 
 ![Captura de tela 2025-01-23 122244](https://github.com/user-attachments/assets/d2942588-cd21-4ac7-88ff-78a1744ce0b3)
 
+Para fazer o backup, deve-se selecionar a opção <b>Fazer o Backup</b> no menu do programa.
+
+<br>
+
 ![Captura de tela 2025-01-23 122319](https://github.com/user-attachments/assets/a9cf4042-3d37-47e6-94ab-9a2069dc19e8)
 
 ![Captura de tela 2025-01-23 122345](https://github.com/user-attachments/assets/228cd1c0-a27d-47cd-b463-6f3f0d9585c9)
+
+Caso esteja configurado para backup em drive remoto, será exibida esta tela. Para fazer o backup, deve-se clicar no botão <b>Fazer o Backup</b>.
+
+<br>
 
 ![Captura de tela 2025-01-23 122423](https://github.com/user-attachments/assets/0b1d11dd-1fa7-4c00-bb29-1fb444c0688c)
 
