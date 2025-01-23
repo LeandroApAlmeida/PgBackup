@@ -66,4 +66,32 @@ Ao configurar o backup para Drive Removível, agora o backup será feito somente
 
 <h3>Restauração do Banco de Dados:</h3>
 
+<br>
 
+Para fazer o restore, deve-se selecionar a opção <b>Restaurar o Backup</b> no menu do programa.
+
+![Captura de tela 2025-01-23 141735](https://github.com/user-attachments/assets/72b44c2f-0c02-4167-9a7c-949da7f9870d)
+
+<br>
+
+No campo <b>Arquivo de backup</b>, deve-se selecionar o arquivo de backup do Banco de dados no drive de rede ou drive removível.
+
+![Captura de tela 2025-01-23 141809](https://github.com/user-attachments/assets/a61179f0-0b57-4630-b395-527709bcc0ac)
+
+![Captura de tela 2025-01-23 141838](https://github.com/user-attachments/assets/9422641a-df65-48dc-bce2-5e7260a16c51)
+
+![Captura de tela 2025-01-23 141915](https://github.com/user-attachments/assets/9479d36b-c465-4073-a943-8d4148fdd8bb)
+
+<br>
+
+Ao clicar no botão <b>Restaurar o backup</b>, se não houver um banco de dados criado com o mesmo nome do do backup, dará o seguinte erro:
+
+![Captura de tela 2025-01-23 142107](https://github.com/user-attachments/assets/5e82b2ff-f9f1-4597-84b2-3d98ad26e643)
+
+<br>
+
+Deverá ser criado o banco de dados para prosseguir. Após criado, deve-se clicar novamente no mesmo botão.
+
+![Captura de tela 2025-01-23 142414](https://github.com/user-attachments/assets/a0f3b8f9-dc33-4ed1-bdbb-d44874b4234e)
+
+Com isso, o banco de dados é restaurado.
