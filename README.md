@@ -2,13 +2,19 @@ Quando executar o programa, será criado um ícone no barra de tarefas do Window
 
 ![Captura de tela 2025-01-23 121501](https://github.com/user-attachments/assets/ef9e740d-2f68-40f1-9ad7-d1082703b65d)
 
+<br>
+
 O ícone do programa é criado na barra de tarefas do Windows.
 
+<br><br>
 
 ![Captura de tela 2025-01-23 122007](https://github.com/user-attachments/assets/1769051b-d820-40c0-b67f-7f36ae1076c6)
 
+<br>
+
 Clicando com o botão direito do mouse, tem-se acesso ao menu do programa. Para configurar, clique em <b>Configurar...</b>
 
+<br><br>
 
 ![Captura de tela 2025-01-23 122041](https://github.com/user-attachments/assets/5595d2ef-b714-4e14-abe9-587d4c152b62)
 
