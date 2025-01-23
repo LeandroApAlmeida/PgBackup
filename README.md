@@ -1,4 +1,4 @@
-Funcionamento do programa:
+<h3>Funcionamento do programa:</h3>
 
 <br>
 
