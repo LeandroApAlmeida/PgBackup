@@ -4,8 +4,6 @@
 
 ![Captura de tela 2025-01-23 121501](https://github.com/user-attachments/assets/ef9e740d-2f68-40f1-9ad7-d1082703b65d)
 
-Fig. 1
-
 O ícone do programa é criado na barra de tarefas do Windows.
 
 <br>
@@ -62,4 +60,4 @@ Para configurar para fazer o backup em drive USB, deve-se configurar o destino d
 
 ![Captura de tela 2025-01-23 122708](https://github.com/user-attachments/assets/7db744e0-76fd-495b-a3bd-3e77dd800cd7)
 
-
+Ao configurar o backup para Drive Removível, agora o backup será feito somente em Drive USB.
