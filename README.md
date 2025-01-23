@@ -1,6 +1,7 @@
 Quando executar o programa, será criado um ícone no barra de tarefas do Windows. Clicando com o botão direito do mouse, tem-se acesso ao menu do programa.
 
 ![Captura de tela 2025-01-23 121501](https://github.com/user-attachments/assets/ef9e740d-2f68-40f1-9ad7-d1082703b65d)
+
 O ícone do programa é criado na barra de tarefas do Windows.
 
 ![Captura de tela 2025-01-23 122007](https://github.com/user-attachments/assets/1769051b-d820-40c0-b67f-7f36ae1076c6)
