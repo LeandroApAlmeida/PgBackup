@@ -12,10 +12,15 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import javax.swing.AbstractListModel;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ListModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import postgre.backup.classes.BackupSchedule;
 import postgre.backup.classes.BackupMonitor;
+import postgre.backup.classes.Drive;
+import postgre.backup.classes.DriveTypeEnum;
+import postgre.backup.classes.DrivesManager;
 import postgre.backup.classes.ServerSettings;
 import postgre.backup.run.Application;
 
@@ -134,7 +139,30 @@ public class ConfigDialog extends javax.swing.JDialog {
             jtfNetworkDrive.setEnabled(false);
         }
         
-        jtfNetworkDrive.setText(serverSettings.getNetworkDrive());
+        List<Drive> drivesList = new DrivesManager().getDrives(DriveTypeEnum.NetworkDrive);
+        
+        String[] items = new String[drivesList.size()];
+        
+        for (int i = 0; i < drivesList.size(); i++) {
+            items[i] = drivesList.get(i).getLetter();
+        }
+        
+        ComboBoxModel<String> model = new DefaultComboBoxModel<>(items);
+               
+        jtfNetworkDrive.setModel(model);
+        
+        String networkDrive = serverSettings.getNetworkDrive();
+        
+        int index = -1;
+        
+        for (int i = 0; i < items.length; i++) {
+            if (items[i].equals(networkDrive)) {
+                index = i;
+                break;
+            }
+        }
+        
+        jtfNetworkDrive.setSelectedIndex(index);
         
         jtfBackupApplication.setText(serverSettings.getBackupExecutable());
         
@@ -235,7 +263,7 @@ public class ConfigDialog extends javax.swing.JDialog {
         
         try {
         
-            if ((jrbNetworkDrive.isSelected() && jtfNetworkDrive.getText().equals("")) ||
+            if ((jrbNetworkDrive.isSelected() && jtfNetworkDrive.getSelectedIndex() < 0) ||
             jtfHost.getText().equals("") || jtfUserName.getText().equals("") || 
             jtfDatabase.getText().equals("")) {
                 throw new Exception(
@@ -273,7 +301,7 @@ public class ConfigDialog extends javax.swing.JDialog {
             serverSettings.setExtractBlobs(jrbExtractBlobs.isSelected());
             
             serverSettings.setNetworkDrive(jrbNetworkDrive.isSelected() ? 
-            jtfNetworkDrive.getText() : "");
+            (String) jtfNetworkDrive.getSelectedItem(): "");
             
             serverSettings.setBackupExecutable(jtfBackupApplication.getText());
             serverSettings.setRestoreExecutable(jtfRestoreApplication.getText());
@@ -306,7 +334,7 @@ public class ConfigDialog extends javax.swing.JDialog {
             
         } catch (Exception ex) {
             
-            ErrorDialog.showException((Frame) this.getParent(), "Erro!", ex);
+            ErrorDialog.showException((Frame)this.getParent(), "Erro!", ex);
             
         }
         
@@ -334,9 +362,9 @@ public class ConfigDialog extends javax.swing.JDialog {
         jrbExtractBlobs = new javax.swing.JRadioButton();
         jrbNonExtractBlobs = new javax.swing.JRadioButton();
         jPanel6 = new javax.swing.JPanel();
-        jtfNetworkDrive = new javax.swing.JTextField();
         jrbNetworkDrive = new javax.swing.JRadioButton();
         jrbRemovableDrive = new javax.swing.JRadioButton();
+        jtfNetworkDrive = new javax.swing.JComboBox<>();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jpWeekDays = new javax.swing.JPanel();
@@ -380,7 +408,7 @@ public class ConfigDialog extends javax.swing.JDialog {
         jLabel9.setText("3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("CONFIGURAÇÕES DO SERVIÇO DE BACKUP");
+        setTitle("CONFIGURAÇÕES DO SERVIÇO DE BACKUP DO POSTGRESQL");
         setResizable(false);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Modo de Backup:"));
@@ -462,6 +490,13 @@ public class ConfigDialog extends javax.swing.JDialog {
             }
         });
 
+        jtfNetworkDrive.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jtfNetworkDrive.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfNetworkDriveActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -469,14 +504,12 @@ public class ConfigDialog extends javax.swing.JDialog {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jrbRemovableDrive)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jrbRemovableDrive)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jrbNetworkDrive)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtfNetworkDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addComponent(jtfNetworkDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -484,7 +517,7 @@ public class ConfigDialog extends javax.swing.JDialog {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jrbNetworkDrive)
-                    .addComponent(jtfNetworkDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfNetworkDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jrbRemovableDrive)
                 .addContainerGap(15, Short.MAX_VALUE))
@@ -511,7 +544,7 @@ public class ConfigDialog extends javax.swing.JDialog {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Parâmetros Gerais", jPanel3);
@@ -741,14 +774,12 @@ public class ConfigDialog extends javax.swing.JDialog {
                     .addComponent(jLabel16)
                     .addComponent(jLabel17)
                     .addComponent(jLabel5))
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpfPassword)
-                    .addComponent(jtfUserName)
-                    .addComponent(jtfHost)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jtfDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jtfUserName, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jpfPassword, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jtfDatabase)
+                    .addComponent(jtfHost))
                 .addGap(12, 12, 12)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -863,6 +894,10 @@ public class ConfigDialog extends javax.swing.JDialog {
         jtfNetworkDrive.setEnabled(false);
     }//GEN-LAST:event_jrbRemovableDriveActionPerformed
 
+    private void jtfNetworkDriveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNetworkDriveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNetworkDriveActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btgBackupMode;
     private javax.swing.ButtonGroup btgDestDrive;
@@ -916,7 +951,7 @@ public class ConfigDialog extends javax.swing.JDialog {
     private javax.swing.JTextField jtfBackupApplication;
     private javax.swing.JTextField jtfDatabase;
     private javax.swing.JTextField jtfHost;
-    private javax.swing.JTextField jtfNetworkDrive;
+    private javax.swing.JComboBox<String> jtfNetworkDrive;
     private javax.swing.JTextField jtfRestoreApplication;
     private javax.swing.JTextField jtfUserName;
     // End of variables declaration//GEN-END:variables

@@ -1,6 +1,9 @@
 package postgre.backup.forms;
 
 import dialogs.JOptionPaneEx;
+import java.util.Date;
+import java.util.Timer;
+import postgre.backup.classes.TimerTaskBackup;
 import postgre.backup.run.Application;
 
 public class BackupErrorDialog extends javax.swing.JDialog {
@@ -18,7 +21,14 @@ public class BackupErrorDialog extends javax.swing.JDialog {
     
     
     private void showManualBackupDialog() {
-        WindowsManager.showManualBackupDialog();
+        WindowManager.showManualBackupDialogUnchecked();
+    }
+    
+    
+    private void startNetworkDriveBackup() {
+        Timer backupTimer = new Timer();
+        backupTimer.schedule(new TimerTaskBackup(), new Date());
+        setVisible(false);
     }
     
     
@@ -29,10 +39,10 @@ public class BackupErrorDialog extends javax.swing.JDialog {
             "Cancelar o backup do Banco de Dados?",
             "Atenção!",
             JOptionPaneEx.INFORMATION_MESSAGE,
-            JOptionPaneEx.OK_CANCEL_OPTION
+            JOptionPaneEx.YES_NO_OPTION
         );
         
-        if (opt == JOptionPaneEx.OK_OPTION) {
+        if (opt == JOptionPaneEx.YES_OPTION) {
             setVisible(false);
         }
         
@@ -82,6 +92,11 @@ public class BackupErrorDialog extends javax.swing.JDialog {
         });
 
         jButton2.setText("Tentar Novamente");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -124,6 +139,10 @@ public class BackupErrorDialog extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         showManualBackupDialog();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        startNetworkDriveBackup();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

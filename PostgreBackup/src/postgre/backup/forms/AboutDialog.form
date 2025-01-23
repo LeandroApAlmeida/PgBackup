@@ -77,7 +77,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="66" green="66" red="66" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="SISTEMA GERENCIADOR DE BACKUP DE BANCOS DE DADOS"/>
+        <Property name="text" type="java.lang.String" value="SERVI&#xc7;O DE BACKUP DE BANCOS DE DADOS"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -90,7 +90,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jlVersion">
       <Properties>
-        <Property name="text" type="java.lang.String" value="1.0.0"/>
+        <Property name="text" type="java.lang.String" value="1.2.0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -103,7 +103,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jlDate">
       <Properties>
-        <Property name="text" type="java.lang.String" value="17/06/2018"/>
+        <Property name="text" type="java.lang.String" value="23/01/2025"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jbClose">

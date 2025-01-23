@@ -1,6 +1,7 @@
 package postgre.backup.classes;
 
 import com.jacob.activeX.ActiveXComponent;
+import com.jacob.com.ComThread;
 import com.jacob.com.Dispatch;
 import com.jacob.com.EnumVariant;
 import com.jacob.com.Variant;
@@ -25,6 +26,8 @@ public class DrivesManager {
 
     
     public List<Drive> getDrives() {
+        
+        ComThread.InitSTA();
         
         List<Drive> result = new ArrayList<>();
         
@@ -94,6 +97,8 @@ public class DrivesManager {
         } finally {
         
             activex.safeRelease();
+            
+            ComThread.Release();
         
         }
         

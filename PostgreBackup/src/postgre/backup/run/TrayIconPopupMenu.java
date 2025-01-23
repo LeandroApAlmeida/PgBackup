@@ -4,7 +4,7 @@ import java.awt.MenuItem;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import postgre.backup.classes.ServerSettings;
-import postgre.backup.forms.WindowsManager;
+import postgre.backup.forms.WindowManager;
 
 /**
  * Popup menu associado ao {@link java.awt.TrayIcon} da aplicação.<br>
@@ -48,7 +48,7 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
         MenuItem menuItem = new MenuItem("Configurar...");
         
         menuItem.addActionListener((ActionEvent e) -> {
-            WindowsManager.showConfigDialog();
+            WindowManager.showConfigDialog();
         });
         
         this.add(menuItem);
@@ -74,7 +74,7 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
         MenuItem menuItem = new MenuItem("Restaurar o Backup");
         
         menuItem.addActionListener((ActionEvent e) -> {
-            WindowsManager.showRestoreDialog();
+            WindowManager.showRestoreDialog();
         });
         
         this.add(menuItem);
@@ -87,7 +87,7 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
         MenuItem menuItem = new MenuItem("Sobre a Versão");
         
         menuItem.addActionListener((ActionEvent e) -> {
-            WindowsManager.showAboutDialog();
+            WindowManager.showAboutDialog();
         });
         
         this.add(menuItem);

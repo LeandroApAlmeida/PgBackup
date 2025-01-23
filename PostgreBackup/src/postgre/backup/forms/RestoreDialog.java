@@ -59,6 +59,8 @@ public class RestoreDialog extends javax.swing.JDialog implements Runnable {
         setCursor(new Cursor(Cursor.WAIT_CURSOR));
         
         jbRestore.setEnabled(false);
+        jbOpenOutputBackupFile.setEnabled(false);
+        jtfOutputBackupFile.setEnabled(false);
         jbClose.setEnabled(false);
         jlProgress.setVisible(true);        
         
@@ -93,6 +95,8 @@ public class RestoreDialog extends javax.swing.JDialog implements Runnable {
         }
         
         jlProgress.setVisible(false);
+        jbOpenOutputBackupFile.setEnabled(true);
+        jtfOutputBackupFile.setEnabled(true);
         jbRestore.setEnabled(true);
         jbClose.setEnabled(true);
         
@@ -134,8 +138,13 @@ public class RestoreDialog extends javax.swing.JDialog implements Runnable {
 
         jtaLog.setEditable(false);
         jtaLog.setColumns(20);
+        jtaLog.setLineWrap(true);
         jtaLog.setRows(5);
+        jtaLog.setWrapStyleWord(true);
         jScrollPane1.setViewportView(jtaLog);
+
+        jtfOutputBackupFile.setEditable(false);
+        jtfOutputBackupFile.setBackground(new java.awt.Color(255, 255, 255));
 
         jbOpenOutputBackupFile.setText("...");
         jbOpenOutputBackupFile.addActionListener(new java.awt.event.ActionListener() {
@@ -158,24 +167,25 @@ public class RestoreDialog extends javax.swing.JDialog implements Runnable {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jtfOutputBackupFile)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbOpenOutputBackupFile, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jbOpenOutputBackupFile, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jbRestore, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbRestore, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbClose, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 408, Short.MAX_VALUE)
-                        .addComponent(jlProgress))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 358, Short.MAX_VALUE)
+                        .addComponent(jlProgress)
+                        .addGap(14, 14, 14))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

@@ -23,7 +23,7 @@ import postgre.backup.run.Application;
  * 
  * @author Leandro Aparecido de Almeida
  */
-public class BackupManager {
+public final class BackupManager {
     
     
     /**Arquivo contendo o registro do último backup realizado do banco de dados.*/
@@ -31,6 +31,9 @@ public class BackupManager {
     File.separator + "backupdata.xml");
 
     
+    /**
+     * Constructor private para impedir a criação de uma instância da classe.
+     */
     private BackupManager() {
     }
 
@@ -43,39 +46,48 @@ public class BackupManager {
      * 
      * <i>"--host=[host]":</i> endereço IP do host do Postgre Server.
      * 
-     * <br>
+     * <br><br>
      * 
      * <i>"--port=[porta]":</i> porta TCP do serviço do Postgre Server.
      * 
-     * <br>
+     * <br><br>
      * 
      * <i>"--username=[usuário]":</i> usuário para acesso ao banco de dados
-     * PostgreQL.
+     * PostgreSQL.
      * 
-     * <br>
+     * <br><br>
      * 
      * <i>"--dbname=[nome banco de dados]":</i> nome do banco de dados que se
      * fará o backup.
      * 
-     * <br>
+     * <br><br>
      * 
      * <i>"--format=c":</i> formato do arquivo de backup.
      * 
-     * <br>
+     * <br><br>
      * 
      * <i>"--data-only":</i> utilizar esta diretiva se no backup se deseja
      * extrair somente os dados contidos nas tabelas do banco de dados, sem
      * extrair a estrutura para a reconstrução do mesmo.
      * 
-     * <br>
+     * <br><br>
      * 
      * <i>"--file=[nome do arquivo de backup]":</i> caminho do arquivo de backup
      * do banco de dados.
      * 
      * <br><br>
      * 
-     * Exemplo: pg_dump.exe "--host=127.0.0.1" "--port=5432" "--username=postgres"
+     * Exemplo: 
+     * 
+     * <br><br>
+     * 
+     * pg_dump.exe "--host=127.0.0.1" "--port=5432" "--username=postgres"
      * "--dbname=db_teste" "--format=c" "--data-only" "--file=D:\db_teste.pgback"
+     * 
+     * <br><br>
+     * 
+     * <i><b>Obs.:</b> o nome do arquivo de backup deve ser passado como último 
+     * parâmetro.</i>
      * 
      * @param outputDrive Drive de destino do Backup.
      * 
@@ -94,6 +106,7 @@ public class BackupManager {
             backupOutputFile.delete();
         }         
         
+        // Lista de parâmetros para o pg_dump.exe.
         List<String> pgAdminParams = new ArrayList<>();
         
         pgAdminParams.add(serverSettings.getBackupExecutable());
@@ -112,8 +125,10 @@ public class BackupManager {
         ProcessBuilder builder = new ProcessBuilder(pgAdminParams);
         
         builder.environment().put("PGPASSWORD", serverSettings.getPassword());
+        
         builder.redirectErrorStream(true);
         
+        // Notifica o usuário sobre o início do processo de backup.
         Application.displayTrayMessage(                    
             "NOTIFICAÇÃO DE PROCESSO:",
             "Realizando o \"Backup\" do banco de dados \"" + 
@@ -123,8 +138,11 @@ public class BackupManager {
         
         StringBuilder sb = new StringBuilder();
         
+        // Inicia o processo de backup.
         Process process = builder.start();
         
+        // Captura qualquer mensagem de erro que pode ter ocorrido com o 
+        // processamento do backup.
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(process
         .getInputStream()))) {
             String line;
@@ -138,7 +156,7 @@ public class BackupManager {
         
         if (!sb.toString().equals("")) {
             
-            //Erro ocorrido no processo de backup.
+            //Notifica o usuário sobre erro ocorrido no processo de backup.
             Application.displayTrayMessage(                    
                 "ERRO NO PROCESSO DE BACKUP:",
                 sb.toString(),
@@ -150,6 +168,7 @@ public class BackupManager {
         } else {
             
             //Grava o registro do backup no arquivo XML.
+            
             Date date = new Date(System.currentTimeMillis());
             Document document = new Document();
             
@@ -174,6 +193,7 @@ public class BackupManager {
                 xout.output(document, out);
             }
             
+            // Notifica o usuário sobre o sucesso no processamento do backup.
             Application.displayTrayMessage(                    
                 "BACKUP CONCLUÍDO!",
                 "Backup do banco de dados \"" + serverSettings.getDatabase() + 
@@ -193,33 +213,38 @@ public class BackupManager {
      * 
      * <i>"--host=[host]":</i> endereço IP do host do Postgre Server.
      * 
-     * <br>
+     * <br><br>
      * 
      * <i>"--port=[porta]":</i> porta TCP do serviço do Postgre Server.
      * 
-     * <br>
+     * <br><br>
      * 
      * <i>"--username=[usuário]":</i> usuário para acesso ao banco de dados
-     * PostgreQL.
+     * PostgreSQL.
      * 
-     * <br>
+     * <br><br>
      * 
      * <i>"--dbname=[nome banco de dados]":</i> nome do banco de dados que se
      * fará o restore.
      * 
-     * <br>
+     * <br><br>
      * 
      * <i>"[nome do arquivo de backup]":</i> caminho do arquivo de backup
      * do banco de dados.
      * 
      * <br><br>
      * 
-     * Exemplo: pg_restore.exe "--host=127.0.0.1" "--port=5432" "--username=postgres"
+     * Exemplo: 
+     * 
+     * <br><br>
+     * 
+     * pg_restore.exe "--host=127.0.0.1" "--port=5432" "--username=postgres"
      * "--dbname=db_teste" "D:\db_teste.pgback"
      * 
      * <br><br>
      * 
-     * <i><b>Obs.:</b> o nome do arquivo de backup é passado como último parâmetro.</i>
+     * <i><b>Obs.:</b> o nome do arquivo de backup deve ser passado como último 
+     * parâmetro.</i>
      * 
      * @param inputFile arquivo de backup do banco de dados.
      * 
@@ -230,6 +255,8 @@ public class BackupManager {
     RestoreException{
         
         ServerSettings serverSettings = ServerSettings.getInstance();      
+        
+        // Lista de parâmetros para o pg_restore.exe.
         List<String> pgAdminParams = new ArrayList<>();
         
         pgAdminParams.add(serverSettings.getRestoreExecutable());
@@ -242,8 +269,10 @@ public class BackupManager {
         ProcessBuilder builder = new ProcessBuilder(pgAdminParams);
         
         builder.environment().put("PGPASSWORD", serverSettings.getPassword());
+        
         builder.redirectErrorStream(true);
         
+        // Notifica o usuário sobre o início do processo de restore.
         Application.displayTrayMessage(                    
             "NOTIFICAÇÃO DE PROCESSO:",
             "Realizando a \"Restauração\" do banco de dados \"" + 
@@ -251,10 +280,13 @@ public class BackupManager {
             Application.MESSAGE_NONE
         );
         
+        // Inicia o processo de restore.
         Process process = builder.start();
         
         StringBuilder sb = new StringBuilder();
         
+        // Captura qualquer mensagem de erro que pode ter ocorrido com o 
+        // processamento do restore.
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(process
         .getInputStream()))) {
             String line;
@@ -268,7 +300,7 @@ public class BackupManager {
         
         if (!sb.toString().equals("")) {
             
-            //Erro ocorrido no processo de restore.
+            //Notifica o usuário sobre erro ocorrido no processo de restore.
             Application.displayTrayMessage(                    
                 "ERRO NO PROCESSO DE RESTORE:",
                 sb.toString(),
@@ -279,6 +311,7 @@ public class BackupManager {
         
         } else {
             
+            // Notifica o usuário sobre o sucesso do processamento do restore.
             Application.displayTrayMessage(                    
                 "RESTORE CONCLUÍDO!",
                 "Restore do banco de dados \"" + serverSettings.getDatabase() + 

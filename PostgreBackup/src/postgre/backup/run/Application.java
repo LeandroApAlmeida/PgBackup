@@ -19,7 +19,7 @@ import postgre.backup.classes.BackupMonitor;
 import postgre.backup.classes.BackupSchedule;
 import postgre.backup.classes.ServerSettings;
 import postgre.backup.classes.StrUtils;
-import postgre.backup.forms.WindowsManager;
+import postgre.backup.forms.WindowManager;
 
 public class Application {
 
@@ -143,23 +143,21 @@ public class Application {
             MESSAGE_ERROR
         );
         
-        WindowsManager.showBackupErrorDialog();
+        WindowManager.showBackupErrorDialog();
     
     }
     
     
     public static void showManualBackupUI() {
-        
-        WindowsManager.showManualBackupDialog();
-    
+        WindowManager.showManualBackupDialog();
     }
 
     
     public static void showContextBackupUI() {
         if (ServerSettings.getInstance().getDriveType() == ServerSettings.REMOVABLE_DRIVE) {
-            WindowsManager.showManualBackupDialog();
+            WindowManager.showManualBackupDialog();
         } else {
-            WindowsManager.showNetworkBackupDialog();
+            WindowManager.showNetworkBackupDialog();
         }
     }
     

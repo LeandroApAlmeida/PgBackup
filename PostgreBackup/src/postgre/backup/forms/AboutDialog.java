@@ -34,17 +34,17 @@ public class AboutDialog extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("SISTEMA GERENCIADOR DE BACKUP DE BANCOS DE DADOS");
+        jLabel1.setText("SERVIÇO DE BACKUP DE BANCOS DE DADOS");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("VERSÃO:");
 
-        jlVersion.setText("1.0.0");
+        jlVersion.setText("1.2.0");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("DATA DA VERSÃO:");
 
-        jlDate.setText("17/06/2018");
+        jlDate.setText("23/01/2025");
 
         jbClose.setText("Fechar");
         jbClose.addActionListener(new java.awt.event.ActionListener() {

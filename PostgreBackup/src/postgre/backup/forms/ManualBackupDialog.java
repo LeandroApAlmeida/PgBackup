@@ -38,7 +38,9 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
         
         initComponents();
         
-        setIconImage(Application.getDefaultIcon());        
+        setIconImage(Application.getDefaultIcon());
+        
+        jlProgress.setVisible(false);
         
         listDrives();
         configControls();
@@ -157,6 +159,9 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
     
     @Override
     public void run() {
+        
+        jlProgress.setVisible(true);
+        jcbDrives.setEnabled(false);
 
         stopTimer();
 
@@ -175,31 +180,6 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
             BackupManager.doBackup(drive);
 
             jtaLog.setText("Backup realizado com sucesso!");
-
-            int opt = JOptionPaneEx.showConfirmDialog(
-                this,
-                "Deseja ejetar o dispositivo USB?",
-                "Atenção!",
-                JOptionPaneEx.YES_NO_OPTION,
-                JOptionPaneEx.INFORMATION_MESSAGE
-            );
-
-            if (opt == JOptionPaneEx.YES_OPTION) {
-                
-                jtaLog.setText("Ejetando o dispositivo USB... Não remova antes de concluído.");
-                
-                selectedDrive.eject();
-                
-                jtaLog.setText("");
-                
-                JOptionPaneEx.showMessageDialog(
-                    this,
-                    "Agora você pode remover o dispositivo USB de backup.",
-                    "Concluído com Sucesso!",
-                    JOptionPaneEx.INFORMATION_MESSAGE
-                );
-                
-            }   
             
             setVisible(false);
             
@@ -218,6 +198,9 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
         }
         
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        
+        jlProgress.setVisible(false); 
+        jcbDrives.setEnabled(true);
         
     }
     
@@ -264,6 +247,7 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        jlProgress = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("BACKUP MANUAL DO BANCO DE DADOS");
@@ -307,6 +291,9 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
 
         jLabel2.setText("Mensagem:");
 
+        jlProgress.setIcon(new javax.swing.ImageIcon(getClass().getResource("/postgre/backup/forms/progress.gif"))); // NOI18N
+        jlProgress.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -314,7 +301,7 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -327,7 +314,10 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
                                 .addComponent(jbBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 504, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jlProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -348,7 +338,8 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCancel)
-                    .addComponent(jbBackup))
+                    .addComponent(jbBackup)
+                    .addComponent(jlProgress))
                 .addContainerGap())
         );
 
@@ -380,6 +371,7 @@ public class ManualBackupDialog extends javax.swing.JDialog implements Runnable 
     private javax.swing.JButton jbBackup;
     private javax.swing.JButton jbCancel;
     private javax.swing.JComboBox<String> jcbDrives;
+    private javax.swing.JLabel jlProgress;
     private javax.swing.JTextArea jtaLog;
     // End of variables declaration//GEN-END:variables
 }
