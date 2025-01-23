@@ -20,13 +20,13 @@ Na seção <b>Postgre Server</b>, deve-se informar os dados sobre a conexão com
 
 <br>
 
-Na guia <b>Backup Automático</b>, deve se marcar a opção <b>habilitar o backup automático do Banco de Dados (recomendável)</b> para realizar o backup do banco de dados nos dias e horários definidos. Na seção <b>Dias da Semana</b>, pode se selecionar em quais dias da semana será realizado o Backup do banco de dados. Na seção <b>Horários</b>, são definidos os horários que serão feito o backup.
+Na guia <b>Backup Automático</b>, deve se marcar a opção <b>habilitar o backup automático do Banco de Dados (recomendável)</b> para realizar o backup do banco de dados nos dias e horários definidos. Na seção <b>Dias da Semana</b>, seleciona-se em quais dias da semana será realizado o Backup do banco de dados. Na seção <b>Horários</b>, são definidos os horários que serão feito o backup.
 
 ![Captura de tela 2025-01-23 122145](https://github.com/user-attachments/assets/766ad957-5d42-402d-a554-935eafb3c453)
 
 <br>
 
-Na guia <b>Ferramentas</b>, no campo <b>Programa para o Backup (pg_dump)</b>, deve-se localizar o local de instalação do PostgreSQL e selecionar o programa <b>pg_dump.exe</b>, no diretório <b>bin</b>. No campo <b>Programa para o Restore (pg_restore)</b>, deve-se localizar o local de instalação do PostgreSQL e selecionar o programa <b>pg_restore.exe</b>, no diretório <b>bin</b>.
+Na guia <b>Ferramentas</b>, no campo <b>Programa para o Backup (pg_dump)</b>, deve-se localizar o diretório de instalação do PostgreSQL e selecionar o programa <b>pg_dump.exe</b>, no diretório <b>bin</b>. No campo <b>Programa para o Restore (pg_restore)</b>, deve-se localizar o diretório de instalação do PostgreSQL e selecionar o programa <b>pg_restore.exe</b>, no diretório <b>bin</b>.
 
 ![Captura de tela 2025-01-23 122208](https://github.com/user-attachments/assets/b9377eb3-f7f9-431b-9fa8-01b7591ac0f9)
 
@@ -68,7 +68,7 @@ Ao configurar o backup para Drive Removível, agora o backup será feito somente
 
 <br>
 
-Para fazer o restore, deve-se selecionar a opção <b>Restaurar o Backup</b> no menu do programa.
+Para fazer a restauração do backup, deve-se selecionar a opção <b>Restaurar o Backup</b> no menu do programa.
 
 ![Captura de tela 2025-01-23 141735](https://github.com/user-attachments/assets/72b44c2f-0c02-4167-9a7c-949da7f9870d)
 
@@ -84,7 +84,7 @@ No campo <b>Arquivo de backup</b>, deve-se selecionar o arquivo de backup do Ban
 
 <br>
 
-Ao clicar no botão <b>Restaurar o backup</b>, se não houver um banco de dados criado com o mesmo nome do do backup, dará o seguinte erro:
+Ao clicar no botão <b>Restaurar o backup</b>, se não houver um banco de dados criado com o mesmo nome do do backup, lançará o seguinte erro:
 
 ![Captura de tela 2025-01-23 142107](https://github.com/user-attachments/assets/5e82b2ff-f9f1-4597-84b2-3d98ad26e643)
 
