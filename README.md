@@ -50,6 +50,10 @@ Caso esteja configurado para backup em drive remoto, será exibida esta tela. Pa
 
 ![Captura de tela 2025-01-23 122456](https://github.com/user-attachments/assets/7e306768-35f6-4b43-9c89-df84e3d83e06)
 
+Para configurar para fazer o backup em drive USB, deve-se configurar o destino do backup para <b>Drive Removível</b> na guia <b>Parâmetros Gerais</b>.
+
+<br>
+
 ![Captura de tela 2025-01-23 122544](https://github.com/user-attachments/assets/674ec696-f51d-4363-84dd-715e17c3b9de)
 
 ![Captura de tela 2025-01-23 122634](https://github.com/user-attachments/assets/95e23017-0445-4c02-9205-b44d3da3d16f)
