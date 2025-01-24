@@ -1,3 +1,33 @@
+<h3>:</h3>
+
+<br>
+
+Este programa é escrito em Java, porém está configurado para rodar apenas em Windows nesta versão 1.2. Desta forma, algumas configurações são necessárias.
+
+Na diretório raiz do programa, copie os seguintes arquivos, juntamente com os .jars do projeto:
+
+![Captura de tela 2025-01-24 161519](https://github.com/user-attachments/assets/b32ffbe8-be9d-419a-afc6-fa816c907176)
+
+<ul>
+
+<li><b>Config.vbs</b>: programa para configuração no ambiente Microsoft Windows;</li>
+
+<li><b>jacob-1.20-x64.dll</b>: biblioteca de vínculo dinâmico do JACOB (JAVA-COM Bridge) para arquiteturas x64;</li>
+
+<li><b>jacob-1.20-x86.dll</b>: biblioteca de vínculo dinâmico do JACOB (JAVA-COM Bridge) para arquiteturas x86;</li>
+
+<li><b>PostgreBackup.bat</b>: arquivo de inicialização do serviço.</li>
+  
+</ul>
+
+<b>Config.vbs</b> e <b>PostgreBackup.bar</b> se encontram no diretória Res, e <b>jacob-1.20-x64.dll</b> e <b>jacob-1.20-x86.dll</b> no diretório raiz do projeto.
+
+<br>
+
+https://github.com/user-attachments/assets/5733fd97-32c5-4a98-b3bf-c76cebe07f21
+
+<br>
+
 <h3>Backup do Banco de Dados:</h3>
 
 <br>
