@@ -31,11 +31,10 @@
             <file>file:/D:/2.%20SOFTWARE/2.%20PROJETOS/BACKUP_PG/src/PostgreBackup/src/postgre/backup/classes/DrivesManager.java</file>
         </group>
         <group>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/classes/TimerTaskBackup.java</file>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/classes/TimerTaskMonitor.java</file>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/forms/BackupErrorDialog.java</file>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/forms/WindowManager.java</file>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/run/Application.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/forms/RestoreDialog.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/forms/ConfigDialog.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/forms/NetworkBackupDialog.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/forms/LocalBackupDialog.java</file>
         </group>
     </open-files>
 </project-private>

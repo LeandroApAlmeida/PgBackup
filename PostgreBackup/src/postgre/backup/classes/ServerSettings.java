@@ -70,6 +70,8 @@ public class ServerSettings {
     
     private int driveType;
     
+    private int numberOfFiles = 1;
+    
     
     private ServerSettings() {
         xmlFile = new File(System.getProperty("root_dir") + File.separator + 
@@ -116,6 +118,8 @@ public class ServerSettings {
                         case "network_drive": networkDrive = e0.getText(); break;
                         
                         case "drive_type": driveType = Integer.parseInt(e0.getText()); break;
+                        
+                        case "number_of_files": numberOfFiles = Integer.parseInt(e0.getText()); break;
                     
                     }
                 
@@ -139,6 +143,7 @@ public class ServerSettings {
             backupMode = EXTRACT_STRUCTURE_AND_DATA;
             extractBlobs = true;
             networkDrive = "";
+            numberOfFiles = 1;
             
         }
         
@@ -194,6 +199,10 @@ public class ServerSettings {
         Element e10 = new Element("drive_type");
         e10.setText(String.valueOf(driveType));
         root.addContent(e10);
+        
+        Element e11 = new Element("number_of_files");
+        e11.setText(String.valueOf(numberOfFiles));
+        root.addContent(e11);
         
         doc.setRootElement(root);
         
@@ -265,6 +274,11 @@ public class ServerSettings {
     }
 
     
+    public int getNumberOfFiles() {
+        return numberOfFiles;
+    }
+    
+    
     public void setHost(String host) {
         this.host = host;
     }
@@ -317,6 +331,11 @@ public class ServerSettings {
     
     public void setDriveType(int driveType) {
         this.driveType = driveType;
+    }
+
+    
+    public void setNumberOfFiles(int numOfFiles) {
+        this.numberOfFiles = numOfFiles;
     }
 
     

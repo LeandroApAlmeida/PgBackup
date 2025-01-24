@@ -66,7 +66,7 @@ public class WindowManager {
     public static void showManualBackupDialog() {
         if (!windowVisible) {
             windowVisible = true;
-            owner = new ManualBackupDialog();
+            owner = new LocalBackupDialog();
             owner.setVisible(true);
             windowVisible = false;
         }
@@ -76,7 +76,7 @@ public class WindowManager {
     public static void showManualBackupDialogUnchecked() {
         if (owner != null) owner.setVisible(false);
         windowVisible = true;
-        owner = new ManualBackupDialog();
+        owner = new LocalBackupDialog();
         owner.setVisible(true);
         windowVisible = false;
     }

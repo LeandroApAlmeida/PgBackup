@@ -1,6 +1,5 @@
 package postgre.backup.classes;
 
-import com.jacob.com.EnumVariant;
 import java.io.File;
 import java.nio.file.FileStore;
 import java.nio.file.FileSystems;
@@ -9,9 +8,6 @@ import com.jacob.activeX.ActiveXComponent;
 import com.jacob.com.Dispatch;
 import com.jacob.com.Variant;
 import com.jacob.com.ComThread;
-//import windows.utilities.PowerShell.OSDetector;
-//import windows.utilities.PowerShell.PowerShell;
-//import windows.utilities.PowerShell.PowerShellResponse;
 
 public final class Drive {
 

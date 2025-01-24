@@ -168,6 +168,8 @@ public class ConfigDialog extends javax.swing.JDialog {
         
         jtfRestoreApplication.setText(serverSettings.getRestoreExecutable());
         
+        jspNumOfFiles.setValue(serverSettings.getNumberOfFiles());
+        
         jcbSun.setSelected(backupSchedule.isSunday());
         jcbMon.setSelected(backupSchedule.isMonday());
         jcbTue.setSelected(backupSchedule.isTuesday());
@@ -309,6 +311,8 @@ public class ConfigDialog extends javax.swing.JDialog {
             serverSettings.setDriveType(jrbNetworkDrive.isSelected() ? 
             ServerSettings.NETWORK_DRIVE : ServerSettings.REMOVABLE_DRIVE);
             
+            serverSettings.setNumberOfFiles((int)jspNumOfFiles.getValue());
+            
             serverSettings.saveXmlFile();
             
             backupSchedule.setSunday(jcbSun.isSelected());
@@ -365,6 +369,8 @@ public class ConfigDialog extends javax.swing.JDialog {
         jrbNetworkDrive = new javax.swing.JRadioButton();
         jrbRemovableDrive = new javax.swing.JRadioButton();
         jtfNetworkDrive = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jspNumOfFiles = new javax.swing.JSpinner();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jpWeekDays = new javax.swing.JPanel();
@@ -411,7 +417,7 @@ public class ConfigDialog extends javax.swing.JDialog {
         setTitle("CONFIGURAÇÕES DO SERVIÇO DE BACKUP DO POSTGRESQL");
         setResizable(false);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Modo de Backup:"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("  Modo de Backup:  "));
 
         btgBackupMode.add(jrbBackupMode1);
         jrbBackupMode1.setSelected(true);
@@ -429,7 +435,7 @@ public class ConfigDialog extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jrbBackupMode1)
                     .addComponent(jrbBackupMode2))
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -441,7 +447,7 @@ public class ConfigDialog extends javax.swing.JDialog {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Blobs:"));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("  Blobs:  "));
 
         btgExtractBlobs.add(jrbExtractBlobs);
         jrbExtractBlobs.setSelected(true);
@@ -471,7 +477,7 @@ public class ConfigDialog extends javax.swing.JDialog {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Destino do Backup:"));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("  Destino do Backup:  "));
 
         btgDestDrive.add(jrbNetworkDrive);
         jrbNetworkDrive.setSelected(true);
@@ -490,12 +496,15 @@ public class ConfigDialog extends javax.swing.JDialog {
             }
         });
 
-        jtfNetworkDrive.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jtfNetworkDrive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfNetworkDriveActionPerformed(evt);
             }
         });
+
+        jLabel8.setText("Nº Arquivos:");
+
+        jspNumOfFiles.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -504,12 +513,18 @@ public class ConfigDialog extends javax.swing.JDialog {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jrbRemovableDrive)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jrbNetworkDrive)
                         .addGap(18, 18, 18)
-                        .addComponent(jtfNetworkDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(208, Short.MAX_VALUE))
+                        .addComponent(jtfNetworkDrive, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jspNumOfFiles, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jrbRemovableDrive)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -517,10 +532,12 @@ public class ConfigDialog extends javax.swing.JDialog {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jrbNetworkDrive)
-                    .addComponent(jtfNetworkDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfNetworkDrive, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jspNumOfFiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jrbRemovableDrive)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -544,14 +561,14 @@ public class ConfigDialog extends javax.swing.JDialog {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Parâmetros Gerais", jPanel3);
 
         jLabel7.setText("Horários:");
 
-        jpWeekDays.setBorder(javax.swing.BorderFactory.createTitledBorder("Dias da Semana:"));
+        jpWeekDays.setBorder(javax.swing.BorderFactory.createTitledBorder("  Dias da Semana:  "));
 
         jcbSun.setText("Domingo");
 
@@ -583,11 +600,11 @@ public class ConfigDialog extends javax.swing.JDialog {
                         .addGroup(jpWeekDaysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jcbMon)
                             .addComponent(jcbThu))
-                        .addGap(40, 40, 40)
+                        .addGap(36, 36, 36)
                         .addGroup(jpWeekDaysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jcbFri)
                             .addComponent(jcbTue))))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jpWeekDaysLayout.setVerticalGroup(
             jpWeekDaysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -749,11 +766,11 @@ public class ConfigDialog extends javax.swing.JDialog {
 
         jTabbedPane1.addTab("Ferramentas", jPanel2);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Postgre Server:"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("  Conexão:  "));
 
         jLabel16.setText("Usuário:");
 
-        jLabel1.setText("Host:");
+        jLabel1.setText("Endereço:");
 
         jLabel17.setText("Senha:");
 
@@ -774,7 +791,7 @@ public class ConfigDialog extends javax.swing.JDialog {
                     .addComponent(jLabel16)
                     .addComponent(jLabel17)
                     .addComponent(jLabel5))
-                .addGap(24, 24, 24)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfUserName, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jpfPassword, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -790,11 +807,12 @@ public class ConfigDialog extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(4, 4, 4)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtfHost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jspPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jtfHost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)
+                        .addComponent(jspPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
@@ -807,7 +825,7 @@ public class ConfigDialog extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addGap(13, 13, 13))
         );
 
         jbSave.setText("Gravar");
@@ -911,6 +929,7 @@ public class ConfigDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -947,6 +966,7 @@ public class ConfigDialog extends javax.swing.JDialog {
     private javax.swing.JRadioButton jrbNetworkDrive;
     private javax.swing.JRadioButton jrbNonExtractBlobs;
     private javax.swing.JRadioButton jrbRemovableDrive;
+    private javax.swing.JSpinner jspNumOfFiles;
     private javax.swing.JSpinner jspPort;
     private javax.swing.JTextField jtfBackupApplication;
     private javax.swing.JTextField jtfDatabase;

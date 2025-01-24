@@ -1,6 +1,7 @@
 package postgre.backup.forms;
 
 import java.awt.Cursor;
+import java.io.File;
 import postgre.backup.classes.BackupManager;
 import postgre.backup.classes.ServerSettings;
 import postgre.backup.run.Application;
@@ -42,15 +43,15 @@ public class NetworkBackupDialog extends javax.swing.JDialog implements Runnable
             
             jtaLog.setText("Processando o Backup...");
             
-            BackupManager.doBackup(serverSettings.getNetworkDrive());
+            File backupFile = BackupManager.doBackup(serverSettings.getNetworkDrive());
             
             StringBuilder sb = new StringBuilder();
             
             sb.append("Backup realizado com sucesso!");
-            sb.append("\n");
+            sb.append("\n\n");
             
             sb.append("Arquivo de Backup: ");
-            sb.append(serverSettings.getNetworkDrive());
+            sb.append(backupFile.getAbsoluteFile());
             sb.append("\n");
             
             sb.append("Modo de Backup: ");
@@ -59,7 +60,7 @@ public class NetworkBackupDialog extends javax.swing.JDialog implements Runnable
             sb.append("\n");
             
             sb.append("Extrair Blobs: ");
-            sb.append(String.valueOf(serverSettings.extractBlobs()));
+            sb.append(String.valueOf(serverSettings.extractBlobs() ? "sim" : "não"));
             
             jtaLog.setText(sb.toString());
             
@@ -92,7 +93,7 @@ public class NetworkBackupDialog extends javax.swing.JDialog implements Runnable
         jlProgress = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("BACKUP EM DRIVE REMOTO DO BANCO DE DADOS");
+        setTitle("BACKUP REMOTO DO BANCO DE DADOS");
         setResizable(false);
 
         jbBackup.setText("Fazer o Backup");
@@ -126,30 +127,28 @@ public class NetworkBackupDialog extends javax.swing.JDialog implements Runnable
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 734, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jbBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbClose, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 414, Short.MAX_VALUE)
-                        .addComponent(jlProgress))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlProgress)
+                        .addGap(10, 10, 10))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbBackup)
-                            .addComponent(jbClose))
-                        .addGap(11, 11, 11))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jlProgress)
-                        .addContainerGap())))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbBackup)
+                        .addComponent(jbClose))
+                    .addComponent(jlProgress))
+                .addGap(6, 6, 6))
         );
 
         pack();

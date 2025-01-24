@@ -199,18 +199,18 @@ public class Application {
                 
                 StringBuilder sb = new StringBuilder();
                 
-                sb.append("Postgre Server: ");
+                sb.append("Conexão: ");
                 sb.append(serverSettings.getHost());
                 sb.append(":");
                 sb.append(serverSettings.getPort());
                 sb.append("\n");
                 
-                sb.append("Database: ");
+                sb.append("Banco de dados: ");
                 sb.append(serverSettings.getDatabase());
                 sb.append("\n");
                 
                 sb.append("Backup Automático: ");
-                sb.append(backupSchedule.isActivated() ? "true" : "false");
+                sb.append(backupSchedule.isActivated() ? "sim" : "não");
                 sb.append("\n");
                 
                 sb.append("Próximo Backup: ");

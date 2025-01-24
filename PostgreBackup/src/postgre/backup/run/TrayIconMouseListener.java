@@ -15,7 +15,7 @@ public class TrayIconMouseListener implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
-            Application.showManualBackupUI();
+            Application.showContextBackupUI();
         }
     }
     

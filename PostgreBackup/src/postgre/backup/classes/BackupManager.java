@@ -6,6 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +42,104 @@ public final class BackupManager {
     private BackupManager() {
     }
 
+    
+    /**
+     * Obter o path do próximo arquivo de backup. Será mantido um número definido
+     * de arquivos de backup no diretório ~/PG_BACKUP/[nome do banco de dados], 
+     * conforme definido pelo administrador. Alcançado este número de arquivos,
+     * o mais antigo será excluído, para a gravação do novo backup.
+     * 
+     * @param outputDrive drive de destino do backup.
+     * 
+     * @param serverSettings configurações do sistema.
+     * 
+     * @return path do novo arquivo a ser criado.
+     * 
+     * @throws IOException
+     */
+    private static File getNextBackupFile(String outputDrive, ServerSettings serverSettings) throws IOException {
+        
+        ArrayList<File> backupFiles = new ArrayList<>(serverSettings.getNumberOfFiles());
+        
+        File backupFolder = new File(
+            outputDrive + 
+            File.separator +
+            "PG_BACKUP" +
+            File.separator +
+            serverSettings.getDatabase()
+        );
+        
+        if (backupFolder.exists()) {
+            // Obtém todos os arquivos no diretório.
+            for (File file : backupFolder.listFiles()) {
+                if (file.isFile()) {
+                    backupFiles.add(file);
+                }
+            }
+        } else {
+            backupFolder.mkdirs();
+        }
+        
+        if (backupFiles.size() == serverSettings.getNumberOfFiles()) {
+            
+            // Localiza qual o arquivo mais antigo no diretório.
+            
+            File firstFile = null;
+            FileTime firstDate = null;
+            
+            for (File file : backupFiles) {
+                
+                BasicFileAttributes fileAttrbs = Files.readAttributes(
+                    Paths.get(file.getAbsolutePath()), 
+                    BasicFileAttributes.class
+                );
+                
+                if (firstFile != null && firstDate != null) {
+                    if (fileAttrbs.lastModifiedTime().toMillis() < firstDate.toMillis()) {
+                        firstFile = file;
+                        firstDate = fileAttrbs.lastModifiedTime();
+                    }
+                } else {
+                    firstFile = file;
+                    firstDate = fileAttrbs.lastModifiedTime();
+                }
+                
+            }
+            
+            // Exclui o arquivo mais antigo no diretório.
+            
+            if (firstFile != null) {
+                firstFile.delete();
+            }
+            
+        }
+        
+        // Constrói o path do arquivo com base no diretório de backup no drive
+        // de destino e na data atual do sistema.
+        
+        LocalDateTime now = LocalDateTime.now();
+
+        String fileName = serverSettings.getDatabase()
+        .concat("_")
+        .concat(String.valueOf(now.getYear()))
+        .concat(String.format("%02d", now.getMonthValue()))
+        .concat(String.format("%02d", now.getDayOfMonth()))
+        .concat(String.format("%02d", now.getHour()))
+        .concat(String.format("%02d", now.getMinute()))
+        .concat(String.format("%02d", now.getSecond()))
+        .concat(String.format("%03d", now.getNano() / 1000000));
+        
+        File backupFile = new File(
+            backupFolder.getAbsolutePath()
+            .concat(File.separator)
+            .concat(fileName)
+            .concat(System.getProperty("file_extension"))
+        );
+        
+        return backupFile;
+        
+    }
+    
     
     /**
      * Fazer o backup do banco de dados PostgreSQL. O backup é realizado
@@ -91,20 +194,18 @@ public final class BackupManager {
      * 
      * @param outputDrive Drive de destino do Backup.
      * 
-     * @throws IOException erro na gravação do arquivo de backup.
+     * @return Arquivo de backup criado.
+     * 
+     * @throws IOException
+     * 
      * @throws BackupException erro no processo de backup do banco de dados.
      */
-    public static synchronized void doBackup(String outputDrive) throws IOException, 
+    public static synchronized File doBackup(String outputDrive) throws IOException, 
     BackupException {
         
         ServerSettings serverSettings = ServerSettings.getInstance();
         
-        File backupOutputFile = new File(outputDrive + File.separator + 
-        serverSettings.getDatabase() + System.getProperty("file_extension"));
-        
-        if (backupOutputFile.exists()){
-            backupOutputFile.delete();
-        }         
+        File backupFile = getNextBackupFile(outputDrive, serverSettings);
         
         // Lista de parâmetros para o pg_dump.exe.
         List<String> pgAdminParams = new ArrayList<>();
@@ -120,7 +221,7 @@ public final class BackupManager {
             pgAdminParams.add("--data-only");
         }
         
-        pgAdminParams.add("--file=" + backupOutputFile.getAbsolutePath());
+        pgAdminParams.add("--file=" + backupFile.getAbsolutePath());
         
         ProcessBuilder builder = new ProcessBuilder(pgAdminParams);
         
@@ -179,7 +280,7 @@ public final class BackupManager {
             root.addContent(e0);
             
             Element e1 = new Element("output_file");
-            e1.setText(backupOutputFile.getAbsolutePath());
+            e1.setText(backupFile.getAbsolutePath());
             root.addContent(e1);
             document.setRootElement(root);
             
@@ -202,6 +303,9 @@ public final class BackupManager {
             );
             
         }
+        
+        return backupFile;
+        
     } 
     
     
@@ -248,7 +352,8 @@ public final class BackupManager {
      * 
      * @param inputFile arquivo de backup do banco de dados.
      * 
-     * @throws IOException erro na gravação do arquivo de backup.
+     * @throws IOException
+     * 
      * @throws RestoreException erro no processo de restore do banco de dados.
      */
     public static synchronized void doRestore(String inputFile) throws IOException,
@@ -327,7 +432,9 @@ public final class BackupManager {
      * Obter a data do último backup realizado do banco de dados.
      * 
      * @return data do último backup realizado.
+     * 
      * @throws org.jdom2.JDOMException
+     * 
      * @throws java.io.IOException
      */
     public static synchronized Date getLastBackupDate() throws JDOMException,
