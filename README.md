@@ -34,6 +34,10 @@ https://github.com/user-attachments/assets/5733fd97-32c5-4a98-b3bf-c76cebe07f21
 
 <br>
 
+Os arquivos com extensão .xml são criados automaticamente pelo serviço, com base nas configurações feitas pelo administrador e com a execução dos backups.
+
+<br>
+
 <h3>Backup do Banco de Dados:</h3>
 
 <br>
