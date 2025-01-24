@@ -18,15 +18,15 @@ Na diretório raiz do programa, copie os seguintes arquivos, juntamente com os .
 
 <li><b>jacob-1.20-x64.dll</b>: biblioteca de vínculo dinâmico do JACOB (JAVA-COM Bridge) para arquiteturas x64;</li>
 
-<li><b>jacob-1.20-x86.dll</b>: biblioteca de vínculo dinâmico do JACOB (JAVA-COM Bridge) para arquiteturas x86;</li>
+<li><b>jacob-1.20-x86.dll</b>: biblioteca de vínculo dinâmico do JACOB para arquiteturas x86;</li>
 
-<li><b>PostgreBackup.bat</b>: arquivo de inicialização do serviço.</li>
+<li><b>PostgreBackup.bat</b>: arquivo de execução do serviço, usando a JVM instalada no Windows.</li>
   
 </ul>
 
 <br>
 
-<b>Config.vbs</b> e <b>PostgreBackup.bar</b> se encontram no diretória Res, e <b>jacob-1.20-x64.dll</b> e <b>jacob-1.20-x86.dll</b> no diretório raiz do projeto.
+<b>Config.vbs</b> e <b>PostgreBackup.bar</b> se encontram no diretória Res, e <b>jacob-1.20-x64.dll</b> e <b>jacob-1.20-x86.dll</b> no diretório raiz do projeto. Os arquivos com extensão .xml são criados automaticamente pelo serviço, com base nas configurações feitas pelo administrador e com a execução dos backups.
 
 <br>
 
@@ -34,9 +34,7 @@ https://github.com/user-attachments/assets/5733fd97-32c5-4a98-b3bf-c76cebe07f21
 
 <br>
 
-Os arquivos com extensão .xml são criados automaticamente pelo serviço, com base nas configurações feitas pelo administrador e com a execução dos backups.
-
-Para configurar o serviço para inicializar automaticamente com o Windows, é necessário dar duplo clique sobre o programa Config.vbs, quando este já foi copiado para o diretório raiz. Feito isso, ele cria uma entrada para a execução junto com o Windows na chave de registro <b>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</b>, com o nome <b>PgBackup</b>, não exigindo permissões de administrador do sistema para tal. Eu utilizo um Serviço criado em C# para esta finalidade, porém não vou disponibilizar o fonte do mesmo.
+Para configurar o serviço de backup para inicializar automaticamente com o Windows, é necessário dar duplo clique sobre o programa Config.vbs, quando este já foi copiado para o diretório raiz. Feito isso, ele cria uma entrada na chave de registro <b>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</b>, com o nome <b>PgBackup</b>, não exigindo permissões de administrador do sistema para tal. Eu utilizo um Serviço criado em C# para esta finalidade, porém não vou disponibilizar o fonte do mesmo.
 
 <br>
 
