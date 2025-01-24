@@ -16,6 +16,10 @@ https://github.com/user-attachments/assets/15e632e3-27b3-446d-ab6e-1e78fe85b4ee
 
 <br>
 
+<h3>Restauração do Banco de Dados:</h3>
+
+<br>
+
 Para restaurar o banco de dados, deve-se criar o banco de dados vazio antes, com o mesmo nome definido no backup. Logo após isso, clicando com o botão direito do mouse no ícone do programa e escolhendo a opção <b>Restaurar o backup</b>, pode se selecionar o arquivo de backup a ser restaurado e proceder à restauração.
 
 https://github.com/user-attachments/assets/2a58ddef-f698-4b28-90b9-f88c133ffede
