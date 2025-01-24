@@ -36,6 +36,8 @@ https://github.com/user-attachments/assets/5733fd97-32c5-4a98-b3bf-c76cebe07f21
 
 Os arquivos com extensão .xml são criados automaticamente pelo serviço, com base nas configurações feitas pelo administrador e com a execução dos backups.
 
+Para configurar o serviço para inicializar automaticamente com o Windows, é necessário dar duplo clique sobre o programa Config.vbs, quando este já foi copiado para o diretório raiz. Feito isso, ele cria uma entrada para a execução junto com o Windows na chave de registro <b>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run</b>, com o nome <b>PgBackup</b>, não exigindo permissões de administrador do sistema para tal. Eu utilizo um Serviço criado em C# para esta finalidade, porém não vou disponibilizar o fonte do mesmo.
+
 <br>
 
 <h3>Backup do Banco de Dados:</h3>
