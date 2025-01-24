@@ -8,6 +8,8 @@ Na diretório raiz do programa, copie os seguintes arquivos, juntamente com os .
 
 ![Captura de tela 2025-01-24 161519](https://github.com/user-attachments/assets/b32ffbe8-be9d-419a-afc6-fa816c907176)
 
+<br>
+
 <ul>
 
 <li><b>Config.vbs</b>: programa para configuração no ambiente Microsoft Windows;</li>
@@ -19,6 +21,8 @@ Na diretório raiz do programa, copie os seguintes arquivos, juntamente com os .
 <li><b>PostgreBackup.bat</b>: arquivo de inicialização do serviço.</li>
   
 </ul>
+
+<br>
 
 <b>Config.vbs</b> e <b>PostgreBackup.bar</b> se encontram no diretória Res, e <b>jacob-1.20-x64.dll</b> e <b>jacob-1.20-x86.dll</b> no diretório raiz do projeto.
 
