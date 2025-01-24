@@ -6,6 +6,8 @@ Este programa é escrito em Java, porém está configurado para rodar apenas em 
 
 Na diretório raiz do programa, copie os seguintes arquivos, juntamente com os .jars do projeto:
 
+<br>
+
 ![Captura de tela 2025-01-24 161519](https://github.com/user-attachments/assets/b32ffbe8-be9d-419a-afc6-fa816c907176)
 
 <br>
