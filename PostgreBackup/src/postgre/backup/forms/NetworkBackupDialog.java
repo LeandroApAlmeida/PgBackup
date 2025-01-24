@@ -60,7 +60,7 @@ public class NetworkBackupDialog extends javax.swing.JDialog implements Runnable
             sb.append("\n");
             
             sb.append("Extrair Blobs: ");
-            sb.append(String.valueOf(serverSettings.extractBlobs() ? "sim" : "não"));
+            sb.append(serverSettings.extractBlobs() ? "sim" : "não");
             
             jtaLog.setText(sb.toString());
             

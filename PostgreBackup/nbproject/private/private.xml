@@ -36,6 +36,8 @@
             <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/classes/BackupMonitor.java</file>
             <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/classes/Drive.java</file>
             <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/classes/BackupManager.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/forms/NetworkBackupDialog.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/forms/LocalBackupDialog.java</file>
             <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/run/Application.java</file>
         </group>
     </open-files>
