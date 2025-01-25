@@ -70,7 +70,7 @@ public class RestoreDialog extends javax.swing.JDialog implements Runnable {
             
                 jtaLog.setText("Processando o Restore...");
                 
-                BackupManager.doRestore(jtfOutputBackupFile.getText());
+                new BackupManager().doRestore(jtfOutputBackupFile.getText());
                 
                 StringBuilder sb = new StringBuilder();
                 

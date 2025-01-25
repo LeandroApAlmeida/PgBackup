@@ -32,15 +32,8 @@ public final class BackupManager {
     
     
     /**Arquivo contendo o registro do último backup realizado do banco de dados.*/
-    private static final File backupRegFile = new File(System.getProperty("root_dir") +
+    private final File backupRegFile = new File(System.getProperty("root_dir") +
     File.separator + "backupdata.xml");
-
-    
-    /**
-     * Constructor private para impedir a criação de uma instância da classe.
-     */
-    private BackupManager() {
-    }
 
     
     /**
@@ -57,7 +50,8 @@ public final class BackupManager {
      * 
      * @throws IOException
      */
-    private static File getNextBackupFile(String outputDrive, ServerSettings serverSettings) throws IOException {
+    private File getNextBackupFile(String outputDrive, ServerSettings serverSettings) 
+    throws IOException {
         
         ArrayList<File> backupFiles = new ArrayList<>(serverSettings.getNumberOfFiles());
         
@@ -200,10 +194,10 @@ public final class BackupManager {
      * 
      * @throws BackupException erro no processo de backup do banco de dados.
      */
-    public static synchronized File doBackup(String outputDrive) throws IOException, 
+    public synchronized File doBackup(String outputDrive) throws IOException, 
     BackupException {
         
-        ServerSettings serverSettings = ServerSettings.getInstance();
+        ServerSettings serverSettings = new ServerSettings();
         
         File backupFile = getNextBackupFile(outputDrive, serverSettings);
         
@@ -356,10 +350,10 @@ public final class BackupManager {
      * 
      * @throws RestoreException erro no processo de restore do banco de dados.
      */
-    public static synchronized void doRestore(String inputFile) throws IOException,
+    public synchronized void doRestore(String inputFile) throws IOException,
     RestoreException{
         
-        ServerSettings serverSettings = ServerSettings.getInstance();      
+        ServerSettings serverSettings = new ServerSettings();      
         
         // Lista de parâmetros para o pg_restore.exe.
         List<String> pgAdminParams = new ArrayList<>();
@@ -437,8 +431,7 @@ public final class BackupManager {
      * 
      * @throws java.io.IOException
      */
-    public static synchronized Date getLastBackupDate() throws JDOMException,
-    IOException {
+    public synchronized Date getLastBackupDate() throws JDOMException, IOException {
         
         Date date = null;
         

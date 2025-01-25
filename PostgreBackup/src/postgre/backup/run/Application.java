@@ -32,6 +32,7 @@ public class Application {
     
     public static final int MESSAGE_ERROR = 4;
     
+    
     private static TrayIcon trayIcon;
     
     
@@ -72,6 +73,7 @@ public class Application {
                             try {
                                 fLock.release();
                                 raFile.close();
+                                file.delete();
                             } catch (IOException ex) {                            
                             }
                         }
@@ -154,7 +156,7 @@ public class Application {
 
     
     public static void showContextBackupUI() {
-        if (ServerSettings.getInstance().getDriveType() == ServerSettings.REMOVABLE_DRIVE) {
+        if (new ServerSettings().getDriveType() == ServerSettings.REMOVABLE_DRIVE) {
             WindowManager.showManualBackupDialog();
         } else {
             WindowManager.showNetworkBackupDialog();
@@ -189,13 +191,13 @@ public class Application {
             
             Image image = new ImageIcon(Application.class.getResource("postgres.png")).getImage();
             
-            ServerSettings serverSettings = ServerSettings.getInstance();
+            ServerSettings serverSettings = new ServerSettings();
             
             String tipText;
             
             if (serverSettings.getDatabase() != null) {
             
-                BackupSchedule backupSchedule = BackupSchedule.getInstance();
+                BackupSchedule backupSchedule = new BackupSchedule();
                 
                 StringBuilder sb = new StringBuilder();
                 

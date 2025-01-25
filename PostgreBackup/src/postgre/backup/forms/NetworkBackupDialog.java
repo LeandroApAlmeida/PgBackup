@@ -9,7 +9,7 @@ import postgre.backup.run.Application;
 public class NetworkBackupDialog extends javax.swing.JDialog implements Runnable {
 
     
-    private final ServerSettings serverSettings = ServerSettings.getInstance();
+    private final ServerSettings serverSettings = new ServerSettings();
     
     
     public NetworkBackupDialog() {
@@ -43,7 +43,7 @@ public class NetworkBackupDialog extends javax.swing.JDialog implements Runnable
             
             jtaLog.setText("Processando o Backup...");
             
-            File backupFile = BackupManager.doBackup(serverSettings.getNetworkDrive());
+            File backupFile = new BackupManager().doBackup(serverSettings.getNetworkDrive());
             
             StringBuilder sb = new StringBuilder();
             

@@ -6,7 +6,7 @@ import postgre.backup.run.Application;
 public class TimerTaskBackup extends TimerTask {
     
     
-    private final ServerSettings serverSettings = ServerSettings.getInstance();
+    private final ServerSettings serverSettings = new ServerSettings();
     
     private final BackupMonitor backupMonitor = BackupMonitor.getInstance();
     
@@ -19,7 +19,7 @@ public class TimerTaskBackup extends TimerTask {
             backupMonitor.stop(true);
             
             try {
-                BackupManager.doBackup(serverSettings.getNetworkDrive());
+                new BackupManager().doBackup(serverSettings.getNetworkDrive());
             } catch (Exception ex) {
                 Application.showNetworkErrorUI();
             }

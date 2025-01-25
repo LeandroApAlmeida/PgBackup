@@ -32,9 +32,6 @@ public class ServerSettings {
     public static final int EXTRACT_STRUCTURE_AND_DATA = 2;
     
     
-    /**Instância única da classe.*/
-    private static final ServerSettings instance = new ServerSettings();
-    
     /**Arquivo XML aonde os arquivos serão gravados e lidos.*/
     private final File xmlFile;
     
@@ -73,7 +70,7 @@ public class ServerSettings {
     private int numberOfFiles = 1;
     
     
-    private ServerSettings() {
+    public ServerSettings() {
         xmlFile = new File(System.getProperty("root_dir") + File.separator + 
         "config.xml");        
         loadXmlFile();
@@ -338,10 +335,5 @@ public class ServerSettings {
         this.numberOfFiles = numOfFiles;
     }
 
-    
-    public static ServerSettings getInstance() {
-        return instance;
-    }
-    
     
 }

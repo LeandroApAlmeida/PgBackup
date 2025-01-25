@@ -63,10 +63,7 @@ import org.jdom2.output.XMLOutputter;
  */
 public class BackupSchedule {
 
-    
-    /**Instância única da classe.*/
-    private static final BackupSchedule instance = new BackupSchedule();
-    
+
     /**Horários de backup.*/
     private final List<Time> backupTimes;
     
@@ -98,7 +95,7 @@ public class BackupSchedule {
     private boolean saturday;    
 
     
-    private BackupSchedule() {
+    public BackupSchedule() {
         
         xmlFile = new File(System.getProperty("root_dir") + File.separator +
         "schedules.xml");
@@ -433,15 +430,6 @@ public class BackupSchedule {
      */
     public void setActivated(boolean activated) {
         this.activated = activated;
-    }
-
-    
-    /**
-     * Obter a instância única da classe.
-     * @return instância única da classe.
-     */
-    public static BackupSchedule getInstance() {
-        return instance;
     }
 
     

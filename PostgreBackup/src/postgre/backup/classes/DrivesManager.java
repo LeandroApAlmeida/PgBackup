@@ -103,24 +103,6 @@ public class DrivesManager {
         }
         
     }
-
-    
-    public Drive getDrive(File file) {
-    
-        Drive driveRef = null;
-        
-        List<Drive> drives = getDrives();
-        
-        for (Drive drive : drives) {
-            if (file.getAbsolutePath().startsWith(drive.getLetter())) {
-                driveRef = drive;
-                break;
-            }
-        }
-        
-        return driveRef;
-    
-    }
     
     
     public List<Drive> getDrives(DriveTypeEnum driveType) {
@@ -155,6 +137,24 @@ public class DrivesManager {
         }
         
         return selectedDrives;
+    
+    }
+    
+    
+    public Drive getDrive(File file) {
+    
+        Drive driveRef = null;
+        
+        List<Drive> drives = getDrives();
+        
+        for (Drive drive : drives) {
+            if (file.getAbsolutePath().startsWith(drive.getLetter())) {
+                driveRef = drive;
+                break;
+            }
+        }
+        
+        return driveRef;
     
     }
 

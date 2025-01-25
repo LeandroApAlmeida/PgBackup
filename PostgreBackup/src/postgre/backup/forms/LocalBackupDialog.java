@@ -24,7 +24,7 @@ public class LocalBackupDialog extends javax.swing.JDialog implements Runnable {
     }
 
     
-    private final ServerSettings serverSettings = ServerSettings.getInstance();
+    private final ServerSettings serverSettings = new ServerSettings();
     
     private final DrivesManager drivesManager;
     
@@ -181,7 +181,7 @@ public class LocalBackupDialog extends javax.swing.JDialog implements Runnable {
 
             jtaLog.setText("Processando o Backup...");
 
-            File backupFile = BackupManager.doBackup(drive);
+            File backupFile = new BackupManager().doBackup(drive);
 
             StringBuilder sb = new StringBuilder();
             

@@ -109,7 +109,7 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
             int opt = JOptionPane.showConfirmDialog(
                 null,
                 "Sair do gerenciador de backup de \"" + 
-                ServerSettings.getInstance().getDatabase() + "\"?",
+                new ServerSettings().getDatabase() + "\"?",
                 "Atenção!",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE

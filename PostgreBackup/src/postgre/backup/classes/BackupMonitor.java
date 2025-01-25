@@ -20,9 +20,6 @@ public class BackupMonitor {
     /**Instância única da classe.*/
     private static final BackupMonitor instance = new BackupMonitor();
     
-    /**Parâmetros para a realização do backup automático.*/
-    private final BackupSchedule backupSchedule = BackupSchedule.getInstance();
-    
     /**Controle de execução do backup no horário programado.*/
     private Timer backupTimer;
     
@@ -45,7 +42,9 @@ public class BackupMonitor {
      * @param startMonitor status de start o controlar de recalculo
      * do tempo para o próximo backup automático.
      */
-    public synchronized void start(boolean startMonitor) {      
+    public synchronized void start(boolean startMonitor) {
+        
+        BackupSchedule backupSchedule = new BackupSchedule();
 
         if (backupSchedule.isActivated()) {
 

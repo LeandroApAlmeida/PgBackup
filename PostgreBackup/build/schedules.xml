@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<schedule>
+  <activated>true</activated>
+  <week_days>
+    <sun>true</sun>
+    <mon>true</mon>
+    <tue>true</tue>
+    <wed>true</wed>
+    <thu>true</thu>
+    <fri>true</fri>
+    <sat>true</sat>
+  </week_days>
+  <backup_times>
+    <time>71820000</time>
+  </backup_times>
+</schedule>

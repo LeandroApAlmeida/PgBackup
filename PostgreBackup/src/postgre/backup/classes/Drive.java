@@ -12,8 +12,6 @@ import com.jacob.com.ComThread;
 public final class Drive {
 
     
-    private static final FileSystemProvider fsProvider = FileSystems.getDefault().provider();
-    
     private final String fileSystem;
     
     private final DriveTypeEnum driveType;
@@ -30,6 +28,8 @@ public final class Drive {
         this.driveType = driveType;
         
         try {
+            
+            FileSystemProvider fsProvider = FileSystems.getDefault().provider();
         
             FileStore fileStore = fsProvider.getFileStore(new File(letter).toPath());
             

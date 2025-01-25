@@ -36,9 +36,9 @@ public class ConfigDialog extends javax.swing.JDialog {
     }
     
     
-    private final ServerSettings serverSettings = ServerSettings.getInstance();
+    private final ServerSettings serverSettings = new ServerSettings();
     
-    private final BackupSchedule backupSchedule = BackupSchedule.getInstance();
+    private final BackupSchedule backupSchedule = new BackupSchedule();
     
     private final List<Time> schedulesList;
     
