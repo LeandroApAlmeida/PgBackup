@@ -30,7 +30,7 @@ Na diretório raiz do programa, copie os seguintes arquivos, juntamente com os .
 
 <br>
 
-https://github.com/user-attachments/assets/af5ab4e2-c40d-409e-9d2c-cc56ecfc95eb
+https://github.com/user-attachments/assets/91d1dd01-90b8-4e73-8d9b-bc782617b41b
 
 <br>
 
