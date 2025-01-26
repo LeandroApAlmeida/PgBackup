@@ -4,12 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.nio.file.attribute.FileTime;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import postgre.backup.run.Application;
@@ -61,38 +58,36 @@ public final class BackupManager {
             backupFolder.mkdirs();
         }
         
-        if (backupFiles.size() == serverSettings.getNumberOfFiles()) {
+        if (backupFiles.size() >= serverSettings.getNumberOfFiles()) {
+        
+            // Exclui todos os arquivos mais antigos que ultrapassem a contagem
+            // de (serverSettings.getNumberOfFiles() - 1). 
+            // 
+            // Exemplo: 
+            // 
+            // Se serverSettings.getNumberOfFiles() é igual a 5, e o número de
+            // arquivos de backup no diretório é 7, então exclui os 3 arquivos
+            // mais antigos, de modo a ficar somente 4 arquivos no diretório. Ao
+            // gravar o próximo backup, voltam a ficar 5 arquivos novamente, 
+            // conforme definido pelo administrador em serverSettings.getNumberOfFiles().
             
-            // Localiza qual o arquivo mais antigo no diretório.
-            
-            File firstFile = null;
-            FileTime firstDate = null;
-            
-            for (File file : backupFiles) {
-                
-                BasicFileAttributes fileAttrbs = Files.readAttributes(
-                    Paths.get(file.getAbsolutePath()), 
-                    BasicFileAttributes.class
-                );
-                
-                if (firstFile != null && firstDate != null) {
-                    if (fileAttrbs.lastModifiedTime().toMillis() < firstDate.toMillis()) {
-                        firstFile = file;
-                        firstDate = fileAttrbs.lastModifiedTime();
-                    }
+            Collections.sort(backupFiles, (File f1, File f2) -> {
+                long diff = f1.lastModified() - f2.lastModified();
+                if (diff > 0) {
+                    return 1;
+                } else if (diff < 0) {
+                    return -1;
                 } else {
-                    firstFile = file;
-                    firstDate = fileAttrbs.lastModifiedTime();
+                    return 0;
                 }
-                
+            });
+            
+            int numFilesToDelete = backupFiles.size() - (serverSettings.getNumberOfFiles() - 1);
+
+            for (int i = 0; i < numFilesToDelete; i++) {
+                backupFiles.get(i).delete();
             }
-            
-            // Exclui o arquivo mais antigo no diretório.
-            
-            if (firstFile != null) {
-                firstFile.delete();
-            }
-            
+        
         }
         
         // Constrói o path do arquivo com base no diretório de backup no drive

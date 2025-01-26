@@ -32,14 +32,13 @@
         </group>
         <group>
             <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/service/BackupSchedule.java</file>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/forms/ConfigDialog.java</file>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/service/BackupException.java</file>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/run/TrayIconMouseListener.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/service/BackupMonitor.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/service/Drive.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/forms/WindowManager.java</file>
             <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/service/LastBackupInfo.java</file>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/run/TrayIconPopupMenu.java</file>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/run/Main.java</file>
             <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/service/ServerSettings.java</file>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/run/Application.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/run/Main.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/service/BackupManager.java</file>
         </group>
     </open-files>
 </project-private>
