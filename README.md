@@ -8,7 +8,7 @@ Na diretório raiz do programa, copie os seguintes arquivos, juntamente com os .
 
 <br>
 
-![Captura de tela 2025-01-24 161519](https://github.com/user-attachments/assets/b32ffbe8-be9d-419a-afc6-fa816c907176)
+![Captura de tela 2025-01-25 210726](https://github.com/user-attachments/assets/51caeeab-49c0-4b2e-bbb3-65014bf9338b)
 
 <br>
 
