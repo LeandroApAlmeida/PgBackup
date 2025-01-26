@@ -16,12 +16,12 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ListModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import postgre.backup.classes.BackupSchedule;
-import postgre.backup.classes.BackupMonitor;
-import postgre.backup.classes.Drive;
-import postgre.backup.classes.DriveTypeEnum;
-import postgre.backup.classes.DrivesManager;
-import postgre.backup.classes.ServerSettings;
+import postgre.backup.service.BackupSchedule;
+import postgre.backup.service.BackupMonitor;
+import postgre.backup.service.Drive;
+import postgre.backup.service.DriveTypeEnum;
+import postgre.backup.service.DrivesManager;
+import postgre.backup.service.ServerSettings;
 import postgre.backup.run.Application;
 
 
@@ -178,7 +178,7 @@ public class ConfigDialog extends javax.swing.JDialog {
         jcbFri.setSelected(backupSchedule.isFriday());
         jcbSat.setSelected(backupSchedule.isSaturday());
         
-        jcbActivated.setSelected(backupSchedule.isActivated());
+        jcbActivated.setSelected(backupSchedule.isAutomatic());
         
         schedulesList.addAll(backupSchedule.getBackupTimesList());
         
@@ -322,13 +322,13 @@ public class ConfigDialog extends javax.swing.JDialog {
             backupSchedule.setThursday(jcbThu.isSelected());
             backupSchedule.setFriday(jcbFri.isSelected());
             backupSchedule.setSaturday(jcbSat.isSelected());
-            backupSchedule.setActivated(jcbActivated.isSelected());
+            backupSchedule.setAutomatic(jcbActivated.isSelected());
             
             backupSchedule.getBackupTimesList().clear();
             backupSchedule.getBackupTimesList().addAll(schedulesList);
             backupSchedule.saveXmlFile();
             
-            if (backupSchedule.isActivated()) {
+            if (backupSchedule.isAutomatic()) {
                 BackupMonitor.getInstance().start(true);
             }
             

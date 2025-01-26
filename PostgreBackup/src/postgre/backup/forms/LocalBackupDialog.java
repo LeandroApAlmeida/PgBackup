@@ -6,11 +6,11 @@ import java.io.File;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import postgre.backup.classes.BackupManager;
-import postgre.backup.classes.Drive;
-import postgre.backup.classes.DriveTypeEnum;
-import postgre.backup.classes.DrivesManager;
-import postgre.backup.classes.ServerSettings;
+import postgre.backup.service.BackupManager;
+import postgre.backup.service.Drive;
+import postgre.backup.service.DriveTypeEnum;
+import postgre.backup.service.DrivesManager;
+import postgre.backup.service.ServerSettings;
 import postgre.backup.run.Application;
 
 public class LocalBackupDialog extends javax.swing.JDialog implements Runnable {

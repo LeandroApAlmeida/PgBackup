@@ -7,18 +7,14 @@ import java.awt.SystemTray;
 import java.awt.TrayIcon;
 import java.awt.TrayIcon.MessageType;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.net.URL;
-import java.nio.channels.FileLock;
 import java.util.Date;
 import javax.swing.ImageIcon;
-import javax.swing.UIManager;
-import postgre.backup.classes.BackupMonitor;
-import postgre.backup.classes.BackupSchedule;
-import postgre.backup.classes.ServerSettings;
-import postgre.backup.classes.StrUtils;
+import postgre.backup.service.BackupMonitor;
+import postgre.backup.service.BackupSchedule;
+import postgre.backup.service.LastBackupInfo;
+import postgre.backup.service.ServerSettings;
+import postgre.backup.service.StrUtils;
 import postgre.backup.forms.WindowManager;
 
 public class Application {
@@ -34,86 +30,6 @@ public class Application {
     
     
     private static TrayIcon trayIcon;
-    
-    
-    static {
-    
-        try {
-            System.setProperty(
-                "root_dir",
-                new File(
-                    Application.class
-                    .getProtectionDomain()
-                    .getCodeSource()
-                    .getLocation()
-                    .toURI()
-                ).getParent()
-            );
-        } catch (Exception ex) {
-        }
-        
-        System.setProperty("file_extension", ".pgback");
-    
-    }
-    
-    public static void main(String[] args)  {
-        
-        try {
-            
-            final File file = new File(System.getProperty("root_dir") + "\\pgbackup.lock");
-            final RandomAccessFile raFile = new RandomAccessFile(file, "rw");
-            final FileLock fLock = raFile.getChannel().tryLock();
-            
-            if (fLock != null) {
-                
-                Runtime.getRuntime().addShutdownHook(
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            try {
-                                fLock.release();
-                                raFile.close();
-                                file.delete();
-                            } catch (IOException ex) {                            
-                            }
-                        }
-                    }
-                ); 
-                
-                java.awt.EventQueue.invokeLater(() -> {
-                    
-                    try {
-
-                        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-
-                        BackupMonitor.getInstance().start(true);
-
-                        Application.updateTryIcon();
-
-                    } catch (Exception ex) {
-
-                        showMessageError("Erro na inicialização!", ex);
-
-                        System.exit(1);
-
-                    }
-
-                });
-            
-            } else {
-            
-                System.exit(1);
-            
-            }
-        
-        } catch (Exception ex) {
-        
-            showMessageError("Erro na inicialização!", ex);
-            
-            System.exit(1);
-        }
-        
-    }
     
     
     public static void displayTrayMessage(String title, String text, int type) {
@@ -150,14 +66,14 @@ public class Application {
     }
     
     
-    public static void showManualBackupUI() {
-        WindowManager.showManualBackupDialog();
+    public static void showLocalBackupUI() {
+        WindowManager.showLocalBackupDialog();
     }
 
     
     public static void showContextBackupUI() {
         if (new ServerSettings().getDriveType() == ServerSettings.REMOVABLE_DRIVE) {
-            WindowManager.showManualBackupDialog();
+            WindowManager.showLocalBackupDialog();
         } else {
             WindowManager.showNetworkBackupDialog();
         }
@@ -193,6 +109,8 @@ public class Application {
             
             ServerSettings serverSettings = new ServerSettings();
             
+            LastBackupInfo lastBackupInfo = new LastBackupInfo();
+            
             String tipText;
             
             if (serverSettings.getDatabase() != null) {
@@ -211,17 +129,32 @@ public class Application {
                 sb.append(serverSettings.getDatabase());
                 sb.append("\n");
                 
-                sb.append("Backup Automático: ");
-                sb.append(backupSchedule.isActivated() ? "sim" : "não");
+                
+                sb.append("Último Backup: ");
+                Date lastBackupdate = lastBackupInfo.getDate();
+                if (lastBackupdate != null) {
+                    sb.append(StrUtils.formatDate1(lastBackupdate));
+                } else {
+                    sb.append("[pendente]");
+                }
                 sb.append("\n");
                 
                 sb.append("Próximo Backup: ");
-                Date date = BackupMonitor.getInstance().getNextBackupTime();
                 
-                if (date != null) {
-                    sb.append(StrUtils.formatDate1(date));
+                if (backupSchedule.isAutomatic()) {
+                    
+                    Date date = BackupMonitor.getInstance().getNextBackupTime();
+                    
+                    if (date != null) {
+                        sb.append(StrUtils.formatDate1(date));
+                    } else {
+                        sb.append("[Pendente]");
+                    }
+                    
                 } else {
-                    sb.append("[Pendente]");
+                    
+                    sb.append("[backup manual]");
+                    
                 }
                 
                 tipText = sb.toString();

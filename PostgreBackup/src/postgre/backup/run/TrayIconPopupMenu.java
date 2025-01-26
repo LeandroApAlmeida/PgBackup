@@ -3,7 +3,7 @@ package postgre.backup.run;
 import java.awt.MenuItem;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
-import postgre.backup.classes.ServerSettings;
+import postgre.backup.service.ServerSettings;
 import postgre.backup.forms.WindowManager;
 
 /**

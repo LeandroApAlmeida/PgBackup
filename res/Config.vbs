@@ -1,6 +1,6 @@
 
-' Este programa configura para que o serviço de backup inicialize automáticamente com o Windows.
-' Utilize desta forma caso não use o serviço do Windows do agendador.
+' Este programa configura para que o serviço de backup inicialize automaticamente com o Windows.
+' Utilize desta forma caso não use o serviço do Windows que inicializa o agendador.
 
 
 Set objFSO = CreateObject("Scripting.FileSystemObject")

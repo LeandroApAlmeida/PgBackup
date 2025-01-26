@@ -63,7 +63,7 @@ public class WindowManager {
     }
     
     
-    public static void showManualBackupDialog() {
+    public static void showLocalBackupDialog() {
         if (!windowVisible) {
             windowVisible = true;
             owner = new LocalBackupDialog();
@@ -73,7 +73,7 @@ public class WindowManager {
     }
     
     
-    public static void showManualBackupDialogUnchecked() {
+    public static void showLocalBackupDialog2() {
         if (owner != null) owner.setVisible(false);
         windowVisible = true;
         owner = new LocalBackupDialog();

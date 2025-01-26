@@ -2,8 +2,8 @@ package postgre.backup.forms;
 
 import java.awt.Cursor;
 import java.io.File;
-import postgre.backup.classes.BackupManager;
-import postgre.backup.classes.ServerSettings;
+import postgre.backup.service.BackupManager;
+import postgre.backup.service.ServerSettings;
 import postgre.backup.run.Application;
 
 public class NetworkBackupDialog extends javax.swing.JDialog implements Runnable {

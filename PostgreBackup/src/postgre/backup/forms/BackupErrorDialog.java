@@ -3,7 +3,7 @@ package postgre.backup.forms;
 import dialogs.JOptionPaneEx;
 import java.util.Date;
 import java.util.Timer;
-import postgre.backup.classes.TimerTaskBackup;
+import postgre.backup.service.TimerTaskBackup;
 import postgre.backup.run.Application;
 
 public class BackupErrorDialog extends javax.swing.JDialog {
@@ -21,7 +21,7 @@ public class BackupErrorDialog extends javax.swing.JDialog {
     
     
     private void showManualBackupDialog() {
-        WindowManager.showManualBackupDialogUnchecked();
+        WindowManager.showLocalBackupDialog2();
     }
     
     

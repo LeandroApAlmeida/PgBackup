@@ -3,8 +3,8 @@ package postgre.backup.forms;
 import dialogs.FileChooserDialog;
 import java.awt.Cursor;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import postgre.backup.classes.BackupManager;
-import postgre.backup.classes.RestoreException;
+import postgre.backup.service.BackupManager;
+import postgre.backup.service.RestoreException;
 import postgre.backup.run.Application;
 
 public class RestoreDialog extends javax.swing.JDialog implements Runnable {
