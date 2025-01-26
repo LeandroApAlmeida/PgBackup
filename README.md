@@ -16,9 +16,9 @@ Na diretório raiz do programa, copie os seguintes arquivos, juntamente com os .
 
 <li><b>Config.vbs</b>: programa para configuração no ambiente Microsoft Windows;</li>
 
-<li><b>jacob-1.20-x64.dll</b>: biblioteca de vínculo dinâmico do JACOB (JAVA-COM Bridge) para arquiteturas x64;</li>
+<li><b>jacob-1.21-x64.dll</b>: biblioteca de vínculo dinâmico do JACOB (JAVA-COM Bridge) para arquiteturas x64;</li>
 
-<li><b>jacob-1.20-x86.dll</b>: biblioteca de vínculo dinâmico do JACOB para arquiteturas x86;</li>
+<li><b>jacob-1.21-x86.dll</b>: biblioteca de vínculo dinâmico do JACOB para arquiteturas x86;</li>
 
 <li><b>PostgreBackup.bat</b>: arquivo de execução do serviço, usando a JVM instalada no Windows.</li>
   
@@ -26,7 +26,7 @@ Na diretório raiz do programa, copie os seguintes arquivos, juntamente com os .
 
 <br>
 
-<b>Config.vbs</b> e <b>PostgreBackup.bar</b> se encontram no diretória Res, e <b>jacob-1.20-x64.dll</b> e <b>jacob-1.20-x86.dll</b> no diretório raiz do projeto. Os arquivos com extensão .xml são criados automaticamente pelo serviço, com base nas configurações feitas pelo administrador e com a execução dos backups.
+Todos os arquivos se encontram na pasta <b>res</b> no projeto. Os arquivos com extensão .xml são criados automaticamente pelo serviço, com base nas configurações feitas pelo administrador e com a execução dos backups.
 
 <br>
 
