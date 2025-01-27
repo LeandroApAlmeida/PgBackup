@@ -5,10 +5,14 @@ import com.jacob.com.ComThread;
 import com.jacob.com.Dispatch;
 import com.jacob.com.EnumVariant;
 import com.jacob.com.Variant;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe para o gerenciamento de drives do sistema de arquivos.
+ * 
+ * @author Leandro Aparecido de Almeida
+ */
 public class DrivesManager {
     
     
@@ -25,6 +29,17 @@ public class DrivesManager {
     }
 
     
+    /**
+     * Obter a lista com todos os drives do sistema. Nesta lista, serão retornados
+     * todos os tipos de drives montados, seja USB, de rede, local, ou outro.
+     * 
+     * <br><br>
+     * 
+     * No windows, a busca pelos drives será via WMI (Windows Media Interface),
+     * com acessado nativo via biblioteca JACOB (Java-Com Bridge).
+     * 
+     * @return lista com todos os drives do sistema. 
+     */
     public List<Drive> getDrives() {
         
         ComThread.InitSTA();
@@ -35,6 +50,7 @@ public class DrivesManager {
         
         try {
             
+            // Seleciona todos os discos lógicos.
             String query1 = "SELECT * FROM Win32_LogicalDisk";
             
             Variant logicalDisks = activex.invoke("ExecQuery", new Variant(query1));
@@ -51,6 +67,7 @@ public class DrivesManager {
                 
                 String fileSystem = Dispatch.call(logicalDisk, "FileSystem").toString();
                 
+                // Obtém todas as partições associadas ao disco lógico.
                 StringBuilder query2 = new StringBuilder();
                 query2.append("ASSOCIATORS OF {Win32_LogicalDisk.DeviceID='");
                 query2.append(drive);
@@ -64,6 +81,7 @@ public class DrivesManager {
                     
                     Dispatch partition = partitionsList.nextElement().toDispatch();
                     
+                    // Associa a partição ao disco físico.
                     StringBuilder query3 = new StringBuilder();
                     query3.append("ASSOCIATORS OF {Win32_DiskPartition.DeviceID='");
                     query3.append(Dispatch.call(partition, "DeviceID").toString());
@@ -79,6 +97,8 @@ public class DrivesManager {
                         
                         String interfaceType = Dispatch.call(disk, "InterfaceType").toString().toUpperCase();
                         
+                        // Se o disco estiver conectado via USB, define o tipo
+                        // de drive como RemovableDisk.
                         if (interfaceType.equals("USB")) {
                             driveType = DriveTypeEnum.RemovableDisk;
                             break;
@@ -105,6 +125,13 @@ public class DrivesManager {
     }
     
     
+    /**
+     * Obter a lista de drives pelo tipo (Removível, Rede, etc.).
+     * 
+     * @param driveType tipo de drive.
+     * 
+     * @return lista de drives pelo tipo.
+     */
     public List<Drive> getDrives(DriveTypeEnum driveType) {
         
         List<Drive> drives = getDrives();
@@ -113,9 +140,15 @@ public class DrivesManager {
         for (Drive drive : drives) {
         
             switch (driveType) {
-            
-                case LocalDisk: {
-                    if (drive.getDriveType() == DriveTypeEnum.LocalDisk) {
+                
+                case Unknown: {
+                    if (drive.getDriveType() == DriveTypeEnum.Unknown) {
+                        selectedDrives.add(drive);
+                    }
+                } break;
+                
+                case NoRootDirectory: {
+                    if (drive.getDriveType() == DriveTypeEnum.NoRootDirectory) {
                         selectedDrives.add(drive);
                     }
                 } break;
@@ -125,9 +158,27 @@ public class DrivesManager {
                         selectedDrives.add(drive);
                     }
                 } break;
-                
+            
+                case LocalDisk: {
+                    if (drive.getDriveType() == DriveTypeEnum.LocalDisk) {
+                        selectedDrives.add(drive);
+                    }
+                } break;
+               
                 case NetworkDrive: {
                     if (drive.getDriveType() == DriveTypeEnum.NetworkDrive) {
+                        selectedDrives.add(drive);
+                    }
+                } break;
+                
+                case CompactDisc: {
+                    if (drive.getDriveType() == DriveTypeEnum.CompactDisc) {
+                        selectedDrives.add(drive);
+                    }
+                } break;
+                
+                case RAMDisk: {
+                    if (drive.getDriveType() == DriveTypeEnum.RAMDisk) {
                         selectedDrives.add(drive);
                     }
                 } break;
@@ -137,24 +188,6 @@ public class DrivesManager {
         }
         
         return selectedDrives;
-    
-    }
-    
-    
-    public Drive getDrive(File file) {
-    
-        Drive driveRef = null;
-        
-        List<Drive> drives = getDrives();
-        
-        for (Drive drive : drives) {
-            if (file.getAbsolutePath().startsWith(drive.getLetter())) {
-                driveRef = drive;
-                break;
-            }
-        }
-        
-        return driveRef;
     
     }
 

@@ -17,6 +17,11 @@ import postgre.backup.service.ServerSettings;
 import postgre.backup.service.StrUtils;
 import postgre.backup.forms.WindowManager;
 
+/**
+ * Classe que representa 
+ * 
+ * @author Leandro Aparecido de Almeida
+ */
 public class Application {
 
     

@@ -8,9 +8,8 @@ import java.util.List;
 import java.util.Timer;
 
 /**
- * Classe responsável pelo monitoramento do backup automático do banco de dados.
- * Ela é reponsável por acionar o backup sempre nas datas e horários definidos
- * para que eles aconteçam (o controle é por dias da semana).
+ * Classe responsável pelo backup automático do banco de dados. Ela é responsável
+ * por acionar o mecanismo do agendador para executar nos dias e horários definidos.
  * 
  * @author Leandro Aparecido de Almeida
  */
@@ -37,10 +36,10 @@ public final class BackupMonitor {
     
     /**
      * Calcular o tempo restante para o próximo backup automático do banco de
-     * dados PostgreSQL e start as threads para o monitoramento.
+     * dados PostgreSQL e iniciar as threads para o monitoramento.
      * 
-     * @param startMonitor status de start o controlar de recalculo
-     * do tempo para o próximo backup automático.
+     * @param startMonitor status de ativação do controlador de recalculo do tempo
+     * para o próximo backup automático.
      */
     public synchronized void start(boolean startMonitor) {
         
@@ -72,7 +71,7 @@ public final class BackupMonitor {
                 calendar.get(Calendar.SECOND)
             );
 
-            Time nextSchedule = currentTime;
+            Time nextTime = currentTime;
 
             boolean backupToday = false;
 
@@ -81,7 +80,7 @@ public final class BackupMonitor {
                     if (currentTime.getTime() <= time.getTime()) {
                         //O backup será nesta mesma data, no primeiro horário
                         //da lista, após o horário atual do sistema.
-                        nextSchedule = time;
+                        nextTime = time;
                         backupToday = true;
                         break;
                     }
@@ -100,12 +99,12 @@ public final class BackupMonitor {
                         break;
                     }
                 }
-                nextSchedule = times.get(0);
+                nextTime = times.get(0);
             }
 
-            calendar.set(Calendar.HOUR_OF_DAY, nextSchedule.getHours());
-            calendar.set(Calendar.MINUTE, nextSchedule.getMinutes());
-            calendar.set(Calendar.SECOND, nextSchedule.getSeconds());
+            calendar.set(Calendar.HOUR_OF_DAY, nextTime.getHours());
+            calendar.set(Calendar.MINUTE, nextTime.getMinutes());
+            calendar.set(Calendar.SECOND, nextTime.getSeconds());
 
             nextBackupTime = new Date(calendar.getTimeInMillis());
             
@@ -139,7 +138,7 @@ public final class BackupMonitor {
     /**
      * Parar as threads do monitor de backup.
      * 
-     * @param stopMonitor status de stop a thread do controlador de
+     * @param stopMonitor status de desativação do thread do controlador de
      * recalculo do tempo para o próximo backup automático.
      */
     public synchronized void stop(boolean stopMonitor) {
@@ -161,6 +160,10 @@ public final class BackupMonitor {
     }
 
     
+    /**
+     * Obter a data do próximo backup automático.
+     * @return data do próximo backup automático.
+     */
     public Date getNextBackupTime() {
         return nextBackupTime;
     }

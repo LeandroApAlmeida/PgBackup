@@ -14,20 +14,43 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
 /**
- *
- * @author leandro
+ * Informações do último backup realizado. O formato do arquivo XML é o seguinte:
+ * 
+ * <br><br>
+ * 
+ * <pre>
+ * &lt;last_backup&gt;
+ *      &lt;date&gt;[1]&lt;/date&gt;
+ *      &lt;file&gt;[2]&lt;/file&gt;
+ * &lt;/last_backup&gt;
+ * </pre>
+ * 
+ * Onde:
+ * 
+ * <br><br>
+ * 
+ * [1]: Data do último backup.<br>
+ * [2]: Arquivo gerado pelo backup.<br>
+ * 
+ * @author Leandro Aparecido de Almeida
  */
 public class LastBackupInfo {
     
     
-    /**Arquivo contendo o registro do último backup realizado do banco de dados.*/
+    /**Arquivo XML contendo o registro do último backup realizado do banco de dados.*/
     private final File xmlFile;
     
-    private File outputFile;
+    /**Arquivo gerado no último backup.*/
+    private File file;
     
+    /**Data do último backup.*/
     private Date date;
 
     
+    /**
+     * Constructor da classe. Ao instanciar a classe, carrega os dados do último
+     * backup do arquivo XML.
+     */
     public LastBackupInfo() {
         
         xmlFile = new File(
@@ -41,6 +64,9 @@ public class LastBackupInfo {
     }
     
     
+    /**
+     * Carregar os dados do arquivo XML.
+     */
     private void loadXmlFile() {
         
         try {
@@ -53,21 +79,26 @@ public class LastBackupInfo {
             List<Element> n0 = root.getChildren();
 
             for (Element e0 : n0) {
-                if (e0.getName().equals("date")) {
-                    date = new Date(Long.parseLong(e0.getText()));
-                } else if (e0.getName().equals("file")) {
-                    outputFile = new File(e0.getText());
+                switch (e0.getName()) {
+                    case "date": date = new Date(Long.parseLong(e0.getText())); break;
+                    case "file": file = new File(e0.getText()); break;
                 }
             }
             
         } catch (Exception ex) {
-            outputFile = null;
+            file = null;
             date = null;
         }
         
     }  
     
     
+    /**
+     * Salvar os dados no arquivo XML.
+     * 
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public void saveXmlFile() throws FileNotFoundException, IOException {
         
         Document document = new Document();
@@ -79,7 +110,7 @@ public class LastBackupInfo {
         root.addContent(e0);
 
         Element e1 = new Element("file");
-        e1.setText(outputFile.getAbsolutePath());
+        e1.setText(file.getAbsolutePath());
         root.addContent(e1);
         document.setRootElement(root);
 
@@ -95,24 +126,44 @@ public class LastBackupInfo {
         
     }
 
-    
+
+    /**
+     * Obter a data do último backup.
+     * 
+     * @return data do último backup.
+     */
     public Date getDate() {
         return date;
     }
 
     
-    public File getOutputFile() {
-        return outputFile;
+    /**
+     * Obter o arquivo gerado no último backup.
+     * 
+     * @return arquivo gerado no último backup.
+     */
+    public File getFile() {
+        return file;
     }
 
     
+    /**
+     * Definir a data do último backup.
+     * 
+     * @param date data do último backup.
+     */
     public void setDate(Date date) {
         this.date = date;
     }
 
     
-    public void setOutputFile(File outputFile) {
-        this.outputFile = outputFile;
+    /**
+     * Definir o arquivo gerado no último backup.
+     * 
+     * @param file arquivo gerado no último backup.
+     */
+    public void setFile(File file) {
+        this.file = file;
     }
     
     

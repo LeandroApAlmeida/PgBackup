@@ -85,6 +85,7 @@ public final class BackupManager {
             int numFilesToDelete = backupFiles.size() - (serverSettings.getNumberOfFiles() - 1);
 
             for (int i = 0; i < numFilesToDelete; i++) {
+                // Exclui o(s) arquivo(s) mais antigo(s).
                 backupFiles.get(i).delete();
             }
         
@@ -251,7 +252,7 @@ public final class BackupManager {
             
             lastBackupInfo.setDate(date);
             
-            lastBackupInfo.setOutputFile(backupFile);
+            lastBackupInfo.setFile(backupFile);
             
             lastBackupInfo.saveXmlFile();
             

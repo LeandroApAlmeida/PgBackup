@@ -7,7 +7,10 @@ import postgre.backup.service.ServerSettings;
 import postgre.backup.forms.WindowManager;
 
 /**
- * Popup menu associado ao {@link java.awt.TrayIcon} da aplicação.<br>
+ * Popup menu associado ao {@link java.awt.TrayIcon} da aplicação.
+ * 
+ * <br>
+ * 
  * O objetivo desta subclasse é o de criar os itens do popup menu e associar os 
  * eventos aos mesmos antes de adicioná-lo ao <b>TrayIcon</b>.
  */
@@ -15,8 +18,7 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
 
     
     /**
-     * Criar uma instância de <b>TrayIconPopupMenu</b>. Cria os itens do
-     * popup menu da aplicação.
+     * Constructor padrão. Cria os itens do popup menu da aplicação.
      */
     public TrayIconPopupMenu() {
         createPopupMenu();
@@ -40,8 +42,7 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
     
     
     /**
-     * Adicionar o item de menu 1. Ao clicar neste item de menu, será exibida
-     * a tela principal do monitor de processos do Curumim Server.
+     * Adicionar o item de menu "Configurar...".
      */
     private void addConfigMenuItem() {
         
@@ -56,6 +57,9 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
     }
     
     
+    /**
+     * Adicionar o item de menu "Fazer o Backup".
+     */
     private void addDoBackupMenuItem() {
         
         MenuItem menuItem = new MenuItem("Fazer o Backup");
@@ -69,6 +73,9 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
     }
     
     
+    /**
+     * Adicionar o item de menu "Restaurar o Backup".
+     */
     private void addDoRestoreMenuItem() {
     
         MenuItem menuItem = new MenuItem("Restaurar o Backup");
@@ -82,6 +89,9 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
     }
     
     
+    /**
+     * Adicionar o item de menu "Sobre a Versão".
+     */
     private void addAboutMenuItem() {
         
         MenuItem menuItem = new MenuItem("Sobre a Versão");
@@ -96,9 +106,7 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
     
     
     /**
-     * Adicionar o item de menu 2. Ao clicar neste item de menu, será exibido o
-     * diálogo para confirmação da desconexão do servidor. Se confirmado, encerra
-     * a execução do programa.
+     * Adicionar o item de menu "Sair".
      */
     private void addExitMenuItem() {
         

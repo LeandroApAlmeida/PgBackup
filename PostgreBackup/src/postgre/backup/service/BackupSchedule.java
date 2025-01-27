@@ -16,7 +16,7 @@ import org.jdom2.output.XMLOutputter;
 
 
 /**
- * Classe com os parâmetros para agendamento do backup. O formato do arquivo XML
+ * Classe com os parâmetros para o agendamento de backup. O formato do arquivo XML
  * que contém os parâmetros é o seguinte:
  * 
  * <br><br>
@@ -24,7 +24,7 @@ import org.jdom2.output.XMLOutputter;
  * <pre>
  * &lt;schedule&gt;
  *      
- *      &lt;activated&gt;[1]&lt;/activated&gt;
+ *      &lt;automatic&gt;[1]&lt;/automatic&gt;
  *      
  *      &lt;week_days&gt;
  *          &lt;sun&gt;[2]&lt;/sun&gt;
@@ -67,7 +67,7 @@ public class BackupSchedule {
     /**Horários de backup.*/
     private final List<Time> backupTimes;
     
-    /**Path do arquivo XML que contém os parâmetros para agendamento do backup.*/
+    /**Path do arquivo XML que contém os parâmetros para agendamento de backup.*/
     private final File xmlFile;
     
     /**Status de backup automático ativado.*/
@@ -95,6 +95,11 @@ public class BackupSchedule {
     private boolean saturday;    
 
     
+    /**
+     * Constructor padrão. Ao instanciar, carrega os parâmetros para o agendamento
+     * de backup a partir do arquivo XML "schedule.xml" no diretório raiz do
+     * programa.
+     */
     public BackupSchedule() {
         
         xmlFile = new File(
@@ -285,6 +290,7 @@ public class BackupSchedule {
     
     /**
      * Obter a lista com os horários para backup.
+     * 
      * @return lista com os horários para backup.
      */
     public List<Time> getBackupTimesList() {
@@ -294,6 +300,7 @@ public class BackupSchedule {
     
     /**
      * Obter o status de backup aos domingos.
+     * 
      * @return status de backup aos domingos.
      */
     public boolean isSunday() {
@@ -303,6 +310,7 @@ public class BackupSchedule {
     
     /**
      * Obter o status de backup às segundas-feiras.
+     * 
      * @return status de backup às segundas-feiras.
      */
     public boolean isMonday() {
@@ -312,6 +320,7 @@ public class BackupSchedule {
     
     /**
      * Obter o status de backup às terças-feiras.
+     * 
      * @return status de backup às terças-feiras.
      */
     public boolean isTuesday() {
@@ -321,6 +330,7 @@ public class BackupSchedule {
     
     /**
      * Obter o status de backup às quartas-feiras.
+     * 
      * @return status de backup às quartas-feiras.
      */
     public boolean isWednesday() {
@@ -330,6 +340,7 @@ public class BackupSchedule {
     
     /**
      * Obter o status de backup às quintas-feiras.
+     * 
      * @return status de backup às quintas-feiras.
      */
     public boolean isThursday() {
@@ -339,6 +350,7 @@ public class BackupSchedule {
     
     /**
      * Obter o status de backup às sextas-feiras.
+     * 
      * @return status de backup às sextas-feiras.
      */
     public boolean isFriday() {
@@ -348,6 +360,7 @@ public class BackupSchedule {
     
     /**
      * Obter o status de backup aos sábados.
+     * 
      * @return status de backup aos sábados.
      */
     public boolean isSaturday() {
@@ -357,6 +370,7 @@ public class BackupSchedule {
     
     /**
      * Obter o status de backup automático ativado.
+     * 
      * @return status de backup automático ativado.
      */
     public boolean isAutomatic() {
@@ -366,6 +380,7 @@ public class BackupSchedule {
     
     /**
      * Definir o status de backup automático aos domingos.
+     * 
      * @param sun status de backup automático aos domingos. 
      */
     public void setSunday(boolean sun) {
@@ -375,6 +390,7 @@ public class BackupSchedule {
     
     /**
      * Definir o status de backup automático às segundas-feiras.
+     * 
      * @param mon status de backup automático às segundas-feiras. 
      */
     public void setMonday(boolean mon) {
@@ -384,6 +400,7 @@ public class BackupSchedule {
     
     /**
      * Definir o status de backup automático às terças-feiras.
+     * 
      * @param tue status de backup automático às terças-feiras. 
      */
     public void setTuesday(boolean tue) {
@@ -393,6 +410,7 @@ public class BackupSchedule {
     
     /**
      * Definir o status de backup automático às quartas-feiras.
+     * 
      * @param wed status de backup automático às quartas-feiras. 
      */
     public void setWednesday(boolean wed) {
@@ -402,6 +420,7 @@ public class BackupSchedule {
     
     /**
      * Definir o status de backup automático às quintas-feiras.
+     * 
      * @param thu status de backup automático às quintas-feiras. 
      */
     public void setThursday(boolean thu) {
@@ -411,6 +430,7 @@ public class BackupSchedule {
     
     /**
      * Definir o status de backup automático às sextas-feiras.
+     * 
      * @param fri status de backup automático às sextas-feiras. 
      */
     public void setFriday(boolean fri) {
@@ -420,6 +440,7 @@ public class BackupSchedule {
 
     /**
      * Definir o status de backup automático aos sábados.
+     * 
      * @param sat status de backup automático aos sábados. 
      */
     public void setSaturday(boolean sat) {
@@ -429,6 +450,7 @@ public class BackupSchedule {
     
     /**
      * Definir o status de backup automático ativado.
+     * 
      * @param automatic status de backup automático ativado.
      */
     public void setAutomatic(boolean automatic) {

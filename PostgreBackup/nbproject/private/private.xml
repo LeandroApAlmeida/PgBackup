@@ -31,13 +31,11 @@
             <file>file:/D:/2.%20SOFTWARE/2.%20PROJETOS/BACKUP_PG/src/PostgreBackup/src/postgre/backup/classes/DrivesManager.java</file>
         </group>
         <group>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/service/DriveTypeEnum.java</file>
             <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/service/BackupSchedule.java</file>
             <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/service/BackupMonitor.java</file>
             <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/service/Drive.java</file>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/forms/WindowManager.java</file>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/service/LastBackupInfo.java</file>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/service/ServerSettings.java</file>
-            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/run/Main.java</file>
+            <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/forms/LocalBackupDialog.java</file>
             <file>file:/D:/2.%20SOFTWARE/1.%20PROJETOS%20PESSOAIS/BACKUP_PG/pgbackup/PostgreBackup/src/postgre/backup/service/BackupManager.java</file>
         </group>
     </open-files>

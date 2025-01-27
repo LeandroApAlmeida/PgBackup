@@ -4,6 +4,7 @@ import java.util.Date;
 
 /**
  * Classe para a formatação de Strings.
+ * 
  * @author Leandro Aparecido de Almeida
  */
 public final class StrUtils {
@@ -11,7 +12,9 @@ public final class StrUtils {
     
     /**
      * Formatar um número Long num múltiplo do byte (byte, KB, MB, GB, TB).
+     * 
      * @param bytes número long a ser formatado.
+     * 
      * @return String formatada.
      */
     public static String formatBytes(long bytes) { 
@@ -45,7 +48,9 @@ public final class StrUtils {
     
     /**
      * Formatar uma data para o formato "dd/mm/aaaa, hh:mm:ss".
+     * 
      * @param date data a ser formatada.
+     * 
      * @return String formatada.
      */
     public static String formatDate1(Date date) {
@@ -55,7 +60,9 @@ public final class StrUtils {
     
     /**
      * Formatar uma data para o formato "dd/mm/aaaa, hh:mm".
+     * 
      * @param date data a ser formatada.
+     * 
      * @return String formatada.
      */
     public static String formatDate2(Date date) {
@@ -65,7 +72,9 @@ public final class StrUtils {
     
     /**
      * Formatar uma data para o formato "dd/mm/aaaa".
+     * 
      * @param date data a ser formatada.
+     * 
      * @return String formatada.
      */
     public static String formatDate3(Date date) {
@@ -73,6 +82,13 @@ public final class StrUtils {
     }
     
     
+    /**
+     * Formatar uma hora para o formato "hh:mm:ss".
+     * 
+     * @param date hora a ser formatada.
+     * 
+     * @return String formatada. 
+     */
     public static String formatHour(Date date) {
         return String.format("%1$tH:%1$tM:%1$tS", date);
     }

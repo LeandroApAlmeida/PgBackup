@@ -5,13 +5,20 @@ import java.awt.event.MouseListener;
 
 /**
  * Classe que implementa o tratador de eventos associado ao clique no 
- * {@link java.awt.TrayIcon} da aplicação. Ao clicar no ícone da aplicação na
- * área de noficações do Windows, por exemplo, será exibida a tela do monitor
- * de processos do Curumim Server.
+ * ícone da aplicação.
+ * 
+ * @author Leandro Aparecido de Almeida
  */
 public class TrayIconMouseListener implements MouseListener {
     
     
+    /**
+     * Evento disparado ao clicar no ícone da aplicação. Neste caso, exibe a 
+     * interface gráfica para backup manual do banco de dados, em drive de rede
+     * ou drive removível.
+     * 
+     * @param e dados do evento.
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
