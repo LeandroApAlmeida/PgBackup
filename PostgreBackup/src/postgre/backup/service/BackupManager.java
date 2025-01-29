@@ -206,7 +206,7 @@ public final class BackupManager {
         builder.redirectErrorStream(true);
         
         // Notifica o usuário sobre o início do processo de backup.
-        Application.displayTrayMessage(                    
+        Application.displayMessage(                    
             "NOTIFICAÇÃO DE PROCESSO:",
             "Realizando o \"Backup\" do banco de dados \"" + 
             serverSettings.getDatabase() + "\"",
@@ -234,7 +234,7 @@ public final class BackupManager {
         if (!sb.toString().equals("")) {
             
             //Notifica o usuário sobre erro ocorrido no processo de backup.
-            Application.displayTrayMessage(                    
+            Application.displayMessage(                    
                 "ERRO NO PROCESSO DE BACKUP:",
                 sb.toString(),
                 Application.MESSAGE_ERROR
@@ -257,7 +257,7 @@ public final class BackupManager {
             lastBackupInfo.saveXmlFile();
             
             // Notifica o usuário sobre o sucesso no processamento do backup.
-            Application.displayTrayMessage(                    
+            Application.displayMessage(                    
                 "BACKUP CONCLUÍDO!",
                 "Backup do banco de dados \"" + serverSettings.getDatabase() + 
                 "\" concluído com sucesso.",
@@ -340,7 +340,7 @@ public final class BackupManager {
         builder.redirectErrorStream(true);
         
         // Notifica o usuário sobre o início do processo de restore.
-        Application.displayTrayMessage(                    
+        Application.displayMessage(                    
             "NOTIFICAÇÃO DE PROCESSO:",
             "Realizando a \"Restauração\" do banco de dados \"" + 
             serverSettings.getDatabase() + "\"",
@@ -368,7 +368,7 @@ public final class BackupManager {
         if (!sb.toString().equals("")) {
             
             //Notifica o usuário sobre erro ocorrido no processo de restore.
-            Application.displayTrayMessage(                    
+            Application.displayMessage(                    
                 "ERRO NO PROCESSO DE RESTORE:",
                 sb.toString(),
                 Application.MESSAGE_ERROR
@@ -379,7 +379,7 @@ public final class BackupManager {
         } else {
             
             // Notifica o usuário sobre o sucesso do processamento do restore.
-            Application.displayTrayMessage(                    
+            Application.displayMessage(                    
                 "RESTORE CONCLUÍDO!",
                 "Restore do banco de dados \"" + serverSettings.getDatabase() + 
                 "\" concluído com sucesso.",

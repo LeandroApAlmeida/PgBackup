@@ -18,7 +18,7 @@ import postgre.backup.service.StrUtils;
 import postgre.backup.forms.WindowManager;
 
 /**
- * Classe que representa 
+ * Classe para acesso às funcionalidades do serviço de backups.
  * 
  * @author Leandro Aparecido de Almeida
  */
@@ -34,10 +34,20 @@ public class Application {
     public static final int MESSAGE_ERROR = 4;
     
     
+    /**Ícone na barra de tarefas do Windows.*/
     private static TrayIcon trayIcon;
     
     
-    public static void displayTrayMessage(String title, String text, int type) {
+    /**
+     * Exibe um balão de mensagem.
+     * 
+     * @param title título da mensagem.
+     * 
+     * @param text texto da mensagem.
+     * 
+     * @param type tipo da mensagem.
+     */
+    public static void displayMessage(String title, String text, int type) {
     
         MessageType messageType = MessageType.NONE;
         
@@ -60,7 +70,7 @@ public class Application {
     
     public static void showNetworkErrorUI() {
     
-        displayTrayMessage(
+        displayMessage(
             "Erro no acesso à unidade de rede", 
             "O backup do Banco de Dados não pode ser concluído.",
             MESSAGE_ERROR
