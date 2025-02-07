@@ -51,7 +51,7 @@ public class TimerTaskBackup extends TimerTask {
             
         }
         
-        Application.updateTryIcon();
+        Application.updateSystemTrayIcon();
         
     }
 

@@ -50,6 +50,9 @@ public final class BackupMonitor {
             stop(false);
 
             backupTimer = new Timer();
+            
+            // Identifica em quais dias da semana será feito o backup.
+            
             List<Integer> weekDays = new ArrayList<>();
 
             if (backupSchedule.isSunday()) weekDays.add(1);
@@ -134,6 +137,7 @@ public final class BackupMonitor {
         }
 
     }
+    
     
     /**
      * Parar as threads do monitor de backup.

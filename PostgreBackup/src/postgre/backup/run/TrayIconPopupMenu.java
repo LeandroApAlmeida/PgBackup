@@ -21,14 +21,6 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
      * Constructor padrão. Cria os itens do popup menu da aplicação.
      */
     public TrayIconPopupMenu() {
-        createPopupMenu();
-    }
-    
-    
-    /**
-     * Cria os itens do popup menu.
-     */
-    private void createPopupMenu() {
         addDoBackupMenuItem();
         addSeparator();
         addDoRestoreMenuItem();
@@ -49,7 +41,7 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
         MenuItem menuItem = new MenuItem("Configurar...");
         
         menuItem.addActionListener((ActionEvent e) -> {
-            WindowManager.showConfigDialog();
+            WindowManager.showSettingsDialog();
         });
         
         this.add(menuItem);
@@ -65,7 +57,7 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
         MenuItem menuItem = new MenuItem("Fazer o Backup");
         
         menuItem.addActionListener((ActionEvent e) -> {
-            Application.showContextBackupUI();
+            Application.showManualBackupUI();
         });
         
         this.add(menuItem);

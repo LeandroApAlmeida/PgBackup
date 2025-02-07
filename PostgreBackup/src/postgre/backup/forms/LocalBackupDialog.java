@@ -13,6 +13,10 @@ import postgre.backup.service.DrivesManager;
 import postgre.backup.service.ServerSettings;
 import postgre.backup.run.Application;
 
+/**
+ * 
+ * @author Leandro Aparecido de Almeida
+ */
 public class LocalBackupDialog extends javax.swing.JDialog implements Runnable {
     
     
@@ -202,7 +206,7 @@ public class LocalBackupDialog extends javax.swing.JDialog implements Runnable {
             
             jtaLog.setText(sb.toString());
             
-            //setVisible(false);
+            Application.updateSystemTrayIcon();
             
         } catch (Exception ex) {
 
@@ -308,7 +312,7 @@ public class LocalBackupDialog extends javax.swing.JDialog implements Runnable {
             }
         });
 
-        jLabel1.setText("Drive de Destino:");
+        jLabel1.setText("Drive Removível de Destino:");
 
         jlProgress.setIcon(new javax.swing.ImageIcon(getClass().getResource("/postgre/backup/forms/progress.gif"))); // NOI18N
         jlProgress.setText("jLabel3");

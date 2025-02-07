@@ -43,7 +43,7 @@ public class DrivesManager {
     public List<Drive> getDrives() {
         
         ComThread.InitSTA();
-        
+
         List<Drive> result = new ArrayList<>();
         
         ActiveXComponent activex = new ActiveXComponent("winmgmts://");
@@ -111,7 +111,7 @@ public class DrivesManager {
                 result.add(new Drive(drive, fileSystem, driveType));
             
             }
-            
+
             return result;
         
         } finally {
@@ -179,6 +179,13 @@ public class DrivesManager {
                 
                 case RAMDisk: {
                     if (drive.getDriveType() == DriveTypeEnum.RAMDisk) {
+                        selectedDrives.add(drive);
+                    }
+                } break;
+                
+                case All: {
+                    if (drive.getDriveType() == DriveTypeEnum.RemovableDisk ||
+                    drive.getDriveType() == DriveTypeEnum.NetworkDrive) {
                         selectedDrives.add(drive);
                     }
                 } break;

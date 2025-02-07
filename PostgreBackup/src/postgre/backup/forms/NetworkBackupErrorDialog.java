@@ -6,10 +6,10 @@ import java.util.Timer;
 import postgre.backup.service.TimerTaskBackup;
 import postgre.backup.run.Application;
 
-public class BackupErrorDialog extends javax.swing.JDialog {
+public class NetworkBackupErrorDialog extends javax.swing.JDialog {
 
     
-    public BackupErrorDialog() {
+    public NetworkBackupErrorDialog() {
     
         super(null, ModalityType.TOOLKIT_MODAL);
         

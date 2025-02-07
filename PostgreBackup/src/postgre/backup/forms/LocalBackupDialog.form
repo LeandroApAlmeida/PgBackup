@@ -129,7 +129,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Drive de Destino:"/>
+        <Property name="text" type="java.lang.String" value="Drive Remov&#xed;vel de Destino:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlProgress">

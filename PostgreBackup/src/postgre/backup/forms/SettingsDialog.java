@@ -1,11 +1,9 @@
 package postgre.backup.forms;
 
-import dialogs.ErrorDialog;
 import dialogs.FileChooserDialog;
+import dialogs.JOptionPaneEx;
 import java.awt.Component;
 import java.awt.Cursor;
-import java.awt.Dialog;
-import java.awt.Frame;
 import java.sql.Time;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -25,7 +23,7 @@ import postgre.backup.service.ServerSettings;
 import postgre.backup.run.Application;
 
 
-public class ConfigDialog extends javax.swing.JDialog {
+public class SettingsDialog extends javax.swing.JDialog {
     
     
     private class Comparator1 implements Comparator<Time> {
@@ -45,18 +43,19 @@ public class ConfigDialog extends javax.swing.JDialog {
     private final Comparator1 comparator;
     
     
-    protected ConfigDialog() {
+    protected SettingsDialog() {
         
-        super(null, Dialog.ModalityType.TOOLKIT_MODAL);
+        super(null, ModalityType.TOOLKIT_MODAL);
         
         schedulesList = new ArrayList<>();
+        
         comparator = new Comparator1();
         
         initComponents();
-        
+            
         setIconImage(Application.getDefaultIcon());         
-        
-        loadServerConfig();
+
+        loadServerSettings();
     
     }
     
@@ -111,7 +110,7 @@ public class ConfigDialog extends javax.swing.JDialog {
     }
 
     
-    private void loadServerConfig() {
+    private void loadServerSettings() {
         
         jtfHost.setText(serverSettings.getHost());
         jspPort.setValue(serverSettings.getPort());
@@ -140,7 +139,7 @@ public class ConfigDialog extends javax.swing.JDialog {
         }
         
         List<Drive> drivesList = new DrivesManager().getDrives(DriveTypeEnum.NetworkDrive);
-        
+
         String[] items = new String[drivesList.size()];
         
         for (int i = 0; i < drivesList.size(); i++) {
@@ -332,14 +331,19 @@ public class ConfigDialog extends javax.swing.JDialog {
                 BackupMonitor.getInstance().start(true);
             }
             
-            Application.updateTryIcon();
+            Application.updateSystemTrayIcon();
             
             setVisible(false);
             
         } catch (Exception ex) {
             
-            ErrorDialog.showException((Frame)this.getParent(), "Erro!", ex);
-            
+            JOptionPaneEx.showMessageDialog(
+                this,
+                ex.getMessage(),
+                "Erro!",
+                JOptionPaneEx.ERROR_MESSAGE
+            );
+
         }
         
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));

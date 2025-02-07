@@ -64,6 +64,8 @@ public class NetworkBackupDialog extends javax.swing.JDialog implements Runnable
             
             jtaLog.setText(sb.toString());
             
+            Application.updateSystemTrayIcon();
+            
         } catch (Exception ex) {
             
             jtaLog.setText(

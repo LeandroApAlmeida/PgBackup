@@ -20,6 +20,8 @@ package postgre.backup.service;
  * <li><b>CompactDisc</b> disco CD.</li>
  * 
  * <li><b>RAMDisk</b> disco em memória RAM.</li>
+ * 
+ * <li><b>All</b> todos os drives removíveis ou drives de rede.</li>
  *
  * </ul>
  * 
@@ -47,7 +49,10 @@ public enum DriveTypeEnum implements HasNativeValue {
     CompactDisc(5),
     
     /**Disco em memória RAM.*/
-    RAMDisk(6);
+    RAMDisk(6),
+    
+    /**Todos os discos*/
+    All(101);
 
     
     /**Tipo do disco.*/

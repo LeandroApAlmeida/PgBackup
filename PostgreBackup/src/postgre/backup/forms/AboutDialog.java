@@ -2,6 +2,11 @@ package postgre.backup.forms;
 
 import postgre.backup.run.Application;
 
+/**
+ * Diálogo para exibição dos créditos da versão.
+ * 
+ * @author Leandro Aparecido de Almeida
+ */
 public class AboutDialog extends javax.swing.JDialog {
 
     

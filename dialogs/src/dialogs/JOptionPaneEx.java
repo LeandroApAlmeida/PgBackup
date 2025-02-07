@@ -10,9 +10,7 @@ import javax.swing.JOptionPane;
  */
 public final class JOptionPaneEx extends JOptionPane {
 
-    private JOptionPaneEx() {
-    }
-
+    
     private static ImageIcon getIcon(int messageType) {
         String icon = "/dialogs/";
         switch (messageType) {

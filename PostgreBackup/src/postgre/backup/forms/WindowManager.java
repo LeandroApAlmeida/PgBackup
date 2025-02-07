@@ -2,88 +2,127 @@ package postgre.backup.forms;
 
 import java.awt.Dialog;
 
-public class WindowManager {
+/**
+ * Classe para o gerenciamento de janelas do aplicativo. Somente uma janela pode
+ * estar visível em determinado momento.
+ * 
+ * @author Leandro Aparecido de Almeida
+ */
+public final class WindowManager {
     
     
-    private static boolean windowVisible;
+    /**Diálogo em exibição.*/
+    private static Dialog dialog;
     
-    private static Dialog owner;
-
     
-    private WindowManager() {
+    private WindowManager() {    
     }
 
     
-    public static void showConfigDialog() {
-        if (!windowVisible) {
-            windowVisible = true;
-            owner = new ConfigDialog();
-            owner.setVisible(true);
-            windowVisible = false;
+    /**
+     * Exibir a janela para a configuração do serviço de backup.
+     */
+    public synchronized static void showSettingsDialog() {
+        if (dialog == null) {
+            dialog = new SettingsDialog();
+            dialog.setVisible(true);
+            dialog = null;
+            System.gc();
         }
     }
     
     
-    public static void showRestoreDialog() {
-        if (!windowVisible) {
-            windowVisible = true;
-            owner = new RestoreDialog();
-            owner.setVisible(true);
-            windowVisible = false;
+    /**
+     * Exibir a janela para a restauração do banco de dados.
+     */
+    public synchronized static void showRestoreDialog() {
+        if (dialog == null) {
+            dialog = new RestoreDialog();
+            dialog.setVisible(true);
+            dialog = null;
+            System.gc();
         }
     }
     
     
-    public static void showNetworkBackupDialog() {
-        if (!windowVisible) {
-            windowVisible = true;
-            owner = new NetworkBackupDialog();
-            owner.setVisible(true);
-            windowVisible = false;
+    /**
+     * Exibir a janela para o backup manual em drive de rede.
+     */
+    public synchronized static void showNetworkBackupDialog() {
+        if (dialog == null) {
+            dialog = new NetworkBackupDialog();
+            dialog.setVisible(true);
+            dialog = null;
+            System.gc();
         }
     }
     
     
-    public static void showAboutDialog() { 
-        if (!windowVisible) {
-            windowVisible = true;
-            owner = new AboutDialog();
-            owner.setVisible(true);
-            windowVisible = false;
+    /**
+     * Exibir a janela de erro no backup em drive de rede.
+     */
+    public synchronized static void showBackupErrorDialog() {
+        if (dialog != null) dialog.setVisible(false);
+        dialog = null;
+        System.gc();
+        dialog = new NetworkBackupErrorDialog();
+        dialog.setVisible(true);
+        dialog = null;
+        System.gc();
+    }
+    
+    
+    /**
+     * Exibir a janela de backup manual em drive local.
+     */
+    public synchronized static void showLocalBackupDialog() {
+        if (dialog == null) {
+            dialog = new LocalBackupDialog();
+            dialog.setVisible(true);
+            dialog = null;
+            System.gc();
         }
     }
     
     
-    public static void showBackupErrorDialog() {
-        if (owner != null) owner.setVisible(false);
-        windowVisible = true;
-        owner = new BackupErrorDialog();
-        owner.setVisible(true);
-        windowVisible = false;
+    /**
+     * Exibir a janela de backup manual em drive local, removendo a janela atual
+     * em exibição.
+     */
+    public synchronized static void showLocalBackupDialog2() {
+        if (dialog != null) dialog.setVisible(false);
+        dialog = null;
+        System.gc();
+        dialog = new LocalBackupDialog();
+        dialog.setVisible(true);
+        dialog = null;
+        System.gc();
     }
     
     
-    public static void showLocalBackupDialog() {
-        if (!windowVisible) {
-            windowVisible = true;
-            owner = new LocalBackupDialog();
-            owner.setVisible(true);
-            windowVisible = false;
+    /**
+     * Exibir a janela de backup manual.
+     */
+    public synchronized static void showManualBackupDialog() {
+        if (dialog == null) {
+            dialog = new ManualBackupDialog();
+            dialog.setVisible(true);
+            dialog = null;
+            System.gc();
         }
     }
     
     
-    public static void showLocalBackupDialog2() {
-        if (owner != null) owner.setVisible(false);
-        windowVisible = true;
-        owner = new LocalBackupDialog();
-        owner.setVisible(true);
-        windowVisible = false;
-    }
-    
-    
-    public static Dialog getOwner() {
-        return owner;
+    /**
+     * Exibir a janela de créditos da versão.
+     */
+    public synchronized static void showAboutDialog() { 
+        if (dialog == null) {
+            dialog = new AboutDialog();
+            dialog.setVisible(true);
+            dialog = null;
+            System.gc();
+        }
     }
 
     

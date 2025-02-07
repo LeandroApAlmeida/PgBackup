@@ -4,8 +4,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * Classe que implementa o tratador de eventos associado ao clique no 
- * ícone da aplicação.
+ * Classe que implementa o tratador de eventos associado ao clique no ícone da
+ * aplicação.
  * 
  * @author Leandro Aparecido de Almeida
  */
@@ -22,7 +22,7 @@ public class TrayIconMouseListener implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
-            Application.showContextBackupUI();
+            Application.showManualBackupUI();
         }
     }
     
