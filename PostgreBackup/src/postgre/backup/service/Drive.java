@@ -68,7 +68,9 @@ public final class Drive {
      * @return tipo do sistema de arquivos.
      */
     public String getFileSystem() {
+    
         return fileSystem;
+    
     }
 
     
@@ -78,7 +80,9 @@ public final class Drive {
      * @return tipo de drive.
      */
     public DriveTypeEnum getDriveType() {
+        
         return driveType;
+    
     }
 
     
@@ -88,7 +92,9 @@ public final class Drive {
      * @return letra do drive.
      */
     public String getLetter() {
+        
         return letter;
+    
     }
 
     
@@ -98,7 +104,9 @@ public final class Drive {
      * @return rótulo do drive.
      */
     public String getName() {
+        
         return name;
+    
     }
  
     
@@ -112,16 +120,26 @@ public final class Drive {
      */
     @Override
     public boolean equals(Object obj) {
+        
         if (obj != null) {
-            if (obj instanceof Drive) {
-                return this.letter.toUpperCase().equals(((Drive)obj).letter
+        
+            if (obj instanceof Drive drive) {
+            
+                return this.letter.toUpperCase().equals(drive.letter
                 .toUpperCase());
+            
             } else {
+            
                 return false;
+            
             }
+            
         } else {
+            
             return false;
+        
         }
+        
     }
 
     
@@ -132,7 +150,9 @@ public final class Drive {
      */
     @Override
     public String toString() {
+    
         return name + " (" + letter + ")";
+    
     }
 
     

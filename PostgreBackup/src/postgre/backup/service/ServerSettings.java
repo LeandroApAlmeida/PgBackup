@@ -148,29 +148,29 @@ public class ServerSettings {
                 
                     switch (e0.getName()) {
                         
-                        case "host": host = e0.getText(); break;
+                        case "host" -> host = e0.getText();
                         
-                        case "port": port = Integer.parseInt(e0.getText()); break;
+                        case "port" -> port = Integer.parseInt(e0.getText());
                         
-                        case "user_name": userName = e0.getText(); break;
+                        case "user_name" -> userName = e0.getText();
                         
-                        case "password": password = e0.getText(); break;
+                        case "password" -> password = e0.getText();
                         
-                        case "database": database = e0.getText(); break;
+                        case "database" -> database = e0.getText();
                         
-                        case "backup_executable": backupExecutable = e0.getText(); break;
+                        case "backup_executable" -> backupExecutable = e0.getText();
                         
-                        case "restore_executable": restoreExecutable = e0.getText(); break;
+                        case "restore_executable" -> restoreExecutable = e0.getText();
                         
-                        case "backup_mode": backupMode = Integer.parseInt(e0.getText()); break;
+                        case "backup_mode" -> backupMode = Integer.parseInt(e0.getText());
                         
-                        case "extract_blobs": extractBlobs = Boolean.parseBoolean(e0.getText()); break;
+                        case "extract_blobs" -> extractBlobs = Boolean.parseBoolean(e0.getText());
                         
-                        case "network_drive": networkDrive = e0.getText(); break;
+                        case "network_drive" -> networkDrive = e0.getText();
                         
-                        case "drive_type": driveType = Integer.parseInt(e0.getText()); break;
+                        case "drive_type" -> driveType = Integer.parseInt(e0.getText());
                         
-                        case "number_of_files": numberOfFiles = Integer.parseInt(e0.getText()); break;
+                        case "number_of_files" -> numberOfFiles = Integer.parseInt(e0.getText());
                     
                     }
                 
@@ -268,6 +268,7 @@ public class ServerSettings {
         
         Format format = Format.getPrettyFormat();
         format.setEncoding("ISO-8859-1");
+        
         XMLOutputter xout = new XMLOutputter(format);
         
         try (OutputStream out = new FileOutputStream(xmlFile)) {
@@ -283,7 +284,9 @@ public class ServerSettings {
      * @return modo de backup.
      */
     public int getBackupMode() {
+    
         return backupMode;
+    
     }
 
     
@@ -293,7 +296,9 @@ public class ServerSettings {
      * @return status de extrair blobs.
      */
     public boolean extractBlobs() {
+    
         return extractBlobs;
+    
     }
 
     
@@ -303,7 +308,9 @@ public class ServerSettings {
      * @return drive de rede definido para backup. 
      */
     public String getNetworkDrive() {
+     
         return networkDrive;
+    
     }
 
     
@@ -313,7 +320,9 @@ public class ServerSettings {
      * @return endereço do host do servidor PostgreSQL.
      */
     public String getHost() {
+        
         return host;
+    
     }
 
     
@@ -323,7 +332,9 @@ public class ServerSettings {
      * @return porta do servidor PostgreSQL. 
      */
     public int getPort() {
+        
         return port;
+    
     }
 
     
@@ -333,7 +344,9 @@ public class ServerSettings {
      * @return nome de usuário para acesso ao servidor PostgreSQL.
      */
     public String getUserName() {
+        
         return userName;
+    
     }
 
 
@@ -343,7 +356,9 @@ public class ServerSettings {
      * @return senha para acesso ao servidor PostgreSQL. 
      */
     public String getPassword() {
+        
         return password;
+    
     }
 
 
@@ -353,7 +368,9 @@ public class ServerSettings {
      * @return nome do banco de dados sob controle de backup. 
      */
     public String getDatabase() {
+        
         return database;
+    
     }
     
     
@@ -363,7 +380,9 @@ public class ServerSettings {
      * @return path do programa de backup do PostgreSQL.
      */
     public String getBackupExecutable() {
+        
         return backupExecutable;
+    
     }
 
     
@@ -373,7 +392,9 @@ public class ServerSettings {
      * @return path do programa de restauração do backup do PostgreSQL.
      */
     public String getRestoreExecutable() {
+        
         return restoreExecutable;
+    
     }
     
     
@@ -383,7 +404,9 @@ public class ServerSettings {
      * @return tipo de drive do backup.
      */
     public int getDriveType() {
+        
         return driveType;
+    
     }
 
     
@@ -393,7 +416,9 @@ public class ServerSettings {
      * @return número de arquivos a serem mantidos no diretório de backup.
      */
     public int getNumberOfFiles() {
+        
         return numberOfFiles;
+    
     }
     
     
@@ -403,7 +428,9 @@ public class ServerSettings {
      * @param host endereço do host do servidor PostgreSQL.
      */
     public void setHost(String host) {
+        
         this.host = host;
+    
     }
 
     
@@ -413,7 +440,9 @@ public class ServerSettings {
      * @param port porta do servidor PostgreSQL.
      */
     public void setPort(int port) {
+    
         this.port = port;
+    
     }
 
     
@@ -423,7 +452,9 @@ public class ServerSettings {
      * @param userName nome de usuário para acesso ao servidor PostgreSQL.
      */
     public void setUserName(String userName) {
+        
         this.userName = userName;
+    
     }
 
     
@@ -433,7 +464,9 @@ public class ServerSettings {
      * @param password senha para acesso ao servidor PostgreSQL.
      */
     public void setPassword(String password) {
+        
         this.password = password;
+    
     }
 
     
@@ -443,7 +476,9 @@ public class ServerSettings {
      * @param database nome do banco de dados sob controle de backup.
      */
     public void setDatabase(String database) {
+        
         this.database = database;
+    
     }
     
     
@@ -453,7 +488,9 @@ public class ServerSettings {
      * @param backupMode modo de backup.
      */
     public void setBackupMode(int backupMode) {
+        
         this.backupMode = backupMode;
+    
     }
 
   
@@ -463,7 +500,9 @@ public class ServerSettings {
      * @param extractBlobs status de extrair blobs.
      */
     public void setExtractBlobs(boolean extractBlobs) {
+        
         this.extractBlobs = extractBlobs;
+    
     }
 
     
@@ -473,7 +512,9 @@ public class ServerSettings {
      * @param networkDrive drive de rede definido para backup.
      */
     public void setNetworkDrive(String networkDrive) {
+        
         this.networkDrive = networkDrive;
+    
     }
 
 
@@ -483,7 +524,9 @@ public class ServerSettings {
      * @param backupExecutable path do programa de backup do PostgreSQL. 
      */
     public void setBackupExecutable(String backupExecutable) {
+       
         this.backupExecutable = backupExecutable;
+    
     }
 
     
@@ -493,7 +536,9 @@ public class ServerSettings {
      * @param restoreExecutable path do programa de restauração do backup do PostgreSQL.
      */
     public void setRestoreExecutable(String restoreExecutable) {
+        
         this.restoreExecutable = restoreExecutable;
+    
     }
     
     
@@ -503,7 +548,9 @@ public class ServerSettings {
      * @param driveType tipo de drive de backup.
      */
     public void setDriveType(int driveType) {
+        
         this.driveType = driveType;
+    
     }
 
 
@@ -513,7 +560,9 @@ public class ServerSettings {
      * @param numOfFiles número de arquivos a serem mantidos no diretório de backup.
      */
     public void setNumberOfFiles(int numOfFiles) {
+    
         this.numberOfFiles = numOfFiles;
+    
     }
 
     

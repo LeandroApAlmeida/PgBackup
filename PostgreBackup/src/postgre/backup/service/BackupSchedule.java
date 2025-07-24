@@ -128,6 +128,7 @@ public class BackupSchedule {
             if (xmlFile.exists()) {
                 
                 SAXBuilder builder = new SAXBuilder();
+                
                 Document document = builder.build(xmlFile);
                 
                 Element root = (Element) document.getRootElement();
@@ -139,42 +140,44 @@ public class BackupSchedule {
                     switch (e0.getName()) {
                         
                         // Obtém o status de backup automático ativado.
-                        case "automatic": {
+                        case "automatic" -> {
                             
                             automatic = Boolean.parseBoolean(e0.getText());
                             
-                        } break;
+                        }
                        
                         // Obtém o status de backup automático por dia da semana.
-                        case "week_days": {
+                        case "week_days" -> {
                             
                             List<Element> n1 = e0.getChildren();
                             
                             for (Element e1 : n1) {
+                                
                                 switch (e1.getName()) {
                                     
-                                    case "sun": sunday = Boolean.parseBoolean(e1.getText()); break;
+                                    case "sun" -> sunday = Boolean.parseBoolean(e1.getText());
                                     
-                                    case "mon": monday = Boolean.parseBoolean(e1.getText()); break;
+                                    case "mon" -> monday = Boolean.parseBoolean(e1.getText());
                                     
-                                    case "tue": tuesday = Boolean.parseBoolean(e1.getText()); break;
+                                    case "tue" -> tuesday = Boolean.parseBoolean(e1.getText());
                                     
-                                    case "wed": wednesday = Boolean.parseBoolean(e1.getText()); break;
+                                    case "wed" -> wednesday = Boolean.parseBoolean(e1.getText());
                                     
-                                    case "thu": thursday = Boolean.parseBoolean(e1.getText()); break;
+                                    case "thu" -> thursday = Boolean.parseBoolean(e1.getText());
                                     
-                                    case "fri": friday = Boolean.parseBoolean(e1.getText()); break;
+                                    case "fri" -> friday = Boolean.parseBoolean(e1.getText());
                                     
-                                    case "sat": saturday = Boolean.parseBoolean(e1.getText()); break;
+                                    case "sat" -> saturday = Boolean.parseBoolean(e1.getText());
                                 
                                 }
+                                
                             }
                             
-                        } break;
+                        }
                         
                         // Obtém os horários de backup automático em cada dia
                         // da semana que foi definido.
-                        case "backup_times": {
+                        case "backup_times" -> {
                             
                             List<Element> n1 = e0.getChildren();
                             
@@ -183,7 +186,7 @@ public class BackupSchedule {
                                 backupTimes.add(time);
                             }
                             
-                        } break;
+                        }
                         
                     }
                     
@@ -294,7 +297,9 @@ public class BackupSchedule {
      * @return lista com os horários para backup.
      */
     public List<Time> getBackupTimesList() {
+    
         return backupTimes;
+    
     }
 
     
@@ -304,7 +309,9 @@ public class BackupSchedule {
      * @return status de backup aos domingos.
      */
     public boolean isSunday() {
+    
         return sunday;
+    
     }
 
     
@@ -314,7 +321,9 @@ public class BackupSchedule {
      * @return status de backup às segundas-feiras.
      */
     public boolean isMonday() {
+        
         return monday;
+    
     }
 
     
@@ -324,7 +333,9 @@ public class BackupSchedule {
      * @return status de backup às terças-feiras.
      */
     public boolean isTuesday() {
+        
         return tuesday;
+    
     }
 
     
@@ -334,7 +345,9 @@ public class BackupSchedule {
      * @return status de backup às quartas-feiras.
      */
     public boolean isWednesday() {
+        
         return wednesday;
+    
     }
 
     
@@ -344,7 +357,9 @@ public class BackupSchedule {
      * @return status de backup às quintas-feiras.
      */
     public boolean isThursday() {
+        
         return thursday;
+    
     }
 
     
@@ -354,7 +369,9 @@ public class BackupSchedule {
      * @return status de backup às sextas-feiras.
      */
     public boolean isFriday() {
+        
         return friday;
+    
     }
 
     
@@ -364,7 +381,9 @@ public class BackupSchedule {
      * @return status de backup aos sábados.
      */
     public boolean isSaturday() {
+        
         return saturday;
+    
     }
 
     
@@ -374,7 +393,9 @@ public class BackupSchedule {
      * @return status de backup automático ativado.
      */
     public boolean isAutomatic() {
+        
         return automatic;
+    
     }
     
     
@@ -384,7 +405,9 @@ public class BackupSchedule {
      * @param sun status de backup automático aos domingos. 
      */
     public void setSunday(boolean sun) {
+        
         this.sunday = sun;
+    
     }
 
     
@@ -394,7 +417,9 @@ public class BackupSchedule {
      * @param mon status de backup automático às segundas-feiras. 
      */
     public void setMonday(boolean mon) {
+       
         this.monday = mon;
+    
     }
 
     
@@ -404,7 +429,9 @@ public class BackupSchedule {
      * @param tue status de backup automático às terças-feiras. 
      */
     public void setTuesday(boolean tue) {
+        
         this.tuesday = tue;
+    
     }
 
     
@@ -414,7 +441,9 @@ public class BackupSchedule {
      * @param wed status de backup automático às quartas-feiras. 
      */
     public void setWednesday(boolean wed) {
+        
         this.wednesday = wed;
+    
     }
 
     
@@ -424,7 +453,9 @@ public class BackupSchedule {
      * @param thu status de backup automático às quintas-feiras. 
      */
     public void setThursday(boolean thu) {
+        
         this.thursday = thu;
+    
     }
 
     
@@ -434,7 +465,9 @@ public class BackupSchedule {
      * @param fri status de backup automático às sextas-feiras. 
      */
     public void setFriday(boolean fri) {
+        
         this.friday = fri;
+    
     }
 
 
@@ -444,7 +477,9 @@ public class BackupSchedule {
      * @param sat status de backup automático aos sábados. 
      */
     public void setSaturday(boolean sat) {
+        
         this.saturday = sat;
+    
     }
 
     
@@ -454,7 +489,9 @@ public class BackupSchedule {
      * @param automatic status de backup automático ativado.
      */
     public void setAutomatic(boolean automatic) {
+        
         this.automatic = automatic;
+    
     }
 
     

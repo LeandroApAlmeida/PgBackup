@@ -72,6 +72,7 @@ public class LastBackupInfo {
         try {
             
             SAXBuilder builder = new SAXBuilder();
+            
             Document document = builder.build(xmlFile);
 
             Element root = (Element) document.getRootElement();
@@ -79,10 +80,15 @@ public class LastBackupInfo {
             List<Element> n0 = root.getChildren();
 
             for (Element e0 : n0) {
+                
                 switch (e0.getName()) {
-                    case "date": date = new Date(Long.parseLong(e0.getText())); break;
-                    case "file": file = new File(e0.getText()); break;
+                    
+                    case "date" -> date = new Date(Long.parseLong(e0.getText()));
+                    
+                    case "file" -> file = new File(e0.getText());
+                    
                 }
+                
             }
             
         } catch (Exception ex) {
@@ -112,6 +118,7 @@ public class LastBackupInfo {
         Element e1 = new Element("file");
         e1.setText(file.getAbsolutePath());
         root.addContent(e1);
+        
         document.setRootElement(root);
 
         if (xmlFile.exists()) xmlFile.delete();
@@ -120,6 +127,7 @@ public class LastBackupInfo {
         format.setEncoding("ISO-8859-1");
 
         XMLOutputter xout = new XMLOutputter(format);
+        
         try (OutputStream out = new FileOutputStream(xmlFile)) {
             xout.output(document, out);
         }
@@ -133,7 +141,9 @@ public class LastBackupInfo {
      * @return data do último backup.
      */
     public Date getDate() {
+
         return date;
+
     }
 
     
@@ -143,7 +153,9 @@ public class LastBackupInfo {
      * @return arquivo gerado no último backup.
      */
     public File getFile() {
+
         return file;
+
     }
 
     
@@ -153,7 +165,9 @@ public class LastBackupInfo {
      * @param date data do último backup.
      */
     public void setDate(Date date) {
+
         this.date = date;
+
     }
 
     
@@ -163,7 +177,9 @@ public class LastBackupInfo {
      * @param file arquivo gerado no último backup.
      */
     public void setFile(File file) {
+
         this.file = file;
+
     }
     
     

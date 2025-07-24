@@ -6,7 +6,6 @@ import java.io.RandomAccessFile;
 import java.nio.channels.FileLock;
 import javax.swing.UIManager;
 import postgre.backup.service.BackupMonitor;
-import static postgre.backup.run.Application.showMessageError;
 
 /**
  * Classe que implementa o ponto de entrada do programa.
@@ -19,6 +18,7 @@ public class Main {
     static {
     
         try {
+            
             // Adiciona o diretório raiz do programa.
             System.setProperty(
                 "root_dir",
@@ -30,6 +30,7 @@ public class Main {
                     .toURI()
                 ).getParent()
             );
+            
         } catch (Exception ex) {
         }
         
@@ -60,7 +61,9 @@ public class Main {
             // programa é inicializado, caso contrário, não.
             
             final File file = new File(System.getProperty("root_dir") + "\\pgbackup.lock");
+            
             final RandomAccessFile raFile = new RandomAccessFile(file, "rw");
+            
             final FileLock fLock = raFile.getChannel().tryLock();
             
             if (fLock != null) {
@@ -69,17 +72,23 @@ public class Main {
                 // este arquivo.
                 
                 Runtime.getRuntime().addShutdownHook(
+                    
                     new Thread() {
+                        
                         @Override
                         public void run() {
+                            
                             try {
                                 fLock.release();
                                 raFile.close();
                                 file.delete();
                             } catch (IOException ex) {                            
                             }
+                            
                         }
+                        
                     }
+                        
                 ); 
                 
                 java.awt.EventQueue.invokeLater(() -> {
@@ -95,11 +104,14 @@ public class Main {
 
                         // Adiciona o ícone do aplicativo na barra de tarefas
                         // do Windows.
-                        Application.addIconToSystemTray();
+                        ApplicationTrayIcon.addToSystemTray();
 
                     } catch (Exception ex) {
 
-                        showMessageError("Erro na inicialização!", ex);
+                        Application.showErrorDialog(
+                            "Erro na inicialização!",
+                            ex
+                        );
 
                         System.exit(1);
 
@@ -115,9 +127,13 @@ public class Main {
         
         } catch (Exception ex) {
         
-            showMessageError("Erro na inicialização!", ex);
+            Application.showErrorDialog(
+                "Erro na inicialização!",
+                ex
+            );
             
             System.exit(1);
+            
         }
         
     }

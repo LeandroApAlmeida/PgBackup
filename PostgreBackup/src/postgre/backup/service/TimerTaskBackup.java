@@ -2,6 +2,7 @@ package postgre.backup.service;
 
 import java.util.TimerTask;
 import postgre.backup.run.Application;
+import postgre.backup.run.ApplicationTrayIcon;
 
 /**
  * Classe responsável pela execução de um backup automático.
@@ -32,9 +33,13 @@ public class TimerTaskBackup extends TimerTask {
             backupMonitor.stop(true);
             
             try {
+               
                 new BackupManager().doBackup(serverSettings.getNetworkDrive());
+            
             } catch (Exception ex) {
-                Application.showNetworkErrorUI();
+            
+                Application.showBackupErrorDialog();
+            
             }
             
             backupMonitor.start(true);
@@ -45,14 +50,14 @@ public class TimerTaskBackup extends TimerTask {
         
             backupMonitor.stop(true);
             
-            Application.showLocalBackupUI();
+            Application.showManualBackupDialog();
             
             backupMonitor.start(true);
             
         }
         
-        Application.updateSystemTrayIcon();
-        
+        ApplicationTrayIcon.updateToolTipText();
+
     }
 
     

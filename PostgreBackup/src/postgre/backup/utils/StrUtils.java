@@ -1,4 +1,4 @@
-package postgre.backup.service;
+package postgre.backup.utils;
 
 import java.util.Date;
 
@@ -20,6 +20,7 @@ public final class StrUtils {
     public static String formatBytes(long bytes) { 
         
         double d;
+        
         String m;
         
         if (bytes < 1024) {
@@ -54,7 +55,9 @@ public final class StrUtils {
      * @return String formatada.
      */
     public static String formatDate1(Date date) {
+    
         return String.format("%1$td/%1$tm/%1$tY, %1$tH:%1$tM:%1$tS", date);
+    
     }
     
     
@@ -66,7 +69,9 @@ public final class StrUtils {
      * @return String formatada.
      */
     public static String formatDate2(Date date) {
+    
         return String.format("%1$td/%1$tm/%1$tY, %1$tH:%1$tM", date);
+    
     }
     
     
@@ -78,7 +83,9 @@ public final class StrUtils {
      * @return String formatada.
      */
     public static String formatDate3(Date date) {
+        
         return String.format("%1$td/%1$tm/%1$tY", date);
+    
     }
     
     
@@ -90,7 +97,9 @@ public final class StrUtils {
      * @return String formatada. 
      */
     public static String formatHour(Date date) {
+        
         return String.format("%1$tH:%1$tM:%1$tS", date);
+    
     }
   
     

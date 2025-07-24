@@ -7,8 +7,12 @@ package postgre.backup.service;
  */
 public class BackupException extends Exception {
     
+    
     public BackupException(String message) {
+    
         super(message);
+    
     }
    
+    
 }

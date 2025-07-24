@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import postgre.backup.run.Application;
+import postgre.backup.run.ApplicationTrayIcon;
 
 /**
  * Classe para gerenciamento dos processos de backup e restore do banco de
@@ -48,14 +48,18 @@ public final class BackupManager {
         );
         
         if (backupFolder.exists()) {
+            
             // Obtém todos os arquivos no diretório de backup.
             for (File file : backupFolder.listFiles()) {
                 if (file.isFile()) {
                     backupFiles.add(file);
                 }
             }
+            
         } else {
+            
             backupFolder.mkdirs();
+            
         }
         
         if (backupFiles.size() >= serverSettings.getNumberOfFiles()) {
@@ -206,11 +210,11 @@ public final class BackupManager {
         builder.redirectErrorStream(true);
         
         // Notifica o usuário sobre o início do processo de backup.
-        Application.displayMessage(                    
+        ApplicationTrayIcon.displayMessage(                    
             "NOTIFICAÇÃO DE PROCESSO:",
             "Realizando o \"Backup\" do banco de dados \"" + 
             serverSettings.getDatabase() + "\"",
-            Application.MESSAGE_NONE
+            ApplicationTrayIcon.MESSAGE_NONE
         );
         
         StringBuilder sb = new StringBuilder();
@@ -234,10 +238,10 @@ public final class BackupManager {
         if (!sb.toString().equals("")) {
             
             //Notifica o usuário sobre erro ocorrido no processo de backup.
-            Application.displayMessage(                    
+            ApplicationTrayIcon.displayMessage(                    
                 "ERRO NO PROCESSO DE BACKUP:",
                 sb.toString(),
-                Application.MESSAGE_ERROR
+                ApplicationTrayIcon.MESSAGE_ERROR
             );
             
             throw new BackupException(sb.toString());
@@ -257,11 +261,11 @@ public final class BackupManager {
             lastBackupInfo.saveXmlFile();
             
             // Notifica o usuário sobre o sucesso no processamento do backup.
-            Application.displayMessage(                    
+            ApplicationTrayIcon.displayMessage(                    
                 "BACKUP CONCLUÍDO!",
                 "Backup do banco de dados \"" + serverSettings.getDatabase() + 
                 "\" concluído com sucesso.",
-                Application.MESSAGE_NONE
+                ApplicationTrayIcon.MESSAGE_NONE
             );
             
         }
@@ -340,11 +344,11 @@ public final class BackupManager {
         builder.redirectErrorStream(true);
         
         // Notifica o usuário sobre o início do processo de restore.
-        Application.displayMessage(                    
+        ApplicationTrayIcon.displayMessage(                    
             "NOTIFICAÇÃO DE PROCESSO:",
             "Realizando a \"Restauração\" do banco de dados \"" + 
             serverSettings.getDatabase() + "\"",
-            Application.MESSAGE_NONE
+            ApplicationTrayIcon.MESSAGE_NONE
         );
         
         // Inicia o processo de restore.
@@ -368,10 +372,10 @@ public final class BackupManager {
         if (!sb.toString().equals("")) {
             
             //Notifica o usuário sobre erro ocorrido no processo de restore.
-            Application.displayMessage(                    
+            ApplicationTrayIcon.displayMessage(                    
                 "ERRO NO PROCESSO DE RESTORE:",
                 sb.toString(),
-                Application.MESSAGE_ERROR
+                ApplicationTrayIcon.MESSAGE_ERROR
             );
             
             throw new RestoreException(sb.toString());
@@ -379,11 +383,11 @@ public final class BackupManager {
         } else {
             
             // Notifica o usuário sobre o sucesso do processamento do restore.
-            Application.displayMessage(                    
+            ApplicationTrayIcon.displayMessage(                    
                 "RESTORE CONCLUÍDO!",
                 "Restore do banco de dados \"" + serverSettings.getDatabase() + 
                 "\" concluído com sucesso.",
-                Application.MESSAGE_NONE
+                ApplicationTrayIcon.MESSAGE_NONE
             );
             
         }

@@ -4,7 +4,6 @@ import java.awt.MenuItem;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import postgre.backup.service.ServerSettings;
-import postgre.backup.forms.WindowManager;
 
 /**
  * Popup menu associado ao {@link java.awt.TrayIcon} da aplicação.
@@ -21,15 +20,25 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
      * Constructor padrão. Cria os itens do popup menu da aplicação.
      */
     public TrayIconPopupMenu() {
+
         addDoBackupMenuItem();
+
         addSeparator();
+
         addDoRestoreMenuItem();
+
         addSeparator();
+
         addAboutMenuItem();
+
         addSeparator();
+
         addConfigMenuItem();
+
         addSeparator();
+
         addExitMenuItem();
+
     }
     
     
@@ -41,7 +50,9 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
         MenuItem menuItem = new MenuItem("Configurar...");
         
         menuItem.addActionListener((ActionEvent e) -> {
-            WindowManager.showSettingsDialog();
+        
+            Application.showSettingsDialog();
+        
         });
         
         this.add(menuItem);
@@ -57,7 +68,9 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
         MenuItem menuItem = new MenuItem("Fazer o Backup");
         
         menuItem.addActionListener((ActionEvent e) -> {
-            Application.showManualBackupUI();
+         
+            Application.showManualBackupDialog();
+        
         });
         
         this.add(menuItem);
@@ -73,7 +86,9 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
         MenuItem menuItem = new MenuItem("Restaurar o Backup");
         
         menuItem.addActionListener((ActionEvent e) -> {
-            WindowManager.showRestoreDialog();
+        
+            Application.showRestoreDialog();
+        
         });
         
         this.add(menuItem);
@@ -89,7 +104,9 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
         MenuItem menuItem = new MenuItem("Sobre a Versão");
         
         menuItem.addActionListener((ActionEvent e) -> {
-            WindowManager.showAboutDialog();
+            
+            Application.showAboutDialog();
+        
         });
         
         this.add(menuItem);
@@ -116,7 +133,9 @@ public class TrayIconPopupMenu extends java.awt.PopupMenu {
             );
             
             if (opt == JOptionPane.YES_OPTION) {
+            
                 System.exit(0);
+            
             }
             
         });

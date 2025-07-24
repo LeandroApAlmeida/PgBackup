@@ -21,7 +21,7 @@ public class NetworkBackupErrorDialog extends javax.swing.JDialog {
     
     
     private void showManualBackupDialog() {
-        WindowManager.showLocalBackupDialog2();
+        Application.showManualBackupDialog2();
     }
     
     

@@ -64,6 +64,7 @@ public final class BackupMonitor {
             if (backupSchedule.isSaturday()) weekDays.add(7);
 
             List<Time> times = backupSchedule.getBackupTimesList();
+            
             Calendar calendar = Calendar.getInstance();
 
             calendar.setTime(new Date()); 
@@ -79,30 +80,44 @@ public final class BackupMonitor {
             boolean backupToday = false;
 
             if (weekDays.contains(calendar.get(Calendar.DAY_OF_WEEK))) {
+               
                 for (Time time : times) {
+                
                     if (currentTime.getTime() <= time.getTime()) {
+                        
                         //O backup será nesta mesma data, no primeiro horário
                         //da lista, após o horário atual do sistema.
                         nextTime = time;
                         backupToday = true;
+                        
                         break;
+                        
                     }
+                
                 }
+            
             }          
 
             if (!backupToday) {
+                
                 //O backup será realizado na próxima data definida, no primeiro
                 //horário da lista.
                 for (int i = 1; i <= 7; i++) {
+                    
                     Calendar c = Calendar.getInstance();
+                    
                     c.setTime(calendar.getTime());
                     c.add(Calendar.DAY_OF_MONTH, i);
+                    
                     if (weekDays.contains(c.get(Calendar.DAY_OF_WEEK))) {
                         calendar.add(Calendar.DAY_OF_MONTH, i);
                         break;
                     }
+                    
                 }
+                
                 nextTime = times.get(0);
+            
             }
 
             calendar.set(Calendar.HOUR_OF_DAY, nextTime.getHours());
@@ -149,10 +164,12 @@ public final class BackupMonitor {
 
         //Para a thread do controlador.
         if (stopMonitor) {
+            
             if (monitorTimer != null) {
                 monitorTimer.cancel();
                 monitorTimer = null;
             }
+            
         }
 
         //Para a thread do monitor.
@@ -169,7 +186,9 @@ public final class BackupMonitor {
      * @return data do próximo backup automático.
      */
     public Date getNextBackupTime() {
+     
         return nextBackupTime;
+    
     }
     
     
@@ -177,7 +196,9 @@ public final class BackupMonitor {
      * @return instancia da classe.
      */
     public static BackupMonitor getInstance() {
+        
         return instance;
+    
     }
     
     

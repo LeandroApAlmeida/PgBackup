@@ -21,6 +21,7 @@ import postgre.backup.service.DriveTypeEnum;
 import postgre.backup.service.DrivesManager;
 import postgre.backup.service.ServerSettings;
 import postgre.backup.run.Application;
+import postgre.backup.run.ApplicationTrayIcon;
 
 
 public class SettingsDialog extends javax.swing.JDialog {
@@ -43,7 +44,7 @@ public class SettingsDialog extends javax.swing.JDialog {
     private final Comparator1 comparator;
     
     
-    protected SettingsDialog() {
+    public SettingsDialog() {
         
         super(null, ModalityType.TOOLKIT_MODAL);
         
@@ -331,7 +332,7 @@ public class SettingsDialog extends javax.swing.JDialog {
                 BackupMonitor.getInstance().start(true);
             }
             
-            Application.updateSystemTrayIcon();
+            ApplicationTrayIcon.updateToolTipText();
             
             setVisible(false);
             

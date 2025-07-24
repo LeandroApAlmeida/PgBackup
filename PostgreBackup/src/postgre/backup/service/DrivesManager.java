@@ -135,60 +135,61 @@ public class DrivesManager {
     public List<Drive> getDrives(DriveTypeEnum driveType) {
         
         List<Drive> drives = getDrives();
+        
         List<Drive> selectedDrives = new ArrayList<>();
         
         for (Drive drive : drives) {
         
             switch (driveType) {
                 
-                case Unknown: {
+                case Unknown -> {
                     if (drive.getDriveType() == DriveTypeEnum.Unknown) {
                         selectedDrives.add(drive);
                     }
-                } break;
+                }
                 
-                case NoRootDirectory: {
+                case NoRootDirectory -> {
                     if (drive.getDriveType() == DriveTypeEnum.NoRootDirectory) {
                         selectedDrives.add(drive);
                     }
-                } break;
+                }
                 
-                case RemovableDisk: {
+                case RemovableDisk -> {
                     if (drive.getDriveType() == DriveTypeEnum.RemovableDisk) {
                         selectedDrives.add(drive);
                     }
-                } break;
+                }
             
-                case LocalDisk: {
+                case LocalDisk -> {
                     if (drive.getDriveType() == DriveTypeEnum.LocalDisk) {
                         selectedDrives.add(drive);
                     }
-                } break;
+                }
                
-                case NetworkDrive: {
+                case NetworkDrive -> {
                     if (drive.getDriveType() == DriveTypeEnum.NetworkDrive) {
                         selectedDrives.add(drive);
                     }
-                } break;
+                }
                 
-                case CompactDisc: {
+                case CompactDisc -> {
                     if (drive.getDriveType() == DriveTypeEnum.CompactDisc) {
                         selectedDrives.add(drive);
                     }
-                } break;
+                }
                 
-                case RAMDisk: {
+                case RAMDisk -> {
                     if (drive.getDriveType() == DriveTypeEnum.RAMDisk) {
                         selectedDrives.add(drive);
                     }
-                } break;
+                }
                 
-                case All: {
+                case All -> {
                     if (drive.getDriveType() == DriveTypeEnum.RemovableDisk ||
                     drive.getDriveType() == DriveTypeEnum.NetworkDrive) {
                         selectedDrives.add(drive);
                     }
-                } break;
+                }
             
             }
         

@@ -60,13 +60,17 @@ public enum DriveTypeEnum implements HasNativeValue {
 
     
     DriveTypeEnum(int nativeValue) {
+    
         this.nativeValue = nativeValue;
+    
     }
 
     
     @Override
     public int getNativeValue() {
+    
         return nativeValue;
+    
     }
     
     
