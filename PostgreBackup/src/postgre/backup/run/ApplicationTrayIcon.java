@@ -13,15 +13,24 @@ import postgre.backup.service.LastBackupInfo;
 import postgre.backup.service.ServerSettings;
 import postgre.backup.utils.StrUtils;
 
+/**
+ * Classe que representa o ícone da aplicação na barra de tarefas.
+ * 
+ * @author Leandro Aparecido de Almeida
+ */
 public class ApplicationTrayIcon {
     
     
+    /**Mensagem sem ícone.*/
     public static final int MESSAGE_NONE = 1;
     
+    /**Mensagem de informação.*/
     public static final int MESSAGE_INFO = 2;
     
+    /**Mensagem de alerta.*/
     public static final int MESSAGE_WARNING = 3;
     
+    /**Mensagem de erro.*/
     public static final int MESSAGE_ERROR = 4;
     
     
@@ -30,7 +39,7 @@ public class ApplicationTrayIcon {
     
     
     /**
-     * Exibir um balão de mensagem na barra de tarefas.
+     * Exibir o balão de mensagem na barra de tarefas.
      * 
      * @param title título da mensagem.
      * 
@@ -60,7 +69,7 @@ public class ApplicationTrayIcon {
 
     
     /**
-     * Adiciona o ícone do aplicativo à barra de tarefas do sistema operacional.
+     * Adiciona o ícone da aplicação à barra de tarefas do sistema operacional.
      */
     public static void addToSystemTray() {
     
