@@ -20,7 +20,7 @@ Na diretório raiz do programa, copie os seguintes arquivos, juntamente com os .
 
 <li><b>jacob-1.21-x86.dll</b>: biblioteca de vínculo dinâmico do JACOB para arquiteturas x86;</li>
 
-<li><b>PostgreBackup.bat</b>: arquivo de execução do serviço, usando a JVM instalada no Windows.</li>
+<li><b>PostgreBackup.bat</b>: script de execução do serviço, usando a JVM instalada no Windows.</li>
   
 </ul>
 
